@@ -1,17 +1,14 @@
 import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:pkce/pkce.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify_flutter/src/core/constants/pref_constants.dart';
 import 'package:spotify_flutter/src/core/constants/routes.dart';
+import 'package:spotify_flutter/src/core/services/storage/storage_service.dart';
 
 class AuthService {
   final _dio = Dio();
+  final _storageService = StorageService();
 
-
-  // TODO: Document [authorize].
   Future<bool> authorize({
     required String redirectUri,
     required String clientId,
@@ -53,7 +50,8 @@ class AuthService {
             code: code,
             codeVerifier: codeVerifier,
             redirectUri: redirectUri,
-            clientId: clientId, secretKey: secretKey,
+            clientId: clientId,
+            secretKey: secretKey,
           );
         }
       }
@@ -63,8 +61,6 @@ class AuthService {
 
     return false;
   }
-
-
 
   Future<bool> _getToken({
     required String code,
@@ -95,16 +91,14 @@ class AuthService {
         options: Options(headers: header),
       );
 
-      _saveToken(response.data);
+      _storageService.saveToken(
+        accessToken: response.data[_storageService.kAccessToken],
+        refreshToken: response.data[_storageService.kRefreshToken],
+      );
+
       return true;
     } catch (_) {
       return false;
     }
-  }
-
-  _saveToken(Map<String, dynamic> response) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(PrefConstants.kAccessToken, response['access_token']);
-    prefs.setString(PrefConstants.kRefreshToken, response['refresh_token']);
   }
 }
