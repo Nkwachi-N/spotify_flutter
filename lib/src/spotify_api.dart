@@ -1,6 +1,14 @@
-import 'package:spotify_flutter/src/auth_service.dart';
+import 'package:spotify_flutter/src/core/services/auth_service.dart';
 
 class SpotifyApi {
+
+  SpotifyApi._privateConstructor();
+
+  static final SpotifyApi _instance = SpotifyApi._privateConstructor();
+
+  static SpotifyApi get instance => _instance;
+
+
   final _authService = AuthService();
 
   Future<bool> authenticate({

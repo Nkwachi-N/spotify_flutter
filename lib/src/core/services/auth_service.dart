@@ -4,12 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:pkce/pkce.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:spotify_flutter/src/pref_constants.dart';
-import 'package:spotify_flutter/src/routes.dart';
+import 'package:spotify_flutter/src/core/constants/pref_constants.dart';
+import 'package:spotify_flutter/src/core/constants/routes.dart';
 
 class AuthService {
   final _dio = Dio();
 
+
+  // TODO: Document [authorize].
   Future<bool> authorize({
     required String redirectUri,
     required String clientId,
@@ -61,6 +63,8 @@ class AuthService {
 
     return false;
   }
+
+
 
   Future<bool> _getToken({
     required String code,
