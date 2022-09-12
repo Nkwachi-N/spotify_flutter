@@ -1,4 +1,4 @@
 library spotify_flutter;
 
 
-export 'src/auth_service.dart';
+export 'src/spotify_api.dart';
