@@ -7,8 +7,8 @@ class SpotifyApi {
 
   static SpotifyApi get instance => _instance;
 
-  String clientId = '';
-  String secretKey = '';
+  String _clientId = '';
+  String _secretKey = '';
 
   final _authService = AuthService();
 
@@ -20,19 +20,18 @@ class SpotifyApi {
     String state = 'HappyBaby247',
     required String callbackUrlScheme,
     required String secretKey,
-  }) =>
-      _authService.authorize(
-        redirectUri: redirectUri,
-        clientId: clientId,
-        callbackUrlScheme: callbackUrlScheme,
-        secretKey: secretKey,
-      );
-
-  /// This method must be called to set up spotify library
-  /// Call this method before you use any of the spotify methods
-  Future initialize(
-      {required String clientId, required String secretKey}) async {
-    this.clientId = clientId;
-    this.secretKey = secretKey;
+  }) async {
+    _clientId = clientId;
+    _secretKey = secretKey;
+    return await _authService.authorize(
+      redirectUri: redirectUri,
+      clientId: clientId,
+      callbackUrlScheme: callbackUrlScheme,
+      secretKey: secretKey,
+    );
   }
+
+
+
+
 }
