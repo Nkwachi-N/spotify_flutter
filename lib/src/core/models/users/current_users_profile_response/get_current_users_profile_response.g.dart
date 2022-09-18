@@ -16,7 +16,8 @@ _$_GetCurrentUserProfileResponse _$$_GetCurrentUserProfileResponseFromJson(
           ? null
           : ExplicitContent.fromJson(
               json['explicit_content'] as Map<String, dynamic>),
-      externalUrls: json['external_urls'] as String,
+      externalUrls:
+          ExternalUrls.fromJson(json['external_urls'] as Map<String, dynamic>),
       followers: Followers.fromJson(json['followers'] as Map<String, dynamic>),
       href: json['href'] as String,
       id: json['id'] as String,

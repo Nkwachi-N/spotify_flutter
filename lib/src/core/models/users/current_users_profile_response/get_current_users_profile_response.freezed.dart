@@ -28,7 +28,7 @@ mixin _$GetCurrentUserProfileResponse {
   @JsonKey(name: 'explicit_content')
   ExplicitContent? get explicitContent => throw _privateConstructorUsedError;
   @JsonKey(name: 'external_urls')
-  String get externalUrls => throw _privateConstructorUsedError;
+  ExternalUrls get externalUrls => throw _privateConstructorUsedError;
   Followers get followers => throw _privateConstructorUsedError;
   String get href => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
       @JsonKey(name: 'display_name') String? displayName,
       String? email,
       @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
-      @JsonKey(name: 'external_urls') String externalUrls,
+      @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
       Followers followers,
       String href,
       String id,
@@ -64,6 +64,7 @@ abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
       List<UserImage> images});
 
   $ExplicitContentCopyWith<$Res>? get explicitContent;
+  $ExternalUrlsCopyWith<$Res> get externalUrls;
   $FollowersCopyWith<$Res> get followers;
 }
 
@@ -111,7 +112,7 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
       externalUrls: externalUrls == freezed
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ExternalUrls,
       followers: followers == freezed
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
@@ -155,6 +156,13 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
   }
 
   @override
+  $ExternalUrlsCopyWith<$Res> get externalUrls {
+    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls, (value) {
+      return _then(_value.copyWith(externalUrls: value));
+    });
+  }
+
+  @override
   $FollowersCopyWith<$Res> get followers {
     return $FollowersCopyWith<$Res>(_value.followers, (value) {
       return _then(_value.copyWith(followers: value));
@@ -175,7 +183,7 @@ abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
       @JsonKey(name: 'display_name') String? displayName,
       String? email,
       @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
-      @JsonKey(name: 'external_urls') String externalUrls,
+      @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
       Followers followers,
       String href,
       String id,
@@ -186,6 +194,8 @@ abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
 
   @override
   $ExplicitContentCopyWith<$Res>? get explicitContent;
+  @override
+  $ExternalUrlsCopyWith<$Res> get externalUrls;
   @override
   $FollowersCopyWith<$Res> get followers;
 }
@@ -238,7 +248,7 @@ class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
       externalUrls: externalUrls == freezed
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ExternalUrls,
       followers: followers == freezed
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
@@ -306,7 +316,7 @@ class _$_GetCurrentUserProfileResponse
   final ExplicitContent? explicitContent;
   @override
   @JsonKey(name: 'external_urls')
-  final String externalUrls;
+  final ExternalUrls externalUrls;
   @override
   final Followers followers;
   @override
@@ -391,7 +401,7 @@ abstract class _GetCurrentUserProfileResponse
       @JsonKey(name: 'display_name') final String? displayName,
       final String? email,
       @JsonKey(name: 'explicit_content') final ExplicitContent? explicitContent,
-      @JsonKey(name: 'external_urls') required final String externalUrls,
+      @JsonKey(name: 'external_urls') required final ExternalUrls externalUrls,
       required final Followers followers,
       required final String href,
       required final String id,
@@ -416,7 +426,7 @@ abstract class _GetCurrentUserProfileResponse
   ExplicitContent? get explicitContent;
   @override
   @JsonKey(name: 'external_urls')
-  String get externalUrls;
+  ExternalUrls get externalUrls;
   @override
   Followers get followers;
   @override

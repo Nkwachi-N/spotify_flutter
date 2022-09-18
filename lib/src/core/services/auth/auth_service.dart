@@ -12,7 +12,7 @@ class AuthService {
   final _apiClient = ApiClient.instance;
   final _storageService = StorageService();
 
-  Future<ApiResult<bool>?> authorize({
+  Future<ApiResult<bool>> authorize({
     required String redirectUri,
     required String clientId,
     String state = 'HappyBaby247',
@@ -61,7 +61,7 @@ class AuthService {
     } on Exception {
       return const ApiResult.failure(error: NetworkExceptions.unexpectedError());
     }
-    return null;
+    return ApiResult.failure(error: NetworkExceptions.unexpectedError());
 
   }
 

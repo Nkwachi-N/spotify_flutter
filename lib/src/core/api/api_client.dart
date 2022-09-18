@@ -36,7 +36,11 @@ class ApiClient {
       bool requiresToken = true,
       Map<String, String>? queryParameters,
       int count = 0}) async {
-    final Map<String, String> header = {};
+
+    final Map<String, dynamic> header = {};
+    if(requiresToken) {
+      header['requiresToken'] = true;
+    }
 
     if (count < 2) {
       try {
@@ -81,6 +85,7 @@ class ApiClient {
     required String url,
     required String clientId,
     bool requiresToken = true,
+
     Map<String, String>? queryParameters,
   }) =>
       _get(
@@ -113,10 +118,6 @@ class ApiClient {
       'grant_type': 'refresh_token',
       'refresh_token': refreshToken,
       'client_id': clientId,
-    };
-
-    final header = {
-      'Content-Type': 'application/x-www-form-urlencoded',
     };
 
     try {

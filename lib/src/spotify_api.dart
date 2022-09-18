@@ -18,7 +18,7 @@ class SpotifyApi {
 
 
   // TODO: Document [authenticate].
-  Future<ApiResult<bool>?> authenticate({
+  Future<ApiResult<bool>> authenticate({
     required String redirectUri,
     required String clientId,
     String state = 'HappyBaby247',
@@ -37,7 +37,7 @@ class SpotifyApi {
 
 
   //TODO:Document [getCurrentUsersProfile]
-  Future<ApiResult<GetCurrentUserProfileResponse>?> getCurrentUsersProfile() async {
+  Future<ApiResult<GetCurrentUserProfileResponse>> getCurrentUsersProfile() async {
     return await _userService.getCurrentUsersProfile(
       clientId: _clientId,
     );

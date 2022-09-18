@@ -20,9 +20,9 @@ UserImage _$UserImageFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserImage {
-  String get url => throw _privateConstructorUsedError;
-  String get width => throw _privateConstructorUsedError;
-  String get height => throw _privateConstructorUsedError;
+  String? get url => throw _privateConstructorUsedError;
+  String? get width => throw _privateConstructorUsedError;
+  String? get height => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ mixin _$UserImage {
 abstract class $UserImageCopyWith<$Res> {
   factory $UserImageCopyWith(UserImage value, $Res Function(UserImage) then) =
       _$UserImageCopyWithImpl<$Res>;
-  $Res call({String url, String width, String height});
+  $Res call({String? url, String? width, String? height});
 }
 
 /// @nodoc
@@ -55,15 +55,15 @@ class _$UserImageCopyWithImpl<$Res> implements $UserImageCopyWith<$Res> {
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -74,7 +74,7 @@ abstract class _$$_UserImageCopyWith<$Res> implements $UserImageCopyWith<$Res> {
           _$_UserImage value, $Res Function(_$_UserImage) then) =
       __$$_UserImageCopyWithImpl<$Res>;
   @override
-  $Res call({String url, String width, String height});
+  $Res call({String? url, String? width, String? height});
 }
 
 /// @nodoc
@@ -97,15 +97,15 @@ class __$$_UserImageCopyWithImpl<$Res> extends _$UserImageCopyWithImpl<$Res>
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -113,18 +113,17 @@ class __$$_UserImageCopyWithImpl<$Res> extends _$UserImageCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserImage implements _UserImage {
-  const _$_UserImage(
-      {required this.url, required this.width, required this.height});
+  const _$_UserImage({this.url, this.width, this.height});
 
   factory _$_UserImage.fromJson(Map<String, dynamic> json) =>
       _$$_UserImageFromJson(json);
 
   @override
-  final String url;
+  final String? url;
   @override
-  final String width;
+  final String? width;
   @override
-  final String height;
+  final String? height;
 
   @override
   String toString() {
@@ -164,19 +163,19 @@ class _$_UserImage implements _UserImage {
 
 abstract class _UserImage implements UserImage {
   const factory _UserImage(
-      {required final String url,
-      required final String width,
-      required final String height}) = _$_UserImage;
+      {final String? url,
+      final String? width,
+      final String? height}) = _$_UserImage;
 
   factory _UserImage.fromJson(Map<String, dynamic> json) =
       _$_UserImage.fromJson;
 
   @override
-  String get url;
+  String? get url;
   @override
-  String get width;
+  String? get width;
   @override
-  String get height;
+  String? get height;
   @override
   @JsonKey(ignore: true)
   _$$_UserImageCopyWith<_$_UserImage> get copyWith =>

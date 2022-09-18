@@ -16,6 +16,7 @@ class AuthorizationTokenInjector extends Interceptor {
     final  storageService = StorageService();
 
     bool requiresToken = options.headers['requiresToken'] ?? false;
+    print('Requires token $requiresToken');
     if(requiresToken) {
       String? token = await storageService.getAccessToken();
       if (token != null) {

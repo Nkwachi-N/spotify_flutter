@@ -44,10 +44,23 @@ class _MyHomePageState extends State<MyHomePage> {
           Center(
               child: ElevatedButton(
                   onPressed: () => _authenticate(context),
-                  child: Text('Authorize')))
+                  child: Text('Authorize'))),
+          Center(
+              child: ElevatedButton(
+                  onPressed: () => _getUserInfo(context),
+                  child: Text('Get User '))),
         ],
       ),
     );
+  }
+
+  _getUserInfo(BuildContext context) async {
+    final response = await SpotifyApi.instance.getCurrentUsersProfile();
+    response.when(success: (success) {
+      _showSnackBar(context, 'Name is ${success.displayName}');
+    }, failure: (failure) {
+      _showSnackBar(context, 'Failed');
+    });
   }
 }
 
@@ -57,26 +70,21 @@ void _authenticate(BuildContext context) async {
       clientId: kClientId,
       callbackUrlScheme: 'clash',
       secretKey: kSecretKey);
-  if (response != null) {
-    response.when(success: (success) {
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => const NextScreen()));
-    }, failure: (failure) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            NetworkExceptions.getErrorMessage(failure),
-          ),
-        ),
-      );
-    });
-  }
+  response.when(success: (success) {
+    _showSnackBar(context, 'Authenticated');
+  }, failure: (failure) {
+    _showSnackBar(context, 'Failed');
+  });
+}
 
-  //AQD4CORJ1MiFAOQBi67B7YRSu-bkVE7QcLUF-DnCW5cbE6LyR4xRcM6pXwgz646_
-  // Bgn2NxkPLjPPVI6GY6qtJXMPDb6JdlcSzfL9DN0PXveoWDEaGomBavUdYIxb5mU66EdKZ8-
-  // ZCskO_lh7UZHyEkGTFurf_ka1PUcxZC1XyrRam34oUHRA_X4VgnNMR-aHFpI3iwikip7Br7FRl
-  // gY6J2CRuld_ocxThR64LUWTo1xN0pSw8KiFlUuKej5DUAkCSs8Y4NCvLKTadjsJFA_YZKBIEBZCIz
-  // ISyh_dpeINygmOZBK4Og_cSqyJW5YycTUpfMC-NmAW7EW2dYjD_JOodPUd4XdR2XA27Vw
+void _showSnackBar(BuildContext context, String message) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        message,
+      ),
+    ),
+  );
 }
 
 class NextScreen extends StatefulWidget {
@@ -89,7 +97,11 @@ class NextScreen extends StatefulWidget {
 class _NextScreenState extends State<NextScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+    );
   }
 }
 
