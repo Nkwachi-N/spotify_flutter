@@ -5,7 +5,7 @@ import 'package:spotify_flutter/src/core/models/models.dart';
 import '../../constants/constants.dart';
 
 class UserService {
-  final apiClient = ApiClient();
+  final apiClient = ApiClient.instance;
 
   Future<ApiResult<GetCurrentUserProfileResponse>?> getCurrentUsersProfile(
       {required String clientId}) async {

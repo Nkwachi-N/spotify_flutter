@@ -1,4 +1,7 @@
+import 'package:spotify_flutter/src/core/api/api_result.dart';
+import 'package:spotify_flutter/src/core/models/users/users.dart';
 import 'package:spotify_flutter/src/core/services/auth/auth_service.dart';
+import 'package:spotify_flutter/src/core/services/user/user_service.dart';
 
 class SpotifyApi {
   SpotifyApi._privateConstructor();
@@ -11,10 +14,11 @@ class SpotifyApi {
   String _secretKey = '';
 
   final _authService = AuthService();
+  final _userService = UserService();
 
 
   // TODO: Document [authenticate].
-  Future<bool> authenticate({
+  Future<ApiResult<bool>?> authenticate({
     required String redirectUri,
     required String clientId,
     String state = 'HappyBaby247',
@@ -28,6 +32,14 @@ class SpotifyApi {
       clientId: clientId,
       callbackUrlScheme: callbackUrlScheme,
       secretKey: secretKey,
+    );
+  }
+
+
+  //TODO:Document [getCurrentUsersProfile]
+  Future<ApiResult<GetCurrentUserProfileResponse>?> getCurrentUsersProfile() async {
+    return await _userService.getCurrentUsersProfile(
+      clientId: _clientId,
     );
   }
 

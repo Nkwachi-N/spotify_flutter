@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:spotify_flutter/src/core/api/api_result.dart';
 import 'package:spotify_flutter/src/core/api/network_exceptions.dart';
 import 'package:spotify_flutter/src/core/services/storage/storage_service.dart';
@@ -13,10 +12,21 @@ class ApiClient {
       receiveTimeout: 35000,
     ),
   )..interceptors.addAll([
-      LogInterceptor(),
+      LogInterceptor(
+        responseBody: true,
+        requestBody: true,
+      ),
       UnAuthorizedErrorHandler(),
       AuthorizationTokenInjector(),
     ]);
+
+
+
+  ApiClient._privateConstructor();
+
+  static final ApiClient _instance = ApiClient._privateConstructor();
+
+  static ApiClient get instance => _instance;
 
   final _storageService = StorageService();
 
@@ -29,13 +39,6 @@ class ApiClient {
     final Map<String, String> header = {};
 
     if (count < 2) {
-      if (requiresToken) {
-        final prefs = await SharedPreferences.getInstance();
-        final token = prefs.getString(_storageService.kAccessToken);
-
-        header['Authorization'] = 'Bearer $token';
-      }
-
       try {
         final response = await _dio.get(
           url,
@@ -43,7 +46,6 @@ class ApiClient {
             headers: header,
           ),
         );
-
         return ApiResult.success(data: response.data);
       } on DioError catch (e) {
         final response = e.response;
@@ -88,6 +90,22 @@ class ApiClient {
         requiresToken: requiresToken,
       );
 
+  Future<ApiResult<Map<String, dynamic>>> post({
+    required String url,
+    required String clientId,
+    bool requiresToken = true,
+    Map<String, dynamic>? body,
+    Map<String, String>? header,
+    Options? options,
+  }) =>
+      _post(
+        url: url,
+        clientId: clientId,
+        body: body,
+        header: header,
+        requiresToken: requiresToken,
+      );
+
   Future<bool> _refreshToken(String clientId) async {
     final refreshToken = await _storageService.getRefreshToken();
 
@@ -105,7 +123,9 @@ class ApiClient {
       final response = await _dio.post(
         Routes.autGetTokenUrl,
         data: data,
-        options: Options(headers: header),
+        options: Options(
+          contentType: Headers.formUrlEncodedContentType,
+        ),
       );
       final accessToken = response.data[_storageService.kAccessToken];
       final refreshToken = response.data[_storageService.kRefreshToken];
@@ -121,6 +141,54 @@ class ApiClient {
       }
     } catch (_) {
       rethrow;
+    }
+  }
+
+  Future<ApiResult<Map<String, dynamic>>> _post({
+    required String url,
+    required String clientId,
+    Map<String, dynamic>? body,
+    required bool requiresToken,
+    Map<String,String>? header,
+    int count = 0,
+  }) async {
+    if (count < 2) {
+      try {
+        final response = await _dio.post(
+          url,
+          data: body,
+          options: Options(
+            headers: header
+          )
+        );
+        return ApiResult.success(data: response.data);
+      } on DioError catch (e) {
+        final response = e.response;
+        if (response?.statusCode == 401) {
+          final refreshStatus = await _refreshToken(clientId);
+          if (refreshStatus) {
+            return await _post(
+              url: url,
+              requiresToken: requiresToken,
+              clientId: clientId,
+              count: count + 1,
+            );
+          } else {
+            return ApiResult.failure(
+              error: NetworkExceptions.unauthorisedRequest(e.message),
+            );
+          }
+        } else {
+          return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+        }
+      } catch (e) {
+        return const ApiResult.failure(
+            error: NetworkExceptions.unexpectedError());
+      }
+    } else {
+      return const ApiResult.failure(
+        error: NetworkExceptions.unexpectedError(),
+      );
     }
   }
 }

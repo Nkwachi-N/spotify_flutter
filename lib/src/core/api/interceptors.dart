@@ -15,10 +15,14 @@ class AuthorizationTokenInjector extends Interceptor {
       RequestOptions options, RequestInterceptorHandler handler) async {
     final  storageService = StorageService();
 
-    String? token = await storageService.getAccessToken();
-    if (token != null) {
-      options.headers['Authorization'] = 'Bearer $token';
+    bool requiresToken = options.headers['requiresToken'] ?? false;
+    if(requiresToken) {
+      String? token = await storageService.getAccessToken();
+      if (token != null) {
+        options.headers['Authorization'] = 'Bearer $token';
+      }
     }
+
     super.onRequest(options, handler);
   }
 }
