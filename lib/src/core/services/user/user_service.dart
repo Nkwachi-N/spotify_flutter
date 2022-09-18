@@ -7,22 +7,24 @@ import '../../constants/constants.dart';
 class UserService {
   final apiClient = ApiClient.instance;
 
-  Future<ApiResult<GetCurrentUserProfileResponse>?> getCurrentUsersProfile(
+  Future<ApiResult<GetCurrentUserProfileResponse>> getCurrentUsersProfile(
       {required String clientId}) async {
     final response = await apiClient.get(
         clientId: clientId, requiresToken: true, url: Routes.getUserInfo);
 
+    late ApiResult<GetCurrentUserProfileResponse> result;
+
     response.when(
       success: (success) {
-        return ApiResult.success(
+        result = ApiResult.success(
           data: GetCurrentUserProfileResponse.fromJson(success),
         );
       },
       failure: (failure) {
-        return ApiResult.failure(error: failure);
+        result =  ApiResult.failure(error: failure);
       },
     );
 
-    return null;
+    return result;
   }
 }

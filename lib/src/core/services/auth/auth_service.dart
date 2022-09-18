@@ -59,13 +59,13 @@ class AuthService {
         }
       }
     } on Exception {
-      return ApiResult.failure(error: NetworkExceptions.unexpectedError());
+      return const ApiResult.failure(error: NetworkExceptions.unexpectedError());
     }
     return null;
 
   }
 
-  Future<ApiResult<bool>?> _getToken({
+  Future<ApiResult<bool>> _getToken({
     required String code,
     required String codeVerifier,
     required String redirectUri,
@@ -96,7 +96,7 @@ class AuthService {
       requiresToken: false,
     );
 
-    ApiResult<bool>? result;
+    late ApiResult<bool> result;
 
     response.when(success: (success) {
       _storageService.saveToken(
