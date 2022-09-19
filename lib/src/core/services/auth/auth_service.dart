@@ -2,14 +2,17 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:pkce/pkce.dart';
+import 'package:spotify_flutter/src/core/api/api_client.dart';
+import 'package:spotify_flutter/src/core/api/api_result.dart';
+import 'package:spotify_flutter/src/core/api/network_exceptions.dart';
 import 'package:spotify_flutter/src/core/constants/routes.dart';
 import 'package:spotify_flutter/src/core/services/storage/storage_service.dart';
 
 class AuthService {
-  final _dio = Dio();
+  final _apiClient = ApiClient.instance;
   final _storageService = StorageService();
 
-  Future<bool> authorize({
+  Future<ApiResult<bool>> authorize({
     required String redirectUri,
     required String clientId,
     String state = 'HappyBaby247',
@@ -56,13 +59,13 @@ class AuthService {
         }
       }
     } on Exception {
-      return false;
+      return const ApiResult.failure(error: NetworkExceptions.unexpectedError());
     }
+    return ApiResult.failure(error: NetworkExceptions.unexpectedError());
 
-    return false;
   }
 
-  Future<bool> _getToken({
+  Future<ApiResult<bool>> _getToken({
     required String code,
     required String codeVerifier,
     required String redirectUri,
@@ -84,21 +87,26 @@ class AuthService {
       'Authorization': 'Basic $encodedString',
       'Content-Type': 'application/x-www-form-urlencoded',
     };
-    try {
-      final response = await _dio.post(
-        Routes.autGetTokenUrl,
-        data: data,
-        options: Options(headers: header),
-      );
 
+    final response = await _apiClient.post(
+      url: Routes.autGetTokenUrl,
+      clientId: clientId,
+      body: data,
+      header: header,
+      requiresToken: false,
+    );
+
+    late ApiResult<bool> result;
+
+    response.when(success: (success) {
       _storageService.saveToken(
-        accessToken: response.data[_storageService.kAccessToken],
-        refreshToken: response.data[_storageService.kRefreshToken],
+        accessToken: success[_storageService.kAccessToken],
+        refreshToken: success[_storageService.kRefreshToken],
       );
-
-      return true;
-    } catch (_) {
-      return false;
-    }
+       result = const ApiResult.success(data: true);
+    }, failure: (failure) {
+      result = ApiResult.failure(error: failure);
+    });
+    return result;
   }
 }
