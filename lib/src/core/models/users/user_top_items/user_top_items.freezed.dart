@@ -14,12 +14,8 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserTopItems _$UserTopItemsFromJson(
-  Map<String, dynamic> json,
-) {
-  return UserTopItemsArtist.fromJson(
-    json,
-  );
+UserTopItems _$UserTopItemsFromJson(Map<String, dynamic> json) {
+  return UserTopItemsArtist.fromJson(json);
 }
 
 /// @nodoc
@@ -211,12 +207,8 @@ class _$UserTopItemsArtist implements UserTopItemsArtist {
       required final List<Artist> items})
       : _items = items;
 
-  factory _$UserTopItemsArtist.fromJson(
-    Map<String, dynamic> json,
-  ) =>
-      _$$UserTopItemsArtistFromJson(
-        json,
-      );
+  factory _$UserTopItemsArtist.fromJson(Map<String, dynamic> json) =>
+      _$$UserTopItemsArtistFromJson(json);
 
   @override
   final String? hRef;
@@ -349,9 +341,8 @@ abstract class UserTopItemsArtist implements UserTopItems {
       final int? total,
       required final List<Artist> items}) = _$UserTopItemsArtist;
 
-  factory UserTopItemsArtist.fromJson(
-    Map<String, dynamic> json,
-  ) = _$UserTopItemsArtist.fromJson;
+  factory UserTopItemsArtist.fromJson(Map<String, dynamic> json) =
+      _$UserTopItemsArtist.fromJson;
 
   @override
   String? get hRef;

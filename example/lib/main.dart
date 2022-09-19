@@ -42,13 +42,23 @@ class _MyHomePageState extends State<MyHomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Center(
-              child: ElevatedButton(
-                  onPressed: () => _authenticate(context),
-                  child: Text('Authorize'))),
+            child: ElevatedButton(
+              onPressed: () => _authenticate(context),
+              child: Text('Authorize'),
+            ),
+          ),
           Center(
-              child: ElevatedButton(
-                  onPressed: () => _getUserInfo(context),
-                  child: Text('Get User '))),
+            child: ElevatedButton(
+              onPressed: () => _getUserInfo(context),
+              child: Text('Get User '),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => _getUserTopArtists(context),
+              child: Text('Get user top artists'),
+            ),
+          ),
         ],
       ),
     );
@@ -58,6 +68,15 @@ class _MyHomePageState extends State<MyHomePage> {
     final response = await SpotifyApi.instance.getCurrentUsersProfile();
     response.when(success: (success) {
       _showSnackBar(context, 'Name is ${success.displayName}');
+    }, failure: (failure) {
+      _showSnackBar(context, 'Failed');
+    });
+  }
+
+  _getUserTopArtists(BuildContext context) async {
+    final response = await SpotifyApi.instance.getUserTopArtists();
+    response.when(success: (success) {
+      _showSnackBar(context, 'Items length is ${success.items.length}');
     }, failure: (failure) {
       _showSnackBar(context, 'Failed');
     });

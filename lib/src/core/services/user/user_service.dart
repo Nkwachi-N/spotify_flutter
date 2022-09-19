@@ -8,10 +8,8 @@ import '../../constants/constants.dart';
 class UserService {
   final apiClient = ApiClient.instance;
 
-  Future<ApiResult<GetCurrentUserProfileResponse>> getCurrentUsersProfile(
-      {required String clientId}) async {
-    final response = await apiClient.get(
-        clientId: clientId, requiresToken: true, url: Routes.getUserInfo);
+  Future<ApiResult<GetCurrentUserProfileResponse>> getCurrentUsersProfile() async {
+    final response = await apiClient.get(requiresToken: true, url: Routes.getUserInfo);
 
     late ApiResult<GetCurrentUserProfileResponse> result;
 
@@ -29,10 +27,9 @@ class UserService {
     return result;
   }
 
-  Future<ApiResult<UserTopItemsArtist>> getUserTopArtists(
-      {required String clientId}) async {
+  Future<ApiResult<UserTopItemsArtist>> getUserTopArtists() async {
     final response = await apiClient.get(
-        clientId: clientId, requiresToken: true, url: Routes.getUserTopArtists);
+        requiresToken: true, url: Routes.getUserTopArtists);
 
     late ApiResult<UserTopItemsArtist> result;
 

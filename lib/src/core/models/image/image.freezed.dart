@@ -21,8 +21,8 @@ Image _$ImageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Image {
   String? get url => throw _privateConstructorUsedError;
-  String? get width => throw _privateConstructorUsedError;
-  String? get height => throw _privateConstructorUsedError;
+  int? get width => throw _privateConstructorUsedError;
+  int? get height => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ mixin _$Image {
 abstract class $ImageCopyWith<$Res> {
   factory $ImageCopyWith(Image value, $Res Function(Image) then) =
       _$ImageCopyWithImpl<$Res>;
-  $Res call({String? url, String? width, String? height});
+  $Res call({String? url, int? width, int? height});
 }
 
 /// @nodoc
@@ -58,11 +58,11 @@ class _$ImageCopyWithImpl<$Res> implements $ImageCopyWith<$Res> {
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -72,7 +72,7 @@ abstract class _$$_ImageCopyWith<$Res> implements $ImageCopyWith<$Res> {
   factory _$$_ImageCopyWith(_$_Image value, $Res Function(_$_Image) then) =
       __$$_ImageCopyWithImpl<$Res>;
   @override
-  $Res call({String? url, String? width, String? height});
+  $Res call({String? url, int? width, int? height});
 }
 
 /// @nodoc
@@ -98,11 +98,11 @@ class __$$_ImageCopyWithImpl<$Res> extends _$ImageCopyWithImpl<$Res>
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
       height: height == freezed
           ? _value.height
           : height // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -118,9 +118,9 @@ class _$_Image implements _Image {
   @override
   final String? url;
   @override
-  final String? width;
+  final int? width;
   @override
-  final String? height;
+  final int? height;
 
   @override
   String toString() {
@@ -160,18 +160,16 @@ class _$_Image implements _Image {
 
 abstract class _Image implements Image {
   const factory _Image(
-      {final String? url,
-      final String? width,
-      final String? height}) = _$_Image;
+      {final String? url, final int? width, final int? height}) = _$_Image;
 
   factory _Image.fromJson(Map<String, dynamic> json) = _$_Image.fromJson;
 
   @override
   String? get url;
   @override
-  String? get width;
+  int? get width;
   @override
-  String? get height;
+  int? get height;
   @override
   @JsonKey(ignore: true)
   _$$_ImageCopyWith<_$_Image> get copyWith =>

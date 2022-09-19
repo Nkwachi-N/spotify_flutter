@@ -21,6 +21,12 @@ class ApiClient {
     ]);
 
 
+  String? _clientId;
+
+  set clientId(String clientId) {
+    _clientId = clientId;
+  }
+
 
   ApiClient._privateConstructor();
 
@@ -32,8 +38,7 @@ class ApiClient {
 
   Future<ApiResult<Map<String, dynamic>>> _get(
       {required String url,
-      required String clientId,
-      bool requiresToken = true,
+        bool requiresToken = true,
       Map<String, String>? queryParameters,
       int count = 0}) async {
 
@@ -54,13 +59,12 @@ class ApiClient {
       } on DioError catch (e) {
         final response = e.response;
         if (response?.statusCode == 401) {
-          final refreshStatus = await _refreshToken(clientId);
+          final refreshStatus = await _refreshToken();
           if (refreshStatus) {
             return await _get(
               url: url,
               requiresToken: requiresToken,
               count: count + 1,
-              clientId: clientId,
             );
           } else {
             return ApiResult.failure(
@@ -83,14 +87,11 @@ class ApiClient {
 
   Future<ApiResult<Map<String, dynamic>>> get({
     required String url,
-    required String clientId,
     bool requiresToken = true,
-
     Map<String, String>? queryParameters,
   }) =>
       _get(
         url: url,
-        clientId: clientId,
         queryParameters: queryParameters,
         requiresToken: requiresToken,
       );
@@ -105,19 +106,18 @@ class ApiClient {
   }) =>
       _post(
         url: url,
-        clientId: clientId,
         body: body,
         header: header,
         requiresToken: requiresToken,
       );
 
-  Future<bool> _refreshToken(String clientId) async {
+  Future<bool> _refreshToken() async {
     final refreshToken = await _storageService.getRefreshToken();
 
     final data = {
       'grant_type': 'refresh_token',
       'refresh_token': refreshToken,
-      'client_id': clientId,
+      'client_id': _clientId,
     };
 
     try {
@@ -147,7 +147,6 @@ class ApiClient {
 
   Future<ApiResult<Map<String, dynamic>>> _post({
     required String url,
-    required String clientId,
     Map<String, dynamic>? body,
     required bool requiresToken,
     Map<String,String>? header,
@@ -166,12 +165,11 @@ class ApiClient {
       } on DioError catch (e) {
         final response = e.response;
         if (response?.statusCode == 401) {
-          final refreshStatus = await _refreshToken(clientId);
+          final refreshStatus = await _refreshToken();
           if (refreshStatus) {
             return await _post(
               url: url,
               requiresToken: requiresToken,
-              clientId: clientId,
               count: count + 1,
             );
           } else {

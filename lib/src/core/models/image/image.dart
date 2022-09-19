@@ -5,7 +5,7 @@ part 'image.g.dart';
 @freezed
 class Image with _$Image{
 
-  const factory Image({String? url,String? width,String? height}) = _Image;
+  const factory Image({String? url,int? width,int? height}) = _Image;
 
   factory Image.fromJson(Map<String, Object?> json)
   => _$ImageFromJson(json);
