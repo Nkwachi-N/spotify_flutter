@@ -25,7 +25,7 @@ _$_GetCurrentUserProfileResponse _$$_GetCurrentUserProfileResponseFromJson(
       product: json['product'] as String,
       type: json['type'] as String,
       images: (json['images'] as List<dynamic>)
-          .map((e) => UserImage.fromJson(e as Map<String, dynamic>))
+          .map((e) => Image.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

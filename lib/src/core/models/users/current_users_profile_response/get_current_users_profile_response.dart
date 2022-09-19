@@ -1,9 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:spotify_flutter/src/core/models/users/external_urls/external_urls.dart';
-import 'package:spotify_flutter/src/core/models/users/followers/followers.dart';
+import 'package:spotify_flutter/src/core/models/models.dart';
 
-import '../explicit_content/explicit_content.dart';
-import '../user_image/user_image.dart';
 
 part 'get_current_users_profile_response.freezed.dart';
 part 'get_current_users_profile_response.g.dart';
@@ -22,7 +19,7 @@ class GetCurrentUserProfileResponse with _$GetCurrentUserProfileResponse {
     required String uri,
     required String product,
     required String type,
-    required List<UserImage> images,
+    required List<Image> images,
   }) = _GetCurrentUserProfileResponse;
 
   factory GetCurrentUserProfileResponse.fromJson(Map<String, Object?> json) =>

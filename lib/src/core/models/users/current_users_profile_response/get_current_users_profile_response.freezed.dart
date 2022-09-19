@@ -35,7 +35,7 @@ mixin _$GetCurrentUserProfileResponse {
   String get uri => throw _privateConstructorUsedError;
   String get product => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  List<UserImage> get images => throw _privateConstructorUsedError;
+  List<Image> get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +61,7 @@ abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
       String uri,
       String product,
       String type,
-      List<UserImage> images});
+      List<Image> images});
 
   $ExplicitContentCopyWith<$Res>? get explicitContent;
   $ExternalUrlsCopyWith<$Res> get externalUrls;
@@ -140,7 +140,7 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<UserImage>,
+              as List<Image>,
     ));
   }
 
@@ -190,7 +190,7 @@ abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
       String uri,
       String product,
       String type,
-      List<UserImage> images});
+      List<Image> images});
 
   @override
   $ExplicitContentCopyWith<$Res>? get explicitContent;
@@ -276,7 +276,7 @@ class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
       images: images == freezed
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<UserImage>,
+              as List<Image>,
     ));
   }
 }
@@ -297,7 +297,7 @@ class _$_GetCurrentUserProfileResponse
       required this.uri,
       required this.product,
       required this.type,
-      required final List<UserImage> images})
+      required final List<Image> images})
       : _images = images;
 
   factory _$_GetCurrentUserProfileResponse.fromJson(
@@ -329,9 +329,9 @@ class _$_GetCurrentUserProfileResponse
   final String product;
   @override
   final String type;
-  final List<UserImage> _images;
+  final List<Image> _images;
   @override
-  List<UserImage> get images {
+  List<Image> get images {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_images);
   }
@@ -408,8 +408,7 @@ abstract class _GetCurrentUserProfileResponse
       required final String uri,
       required final String product,
       required final String type,
-      required final List<UserImage>
-          images}) = _$_GetCurrentUserProfileResponse;
+      required final List<Image> images}) = _$_GetCurrentUserProfileResponse;
 
   factory _GetCurrentUserProfileResponse.fromJson(Map<String, dynamic> json) =
       _$_GetCurrentUserProfileResponse.fromJson;
@@ -440,7 +439,7 @@ abstract class _GetCurrentUserProfileResponse
   @override
   String get type;
   @override
-  List<UserImage> get images;
+  List<Image> get images;
   @override
   @JsonKey(ignore: true)
   _$$_GetCurrentUserProfileResponseCopyWith<_$_GetCurrentUserProfileResponse>

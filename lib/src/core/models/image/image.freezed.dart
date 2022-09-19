@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user_image.dart';
+part of 'image.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,36 +14,35 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserImage _$UserImageFromJson(Map<String, dynamic> json) {
-  return _UserImage.fromJson(json);
+Image _$ImageFromJson(Map<String, dynamic> json) {
+  return _Image.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserImage {
+mixin _$Image {
   String? get url => throw _privateConstructorUsedError;
   String? get width => throw _privateConstructorUsedError;
   String? get height => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserImageCopyWith<UserImage> get copyWith =>
-      throw _privateConstructorUsedError;
+  $ImageCopyWith<Image> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserImageCopyWith<$Res> {
-  factory $UserImageCopyWith(UserImage value, $Res Function(UserImage) then) =
-      _$UserImageCopyWithImpl<$Res>;
+abstract class $ImageCopyWith<$Res> {
+  factory $ImageCopyWith(Image value, $Res Function(Image) then) =
+      _$ImageCopyWithImpl<$Res>;
   $Res call({String? url, String? width, String? height});
 }
 
 /// @nodoc
-class _$UserImageCopyWithImpl<$Res> implements $UserImageCopyWith<$Res> {
-  _$UserImageCopyWithImpl(this._value, this._then);
+class _$ImageCopyWithImpl<$Res> implements $ImageCopyWith<$Res> {
+  _$ImageCopyWithImpl(this._value, this._then);
 
-  final UserImage _value;
+  final Image _value;
   // ignore: unused_field
-  final $Res Function(UserImage) _then;
+  final $Res Function(Image) _then;
 
   @override
   $Res call({
@@ -69,23 +68,21 @@ class _$UserImageCopyWithImpl<$Res> implements $UserImageCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_UserImageCopyWith<$Res> implements $UserImageCopyWith<$Res> {
-  factory _$$_UserImageCopyWith(
-          _$_UserImage value, $Res Function(_$_UserImage) then) =
-      __$$_UserImageCopyWithImpl<$Res>;
+abstract class _$$_ImageCopyWith<$Res> implements $ImageCopyWith<$Res> {
+  factory _$$_ImageCopyWith(_$_Image value, $Res Function(_$_Image) then) =
+      __$$_ImageCopyWithImpl<$Res>;
   @override
   $Res call({String? url, String? width, String? height});
 }
 
 /// @nodoc
-class __$$_UserImageCopyWithImpl<$Res> extends _$UserImageCopyWithImpl<$Res>
-    implements _$$_UserImageCopyWith<$Res> {
-  __$$_UserImageCopyWithImpl(
-      _$_UserImage _value, $Res Function(_$_UserImage) _then)
-      : super(_value, (v) => _then(v as _$_UserImage));
+class __$$_ImageCopyWithImpl<$Res> extends _$ImageCopyWithImpl<$Res>
+    implements _$$_ImageCopyWith<$Res> {
+  __$$_ImageCopyWithImpl(_$_Image _value, $Res Function(_$_Image) _then)
+      : super(_value, (v) => _then(v as _$_Image));
 
   @override
-  _$_UserImage get _value => super._value as _$_UserImage;
+  _$_Image get _value => super._value as _$_Image;
 
   @override
   $Res call({
@@ -93,7 +90,7 @@ class __$$_UserImageCopyWithImpl<$Res> extends _$UserImageCopyWithImpl<$Res>
     Object? width = freezed,
     Object? height = freezed,
   }) {
-    return _then(_$_UserImage(
+    return _then(_$_Image(
       url: url == freezed
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -112,11 +109,11 @@ class __$$_UserImageCopyWithImpl<$Res> extends _$UserImageCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserImage implements _UserImage {
-  const _$_UserImage({this.url, this.width, this.height});
+class _$_Image implements _Image {
+  const _$_Image({this.url, this.width, this.height});
 
-  factory _$_UserImage.fromJson(Map<String, dynamic> json) =>
-      _$$_UserImageFromJson(json);
+  factory _$_Image.fromJson(Map<String, dynamic> json) =>
+      _$$_ImageFromJson(json);
 
   @override
   final String? url;
@@ -127,14 +124,14 @@ class _$_UserImage implements _UserImage {
 
   @override
   String toString() {
-    return 'UserImage(url: $url, width: $width, height: $height)';
+    return 'Image(url: $url, width: $width, height: $height)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserImage &&
+            other is _$_Image &&
             const DeepCollectionEquality().equals(other.url, url) &&
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height));
@@ -150,25 +147,24 @@ class _$_UserImage implements _UserImage {
 
   @JsonKey(ignore: true)
   @override
-  _$$_UserImageCopyWith<_$_UserImage> get copyWith =>
-      __$$_UserImageCopyWithImpl<_$_UserImage>(this, _$identity);
+  _$$_ImageCopyWith<_$_Image> get copyWith =>
+      __$$_ImageCopyWithImpl<_$_Image>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserImageToJson(
+    return _$$_ImageToJson(
       this,
     );
   }
 }
 
-abstract class _UserImage implements UserImage {
-  const factory _UserImage(
+abstract class _Image implements Image {
+  const factory _Image(
       {final String? url,
       final String? width,
-      final String? height}) = _$_UserImage;
+      final String? height}) = _$_Image;
 
-  factory _UserImage.fromJson(Map<String, dynamic> json) =
-      _$_UserImage.fromJson;
+  factory _Image.fromJson(Map<String, dynamic> json) = _$_Image.fromJson;
 
   @override
   String? get url;
@@ -178,6 +174,6 @@ abstract class _UserImage implements UserImage {
   String? get height;
   @override
   @JsonKey(ignore: true)
-  _$$_UserImageCopyWith<_$_UserImage> get copyWith =>
+  _$$_ImageCopyWith<_$_Image> get copyWith =>
       throw _privateConstructorUsedError;
 }
