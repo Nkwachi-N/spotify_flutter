@@ -1,3 +1,4 @@
+import 'package:example/artists_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_flutter/generated/l10n.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
@@ -59,6 +60,12 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Text('Get user top artists'),
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () => toArtistScreen(context),
+              child: Text('Test Artists Endpoints'),
+            ),
+          ),
         ],
       ),
     );
@@ -80,6 +87,23 @@ class _MyHomePageState extends State<MyHomePage> {
     }, failure: (failure) {
       _showSnackBar(context, 'Failed');
     });
+  }
+
+  _getAvailableGenre(BuildContext context) async {
+    final response = await SpotifyApi.instance.getAvailableGenreSeeds();
+    response.when(success: (success) {
+      _showSnackBar(context, 'Items length is ${success.genres.length}');
+    }, failure: (failure) {
+      _showSnackBar(context, 'Failed');
+    });
+  }
+
+  toArtistScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const ArtistScreen(),
+      ),
+    );
   }
 }
 
@@ -104,24 +128,6 @@ void _showSnackBar(BuildContext context, String message) {
       ),
     ),
   );
-}
-
-class NextScreen extends StatefulWidget {
-  const NextScreen({Key? key}) : super(key: key);
-
-  @override
-  State<NextScreen> createState() => _NextScreenState();
-}
-
-class _NextScreenState extends State<NextScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
-      ),
-    );
-  }
 }
 
 //TODO: add to docs that Minimum android version is 18 to correlate with flutter_secure_storage

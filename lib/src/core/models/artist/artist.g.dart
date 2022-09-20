@@ -13,9 +13,9 @@ _$_Artist _$$_ArtistFromJson(Map<String, dynamic> json) => _$_Artist(
       externalUrls:
           ExternalUrls.fromJson(json['external_urls'] as Map<String, dynamic>),
       genres:
-          (json['genres'] as List<dynamic>).map((e) => e as String).toList(),
-      images: (json['images'] as List<dynamic>)
-          .map((e) => Image.fromJson(e as Map<String, dynamic>))
+          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
           .toList(),
       href: json['href'] as String?,
       id: json['id'] as String,

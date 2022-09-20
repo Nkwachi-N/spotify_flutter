@@ -11,8 +11,8 @@ class Artist with _$Artist {
   const factory Artist({
    Followers? followers,
     @JsonKey(name: 'external_urls') required ExternalUrls externalUrls,
-    required List<String> genres,
-    required List<Image> images,
+    List<String>? genres,
+    List<Image>? images,
     String? href,
     required String id,
     required String name,
