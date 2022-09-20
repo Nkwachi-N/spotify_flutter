@@ -15,6 +15,8 @@ class ApiClient {
       LogInterceptor(
         responseBody: true,
         requestBody: true,
+        requestHeader: true,
+        responseHeader: true,
       ),
       UnAuthorizedErrorHandler(),
       AuthorizationTokenInjector(),
@@ -36,10 +38,12 @@ class ApiClient {
 
   final _storageService = StorageService();
 
+
+  //TODO: Store client id
   Future<ApiResult<Map<String, dynamic>>> _get(
       {required String url,
         bool requiresToken = true,
-      Map<String, String>? queryParameters,
+      Map<String, dynamic>? queryParameters,
       int count = 0}) async {
 
     final Map<String, dynamic> header = {};
@@ -47,10 +51,13 @@ class ApiClient {
       header['requiresToken'] = true;
     }
 
+    queryParameters?.removeWhere((key, value) => value == null);
+
     if (count < 2) {
       try {
         final response = await _dio.get(
           url,
+          queryParameters: queryParameters,
           options: Options(
             headers: header,
           ),
@@ -88,7 +95,7 @@ class ApiClient {
   Future<ApiResult<Map<String, dynamic>>> get({
     required String url,
     bool requiresToken = true,
-    Map<String, String>? queryParameters,
+    Map<String, dynamic>? queryParameters,
   }) =>
       _get(
         url: url,
@@ -119,6 +126,10 @@ class ApiClient {
       'refresh_token': refreshToken,
       'client_id': _clientId,
     };
+   final header = {
+    'requiresToken' : false
+  };
+
 
     try {
       final response = await _dio.post(
@@ -126,6 +137,7 @@ class ApiClient {
         data: data,
         options: Options(
           contentType: Headers.formUrlEncodedContentType,
+          headers: header
         ),
       );
       final accessToken = response.data[_storageService.kAccessToken];

@@ -4,3 +4,6 @@ export 'explicit_content/explicit_content.dart';
 export 'external_urls/external_urls.dart';
 export 'followers/followers.dart';
 export 'artist/artist.dart';
+export 'available_genre/available_genre.dart';
+export 'album/album.dart';
+export 'track/track.dart';

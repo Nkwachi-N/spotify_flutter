@@ -23,8 +23,8 @@ mixin _$Artist {
   Followers? get followers => throw _privateConstructorUsedError;
   @JsonKey(name: 'external_urls')
   ExternalUrls get externalUrls => throw _privateConstructorUsedError;
-  List<String> get genres => throw _privateConstructorUsedError;
-  List<Image> get images => throw _privateConstructorUsedError;
+  List<String>? get genres => throw _privateConstructorUsedError;
+  List<Image>? get images => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
@@ -44,8 +44,8 @@ abstract class $ArtistCopyWith<$Res> {
   $Res call(
       {Followers? followers,
       @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
-      List<String> genres,
-      List<Image> images,
+      List<String>? genres,
+      List<Image>? images,
       String? href,
       String id,
       String name,
@@ -90,11 +90,11 @@ class _$ArtistCopyWithImpl<$Res> implements $ArtistCopyWith<$Res> {
       genres: genres == freezed
           ? _value.genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<Image>?,
       href: href == freezed
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -149,8 +149,8 @@ abstract class _$$_ArtistCopyWith<$Res> implements $ArtistCopyWith<$Res> {
   $Res call(
       {Followers? followers,
       @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
-      List<String> genres,
-      List<Image> images,
+      List<String>? genres,
+      List<Image>? images,
       String? href,
       String id,
       String name,
@@ -198,11 +198,11 @@ class __$$_ArtistCopyWithImpl<$Res> extends _$ArtistCopyWithImpl<$Res>
       genres: genres == freezed
           ? _value._genres
           : genres // ignore: cast_nullable_to_non_nullable
-              as List<String>,
+              as List<String>?,
       images: images == freezed
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<Image>?,
       href: href == freezed
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
@@ -237,8 +237,8 @@ class _$_Artist implements _Artist {
   const _$_Artist(
       {this.followers,
       @JsonKey(name: 'external_urls') required this.externalUrls,
-      required final List<String> genres,
-      required final List<Image> images,
+      final List<String>? genres,
+      final List<Image>? images,
       this.href,
       required this.id,
       required this.name,
@@ -256,18 +256,22 @@ class _$_Artist implements _Artist {
   @override
   @JsonKey(name: 'external_urls')
   final ExternalUrls externalUrls;
-  final List<String> _genres;
+  final List<String>? _genres;
   @override
-  List<String> get genres {
+  List<String>? get genres {
+    final value = _genres;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_genres);
+    return EqualUnmodifiableListView(value);
   }
 
-  final List<Image> _images;
+  final List<Image>? _images;
   @override
-  List<Image> get images {
+  List<Image>? get images {
+    final value = _images;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -339,8 +343,8 @@ abstract class _Artist implements Artist {
   const factory _Artist(
       {final Followers? followers,
       @JsonKey(name: 'external_urls') required final ExternalUrls externalUrls,
-      required final List<String> genres,
-      required final List<Image> images,
+      final List<String>? genres,
+      final List<Image>? images,
       final String? href,
       required final String id,
       required final String name,
@@ -356,9 +360,9 @@ abstract class _Artist implements Artist {
   @JsonKey(name: 'external_urls')
   ExternalUrls get externalUrls;
   @override
-  List<String> get genres;
+  List<String>? get genres;
   @override
-  List<Image> get images;
+  List<Image>? get images;
   @override
   String? get href;
   @override
