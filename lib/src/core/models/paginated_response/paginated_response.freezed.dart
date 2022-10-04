@@ -32,48 +32,47 @@ PaginatedResponse _$PaginatedResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PaginatedResponse {
   String? get hRef => throw _privateConstructorUsedError;
-  int get limit => throw _privateConstructorUsedError;
-  int get offset => throw _privateConstructorUsedError;
+  int? get limit => throw _privateConstructorUsedError;
+  int? get offset => throw _privateConstructorUsedError;
   String? get next => throw _privateConstructorUsedError;
   String? get previous => throw _privateConstructorUsedError;
   int? get total => throw _privateConstructorUsedError;
-  List<Artist> get items => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Artist>? items)
         artists,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Album>? items)
         albums,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Track> items)
         tracks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
     required TResult orElse(),
   }) =>
@@ -113,12 +112,11 @@ abstract class $PaginatedResponseCopyWith<$Res> {
       _$PaginatedResponseCopyWithImpl<$Res>;
   $Res call(
       {String? hRef,
-      int limit,
-      int offset,
+      int? limit,
+      int? offset,
       String? next,
       String? previous,
-      int? total,
-      List<Artist> items});
+      int? total});
 }
 
 /// @nodoc
@@ -138,7 +136,6 @@ class _$PaginatedResponseCopyWithImpl<$Res>
     Object? next = freezed,
     Object? previous = freezed,
     Object? total = freezed,
-    Object? items = freezed,
   }) {
     return _then(_value.copyWith(
       hRef: hRef == freezed
@@ -148,11 +145,11 @@ class _$PaginatedResponseCopyWithImpl<$Res>
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       next: next == freezed
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -165,10 +162,6 @@ class _$PaginatedResponseCopyWithImpl<$Res>
           ? _value.total
           : total // ignore: cast_nullable_to_non_nullable
               as int?,
-      items: items == freezed
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
-              as List<Artist>,
     ));
   }
 }
@@ -182,12 +175,12 @@ abstract class _$$PaginatedResponseArtistCopyWith<$Res>
   @override
   $Res call(
       {String? hRef,
-      int limit,
-      int offset,
+      int? limit,
+      int? offset,
       String? next,
       String? previous,
       int? total,
-      List<Artist> items});
+      List<Artist>? items});
 }
 
 /// @nodoc
@@ -220,11 +213,11 @@ class __$$PaginatedResponseArtistCopyWithImpl<$Res>
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       next: next == freezed
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -240,7 +233,7 @@ class __$$PaginatedResponseArtistCopyWithImpl<$Res>
       items: items == freezed
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Artist>,
+              as List<Artist>?,
     ));
   }
 }
@@ -250,12 +243,12 @@ class __$$PaginatedResponseArtistCopyWithImpl<$Res>
 class _$PaginatedResponseArtist implements PaginatedResponseArtist {
   const _$PaginatedResponseArtist(
       {this.hRef,
-      required this.limit,
-      required this.offset,
+      this.limit,
+      this.offset,
       this.next,
       this.previous,
       this.total,
-      required final List<Artist> items,
+      final List<Artist>? items,
       final String? $type})
       : _items = items,
         $type = $type ?? 'artists';
@@ -266,20 +259,22 @@ class _$PaginatedResponseArtist implements PaginatedResponseArtist {
   @override
   final String? hRef;
   @override
-  final int limit;
+  final int? limit;
   @override
-  final int offset;
+  final int? offset;
   @override
   final String? next;
   @override
   final String? previous;
   @override
   final int? total;
-  final List<Artist> _items;
+  final List<Artist>? _items;
   @override
-  List<Artist> get items {
+  List<Artist>? get items {
+    final value = _items;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -325,14 +320,14 @@ class _$PaginatedResponseArtist implements PaginatedResponseArtist {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Artist>? items)
         artists,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Album>? items)
         albums,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Track> items)
         tracks,
   }) {
     return artists(hRef, limit, offset, next, previous, total, items);
@@ -341,14 +336,14 @@ class _$PaginatedResponseArtist implements PaginatedResponseArtist {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
   }) {
     return artists?.call(hRef, limit, offset, next, previous, total, items);
@@ -357,14 +352,14 @@ class _$PaginatedResponseArtist implements PaginatedResponseArtist {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
     required TResult orElse(),
   }) {
@@ -419,12 +414,12 @@ class _$PaginatedResponseArtist implements PaginatedResponseArtist {
 abstract class PaginatedResponseArtist implements PaginatedResponse {
   const factory PaginatedResponseArtist(
       {final String? hRef,
-      required final int limit,
-      required final int offset,
+      final int? limit,
+      final int? offset,
       final String? next,
       final String? previous,
       final int? total,
-      required final List<Artist> items}) = _$PaginatedResponseArtist;
+      final List<Artist>? items}) = _$PaginatedResponseArtist;
 
   factory PaginatedResponseArtist.fromJson(Map<String, dynamic> json) =
       _$PaginatedResponseArtist.fromJson;
@@ -432,17 +427,16 @@ abstract class PaginatedResponseArtist implements PaginatedResponse {
   @override
   String? get hRef;
   @override
-  int get limit;
+  int? get limit;
   @override
-  int get offset;
+  int? get offset;
   @override
   String? get next;
   @override
   String? get previous;
   @override
   int? get total;
-  @override
-  List<Artist> get items;
+  List<Artist>? get items;
   @override
   @JsonKey(ignore: true)
   _$$PaginatedResponseArtistCopyWith<_$PaginatedResponseArtist> get copyWith =>
@@ -458,12 +452,12 @@ abstract class _$$PaginatedResponseAlbumsCopyWith<$Res>
   @override
   $Res call(
       {String? hRef,
-      int limit,
-      int offset,
+      int? limit,
+      int? offset,
       String? next,
       String? previous,
       int? total,
-      List<Artist> items});
+      List<Album>? items});
 }
 
 /// @nodoc
@@ -496,11 +490,11 @@ class __$$PaginatedResponseAlbumsCopyWithImpl<$Res>
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       next: next == freezed
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -516,7 +510,7 @@ class __$$PaginatedResponseAlbumsCopyWithImpl<$Res>
       items: items == freezed
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Artist>,
+              as List<Album>?,
     ));
   }
 }
@@ -526,12 +520,12 @@ class __$$PaginatedResponseAlbumsCopyWithImpl<$Res>
 class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
   const _$PaginatedResponseAlbums(
       {this.hRef,
-      required this.limit,
-      required this.offset,
+      this.limit,
+      this.offset,
       this.next,
       this.previous,
       this.total,
-      required final List<Artist> items,
+      final List<Album>? items,
       final String? $type})
       : _items = items,
         $type = $type ?? 'albums';
@@ -542,20 +536,22 @@ class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
   @override
   final String? hRef;
   @override
-  final int limit;
+  final int? limit;
   @override
-  final int offset;
+  final int? offset;
   @override
   final String? next;
   @override
   final String? previous;
   @override
   final int? total;
-  final List<Artist> _items;
+  final List<Album>? _items;
   @override
-  List<Artist> get items {
+  List<Album>? get items {
+    final value = _items;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_items);
+    return EqualUnmodifiableListView(value);
   }
 
   @JsonKey(name: 'runtimeType')
@@ -601,14 +597,14 @@ class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Artist>? items)
         artists,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Album>? items)
         albums,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Track> items)
         tracks,
   }) {
     return albums(hRef, limit, offset, next, previous, total, items);
@@ -617,14 +613,14 @@ class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
   }) {
     return albums?.call(hRef, limit, offset, next, previous, total, items);
@@ -633,14 +629,14 @@ class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
     required TResult orElse(),
   }) {
@@ -695,12 +691,12 @@ class _$PaginatedResponseAlbums implements PaginatedResponseAlbums {
 abstract class PaginatedResponseAlbums implements PaginatedResponse {
   const factory PaginatedResponseAlbums(
       {final String? hRef,
-      required final int limit,
-      required final int offset,
+      final int? limit,
+      final int? offset,
       final String? next,
       final String? previous,
       final int? total,
-      required final List<Artist> items}) = _$PaginatedResponseAlbums;
+      final List<Album>? items}) = _$PaginatedResponseAlbums;
 
   factory PaginatedResponseAlbums.fromJson(Map<String, dynamic> json) =
       _$PaginatedResponseAlbums.fromJson;
@@ -708,17 +704,16 @@ abstract class PaginatedResponseAlbums implements PaginatedResponse {
   @override
   String? get hRef;
   @override
-  int get limit;
+  int? get limit;
   @override
-  int get offset;
+  int? get offset;
   @override
   String? get next;
   @override
   String? get previous;
   @override
   int? get total;
-  @override
-  List<Artist> get items;
+  List<Album>? get items;
   @override
   @JsonKey(ignore: true)
   _$$PaginatedResponseAlbumsCopyWith<_$PaginatedResponseAlbums> get copyWith =>
@@ -734,12 +729,12 @@ abstract class _$$PaginatedResponseTracksCopyWith<$Res>
   @override
   $Res call(
       {String? hRef,
-      int limit,
-      int offset,
+      int? limit,
+      int? offset,
       String? next,
       String? previous,
       int? total,
-      List<Artist> items});
+      List<Track> items});
 }
 
 /// @nodoc
@@ -772,11 +767,11 @@ class __$$PaginatedResponseTracksCopyWithImpl<$Res>
       limit: limit == freezed
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       offset: offset == freezed
           ? _value.offset
           : offset // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       next: next == freezed
           ? _value.next
           : next // ignore: cast_nullable_to_non_nullable
@@ -792,7 +787,7 @@ class __$$PaginatedResponseTracksCopyWithImpl<$Res>
       items: items == freezed
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Artist>,
+              as List<Track>,
     ));
   }
 }
@@ -802,12 +797,12 @@ class __$$PaginatedResponseTracksCopyWithImpl<$Res>
 class _$PaginatedResponseTracks implements PaginatedResponseTracks {
   const _$PaginatedResponseTracks(
       {this.hRef,
-      required this.limit,
-      required this.offset,
+      this.limit,
+      this.offset,
       this.next,
       this.previous,
       this.total,
-      required final List<Artist> items,
+      required final List<Track> items,
       final String? $type})
       : _items = items,
         $type = $type ?? 'tracks';
@@ -818,18 +813,18 @@ class _$PaginatedResponseTracks implements PaginatedResponseTracks {
   @override
   final String? hRef;
   @override
-  final int limit;
+  final int? limit;
   @override
-  final int offset;
+  final int? offset;
   @override
   final String? next;
   @override
   final String? previous;
   @override
   final int? total;
-  final List<Artist> _items;
+  final List<Track> _items;
   @override
-  List<Artist> get items {
+  List<Track> get items {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_items);
   }
@@ -877,14 +872,14 @@ class _$PaginatedResponseTracks implements PaginatedResponseTracks {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Artist>? items)
         artists,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Album>? items)
         albums,
-    required TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)
+    required TResult Function(String? hRef, int? limit, int? offset,
+            String? next, String? previous, int? total, List<Track> items)
         tracks,
   }) {
     return tracks(hRef, limit, offset, next, previous, total, items);
@@ -893,14 +888,14 @@ class _$PaginatedResponseTracks implements PaginatedResponseTracks {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
   }) {
     return tracks?.call(hRef, limit, offset, next, previous, total, items);
@@ -909,14 +904,14 @@ class _$PaginatedResponseTracks implements PaginatedResponseTracks {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Artist>? items)?
         artists,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Album>? items)?
         albums,
-    TResult Function(String? hRef, int limit, int offset, String? next,
-            String? previous, int? total, List<Artist> items)?
+    TResult Function(String? hRef, int? limit, int? offset, String? next,
+            String? previous, int? total, List<Track> items)?
         tracks,
     required TResult orElse(),
   }) {
@@ -971,12 +966,12 @@ class _$PaginatedResponseTracks implements PaginatedResponseTracks {
 abstract class PaginatedResponseTracks implements PaginatedResponse {
   const factory PaginatedResponseTracks(
       {final String? hRef,
-      required final int limit,
-      required final int offset,
+      final int? limit,
+      final int? offset,
       final String? next,
       final String? previous,
       final int? total,
-      required final List<Artist> items}) = _$PaginatedResponseTracks;
+      required final List<Track> items}) = _$PaginatedResponseTracks;
 
   factory PaginatedResponseTracks.fromJson(Map<String, dynamic> json) =
       _$PaginatedResponseTracks.fromJson;
@@ -984,17 +979,16 @@ abstract class PaginatedResponseTracks implements PaginatedResponse {
   @override
   String? get hRef;
   @override
-  int get limit;
+  int? get limit;
   @override
-  int get offset;
+  int? get offset;
   @override
   String? get next;
   @override
   String? get previous;
   @override
   int? get total;
-  @override
-  List<Artist> get items;
+  List<Track> get items;
   @override
   @JsonKey(ignore: true)
   _$$PaginatedResponseTracksCopyWith<_$PaginatedResponseTracks> get copyWith =>

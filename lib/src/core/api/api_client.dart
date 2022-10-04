@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:spotify_flutter/src/core/api/api_result.dart';
 import 'package:spotify_flutter/src/core/api/network_exceptions.dart';
@@ -22,13 +24,11 @@ class ApiClient {
       AuthorizationTokenInjector(),
     ]);
 
-
   String? _clientId;
 
   set clientId(String clientId) {
     _clientId = clientId;
   }
-
 
   ApiClient._privateConstructor();
 
@@ -38,16 +38,14 @@ class ApiClient {
 
   final _storageService = StorageService();
 
-
   //TODO: Store client id
-  Future<ApiResult<Map<String, dynamic>>> _get(
+  Future<ApiResult<Response>> _get(
       {required String url,
-        bool requiresToken = true,
+      bool requiresToken = true,
       Map<String, dynamic>? queryParameters,
       int count = 0}) async {
-
     final Map<String, dynamic> header = {};
-    if(requiresToken) {
+    if (requiresToken) {
       header['requiresToken'] = true;
     }
 
@@ -62,7 +60,8 @@ class ApiClient {
             headers: header,
           ),
         );
-        return ApiResult.success(data: response.data);
+
+        return ApiResult.success(data: response);
       } on DioError catch (e) {
         final response = e.response;
         if (response?.statusCode == 401) {
@@ -92,7 +91,60 @@ class ApiClient {
     }
   }
 
-  Future<ApiResult<Map<String, dynamic>>> get({
+  //TODO: Store client id
+  Future<ApiResult<Response>> _put({
+    required String url,
+    bool requiresToken = true,
+    Map<String, dynamic>? queryParameters,
+    int count = 0,
+  }) async {
+    final Map<String, dynamic> header = {};
+    if (requiresToken) {
+      header['requiresToken'] = true;
+    }
+
+    queryParameters?.removeWhere((key, value) => value == null);
+
+    if (count < 2) {
+      try {
+        final response = await _dio.put(
+          url,
+          queryParameters: queryParameters,
+          options: Options(
+            headers: header,
+          ),
+        );
+        return ApiResult.success(data: response);
+      } on DioError catch (e) {
+        final response = e.response;
+        if (response?.statusCode == 401) {
+          final refreshStatus = await _refreshToken();
+          if (refreshStatus) {
+            return await _put(
+              url: url,
+              requiresToken: requiresToken,
+              count: count + 1,
+            );
+          } else {
+            return ApiResult.failure(
+              error: NetworkExceptions.unauthorisedRequest(e.message),
+            );
+          }
+        } else {
+          return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+        }
+      } catch (e) {
+        return const ApiResult.failure(
+            error: NetworkExceptions.unexpectedError());
+      }
+    } else {
+      return const ApiResult.failure(
+        error: NetworkExceptions.requestCancelled(),
+      );
+    }
+  }
+
+  Future<ApiResult<Response>> get({
     required String url,
     bool requiresToken = true,
     Map<String, dynamic>? queryParameters,
@@ -103,12 +155,34 @@ class ApiClient {
         requiresToken: requiresToken,
       );
 
+  Future<ApiResult<Response>> put({
+    required String url,
+    bool requiresToken = true,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      _put(
+        url: url,
+        queryParameters: queryParameters,
+        requiresToken: requiresToken,
+      );
+
+  Future<ApiResult<Response>> delete({
+    required String url,
+    bool requiresToken = true,
+    Map<String, dynamic>? queryParameters,
+  }) =>
+      _delete(
+        url: url,
+        queryParameters: queryParameters,
+        requiresToken: requiresToken,
+      );
+
   Future<ApiResult<Map<String, dynamic>>> post({
     required String url,
     required String clientId,
     bool requiresToken = true,
     Map<String, dynamic>? body,
-    Map<String, String>? header,
+    Map<String, String> header = const {},
     Options? options,
   }) =>
       _post(
@@ -126,19 +200,14 @@ class ApiClient {
       'refresh_token': refreshToken,
       'client_id': _clientId,
     };
-   final header = {
-    'requiresToken' : false
-  };
-
+    final header = {'requiresToken': false};
 
     try {
       final response = await _dio.post(
         Routes.autGetTokenUrl,
         data: data,
         options: Options(
-          contentType: Headers.formUrlEncodedContentType,
-          headers: header
-        ),
+            contentType: Headers.formUrlEncodedContentType, headers: header),
       );
       final accessToken = response.data[_storageService.kAccessToken];
       final refreshToken = response.data[_storageService.kRefreshToken];
@@ -153,6 +222,7 @@ class ApiClient {
         return false;
       }
     } catch (_) {
+      //TODO: Handle exceptions
       rethrow;
     }
   }
@@ -160,19 +230,19 @@ class ApiClient {
   Future<ApiResult<Map<String, dynamic>>> _post({
     required String url,
     Map<String, dynamic>? body,
+    Map<String, dynamic> header = const {},
     required bool requiresToken,
-    Map<String,String>? header,
     int count = 0,
   }) async {
     if (count < 2) {
+
+      if (requiresToken) {
+        header['requiresToken'] = true;
+      }
+
       try {
-        final response = await _dio.post(
-          url,
-          data: body,
-          options: Options(
-            headers: header
-          )
-        );
+        final response =
+            await _dio.post(url, data: body, options: Options(headers: header));
         return ApiResult.success(data: response.data);
       } on DioError catch (e) {
         final response = e.response;
@@ -180,6 +250,56 @@ class ApiClient {
           final refreshStatus = await _refreshToken();
           if (refreshStatus) {
             return await _post(
+              url: url,
+              requiresToken: requiresToken,
+              count: count + 1,
+            );
+          } else {
+            return ApiResult.failure(
+              error: NetworkExceptions.unauthorisedRequest(e.message),
+            );
+          }
+        } else {
+          return ApiResult.failure(error: NetworkExceptions.getDioException(e));
+        }
+      } catch (e) {
+        return const ApiResult.failure(
+            error: NetworkExceptions.unexpectedError());
+      }
+    } else {
+      return const ApiResult.failure(
+        error: NetworkExceptions.unexpectedError(),
+      );
+    }
+  }
+
+  Future<ApiResult<Response>> _delete({
+    required String url,
+    Map<String, dynamic>? queryParameters,
+    required bool requiresToken,
+    int count = 0,
+  }) async {
+    if (count < 2) {
+      final Map<String, dynamic> header = {};
+      if (requiresToken) {
+        header['requiresToken'] = true;
+      }
+
+      try {
+        final response = await _dio.delete(
+          url,
+         queryParameters: queryParameters,
+          options: Options(headers: header),
+        );
+        return ApiResult.success(
+          data: response,
+        );
+      } on DioError catch (e) {
+        final response = e.response;
+        if (response?.statusCode == 401) {
+          final refreshStatus = await _refreshToken();
+          if (refreshStatus) {
+            return await _delete(
               url: url,
               requiresToken: requiresToken,
               count: count + 1,

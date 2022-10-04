@@ -18,11 +18,9 @@ class AuthService {
     String state = 'HappyBaby247',
     required String callbackUrlScheme,
     required String secretKey,
+    String? scope
   }) async {
     final pkcePair = PkcePair.generate();
-
-    const scope =
-        'user-read-private user-read-email user-modify-playback-state streaming user-top-read';
 
     final codeChallenge = pkcePair.codeChallenge.replaceAll('=', '');
     final codeVerifier = pkcePair.codeVerifier;
@@ -34,7 +32,7 @@ class AuthService {
       'state': state,
       'code_challenge_method': 'S256',
       'code_challenge': codeChallenge,
-      'scope': scope
+      if(scope != null) 'scope': scope
     });
 
     try {

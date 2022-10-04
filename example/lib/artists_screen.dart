@@ -80,7 +80,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   _getArtistsAlbums() async {
     final response = await SpotifyApi.instance.getArtistAlbums(id: '0TnOYISbd1XYRBk9myaseg');
     response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.items.length}');
+      _showSnackBar('Artists length is ${success.items?.length}');
     }, failure: (failure) {
       _showSnackBar('Failed');
     });

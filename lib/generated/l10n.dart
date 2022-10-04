@@ -199,6 +199,16 @@ class S {
       args: [],
     );
   }
+
+  /// `The app has exceeded its rate limits.`
+  String get exceededLimits {
+    return Intl.message(
+      'The app has exceeded its rate limits.',
+      name: 'exceededLimits',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -26,7 +26,7 @@ mixin _$NetworkExceptions {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -47,7 +47,7 @@ mixin _$NetworkExceptions {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -68,7 +68,7 @@ mixin _$NetworkExceptions {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -90,7 +90,7 @@ mixin _$NetworkExceptions {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -111,7 +111,7 @@ mixin _$NetworkExceptions {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -132,7 +132,7 @@ mixin _$NetworkExceptions {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -221,7 +221,7 @@ class _$RequestCancelled
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -245,7 +245,7 @@ class _$RequestCancelled
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -269,7 +269,7 @@ class _$RequestCancelled
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -297,7 +297,7 @@ class _$RequestCancelled
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -321,7 +321,7 @@ class _$RequestCancelled
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -345,7 +345,7 @@ class _$RequestCancelled
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -452,7 +452,7 @@ class _$UnauthorisedRequest
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -476,7 +476,7 @@ class _$UnauthorisedRequest
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -500,7 +500,7 @@ class _$UnauthorisedRequest
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -528,7 +528,7 @@ class _$UnauthorisedRequest
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -552,7 +552,7 @@ class _$UnauthorisedRequest
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -576,7 +576,7 @@ class _$UnauthorisedRequest
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -659,7 +659,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -683,7 +683,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -707,7 +707,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -735,7 +735,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -759,7 +759,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -783,7 +783,7 @@ class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -885,7 +885,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -909,7 +909,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -933,7 +933,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -961,7 +961,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -985,7 +985,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1009,7 +1009,7 @@ class _$NotFound with DiagnosticableTreeMixin implements NotFound {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1094,7 +1094,7 @@ class _$MethodNotAllowed
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -1118,7 +1118,7 @@ class _$MethodNotAllowed
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1142,7 +1142,7 @@ class _$MethodNotAllowed
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1170,7 +1170,7 @@ class _$MethodNotAllowed
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -1194,7 +1194,7 @@ class _$MethodNotAllowed
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1218,7 +1218,7 @@ class _$MethodNotAllowed
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1296,7 +1296,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -1320,7 +1320,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1344,7 +1344,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1372,7 +1372,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -1396,7 +1396,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1420,7 +1420,7 @@ class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1498,7 +1498,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -1522,7 +1522,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1546,7 +1546,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1574,7 +1574,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -1598,7 +1598,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1622,7 +1622,7 @@ class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1700,7 +1700,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -1724,7 +1724,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1748,7 +1748,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1776,7 +1776,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -1800,7 +1800,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1824,7 +1824,7 @@ class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -1847,73 +1847,49 @@ abstract class SendTimeout implements NetworkExceptions {
 }
 
 /// @nodoc
-abstract class _$$ConflictCopyWith<$Res> {
-  factory _$$ConflictCopyWith(
-          _$Conflict value, $Res Function(_$Conflict) then) =
-      __$$ConflictCopyWithImpl<$Res>;
-  $Res call({String reason});
+abstract class _$$ExceededLimitsCopyWith<$Res> {
+  factory _$$ExceededLimitsCopyWith(
+          _$ExceededLimits value, $Res Function(_$ExceededLimits) then) =
+      __$$ExceededLimitsCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$ConflictCopyWithImpl<$Res>
+class __$$ExceededLimitsCopyWithImpl<$Res>
     extends _$NetworkExceptionsCopyWithImpl<$Res>
-    implements _$$ConflictCopyWith<$Res> {
-  __$$ConflictCopyWithImpl(_$Conflict _value, $Res Function(_$Conflict) _then)
-      : super(_value, (v) => _then(v as _$Conflict));
+    implements _$$ExceededLimitsCopyWith<$Res> {
+  __$$ExceededLimitsCopyWithImpl(
+      _$ExceededLimits _value, $Res Function(_$ExceededLimits) _then)
+      : super(_value, (v) => _then(v as _$ExceededLimits));
 
   @override
-  _$Conflict get _value => super._value as _$Conflict;
-
-  @override
-  $Res call({
-    Object? reason = freezed,
-  }) {
-    return _then(_$Conflict(
-      reason == freezed
-          ? _value.reason
-          : reason // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+  _$ExceededLimits get _value => super._value as _$ExceededLimits;
 }
 
 /// @nodoc
 
-class _$Conflict with DiagnosticableTreeMixin implements Conflict {
-  const _$Conflict(this.reason);
-
-  @override
-  final String reason;
+class _$ExceededLimits with DiagnosticableTreeMixin implements ExceededLimits {
+  const _$ExceededLimits();
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'NetworkExceptions.conflict(reason: $reason)';
+    return 'NetworkExceptions.exceededLimits()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'NetworkExceptions.conflict'))
-      ..add(DiagnosticsProperty('reason', reason));
+        .add(DiagnosticsProperty('type', 'NetworkExceptions.exceededLimits'));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$Conflict &&
-            const DeepCollectionEquality().equals(other.reason, reason));
+        (other.runtimeType == runtimeType && other is _$ExceededLimits);
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(reason));
-
-  @JsonKey(ignore: true)
-  @override
-  _$$ConflictCopyWith<_$Conflict> get copyWith =>
-      __$$ConflictCopyWithImpl<_$Conflict>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1926,7 +1902,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -1936,7 +1912,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     required TResult Function(String error) defaultError,
     required TResult Function() unexpectedError,
   }) {
-    return conflict(reason);
+    return exceededLimits();
   }
 
   @override
@@ -1950,7 +1926,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1960,7 +1936,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function(String error)? defaultError,
     TResult Function()? unexpectedError,
   }) {
-    return conflict?.call(reason);
+    return exceededLimits?.call();
   }
 
   @override
@@ -1974,7 +1950,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -1985,8 +1961,8 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function()? unexpectedError,
     required TResult orElse(),
   }) {
-    if (conflict != null) {
-      return conflict(reason);
+    if (exceededLimits != null) {
+      return exceededLimits();
     }
     return orElse();
   }
@@ -2002,7 +1978,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -2012,7 +1988,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     required TResult Function(DefaultError value) defaultError,
     required TResult Function(UnexpectedError value) unexpectedError,
   }) {
-    return conflict(this);
+    return exceededLimits(this);
   }
 
   @override
@@ -2026,7 +2002,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2036,7 +2012,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function(DefaultError value)? defaultError,
     TResult Function(UnexpectedError value)? unexpectedError,
   }) {
-    return conflict?.call(this);
+    return exceededLimits?.call(this);
   }
 
   @override
@@ -2050,7 +2026,7 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2061,20 +2037,15 @@ class _$Conflict with DiagnosticableTreeMixin implements Conflict {
     TResult Function(UnexpectedError value)? unexpectedError,
     required TResult orElse(),
   }) {
-    if (conflict != null) {
-      return conflict(this);
+    if (exceededLimits != null) {
+      return exceededLimits(this);
     }
     return orElse();
   }
 }
 
-abstract class Conflict implements NetworkExceptions {
-  const factory Conflict(final String reason) = _$Conflict;
-
-  String get reason;
-  @JsonKey(ignore: true)
-  _$$ConflictCopyWith<_$Conflict> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class ExceededLimits implements NetworkExceptions {
+  const factory ExceededLimits() = _$ExceededLimits;
 }
 
 /// @nodoc
@@ -2162,7 +2133,7 @@ class _$InternalServerError
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -2186,7 +2157,7 @@ class _$InternalServerError
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2210,7 +2181,7 @@ class _$InternalServerError
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2238,7 +2209,7 @@ class _$InternalServerError
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -2262,7 +2233,7 @@ class _$InternalServerError
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2286,7 +2257,7 @@ class _$InternalServerError
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2370,7 +2341,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -2394,7 +2365,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2418,7 +2389,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2446,7 +2417,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -2470,7 +2441,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2494,7 +2465,7 @@ class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2574,7 +2545,7 @@ class _$ServiceUnavailable
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -2598,7 +2569,7 @@ class _$ServiceUnavailable
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2622,7 +2593,7 @@ class _$ServiceUnavailable
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2650,7 +2621,7 @@ class _$ServiceUnavailable
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -2674,7 +2645,7 @@ class _$ServiceUnavailable
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2698,7 +2669,7 @@ class _$ServiceUnavailable
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2778,7 +2749,7 @@ class _$NoInternetConnection
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -2802,7 +2773,7 @@ class _$NoInternetConnection
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2826,7 +2797,7 @@ class _$NoInternetConnection
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -2854,7 +2825,7 @@ class _$NoInternetConnection
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -2878,7 +2849,7 @@ class _$NoInternetConnection
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2902,7 +2873,7 @@ class _$NoInternetConnection
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -2982,7 +2953,7 @@ class _$FormatException
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -3006,7 +2977,7 @@ class _$FormatException
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3030,7 +3001,7 @@ class _$FormatException
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3058,7 +3029,7 @@ class _$FormatException
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -3082,7 +3053,7 @@ class _$FormatException
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3106,7 +3077,7 @@ class _$FormatException
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3186,7 +3157,7 @@ class _$UnableToProcess
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -3210,7 +3181,7 @@ class _$UnableToProcess
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3234,7 +3205,7 @@ class _$UnableToProcess
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3262,7 +3233,7 @@ class _$UnableToProcess
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -3286,7 +3257,7 @@ class _$UnableToProcess
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3310,7 +3281,7 @@ class _$UnableToProcess
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3413,7 +3384,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -3437,7 +3408,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3461,7 +3432,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3489,7 +3460,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -3513,7 +3484,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3537,7 +3508,7 @@ class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3622,7 +3593,7 @@ class _$UnexpectedError
     required TResult Function() notAcceptable,
     required TResult Function() requestTimeout,
     required TResult Function() sendTimeout,
-    required TResult Function(String reason) conflict,
+    required TResult Function() exceededLimits,
     required TResult Function(String message) internalServerError,
     required TResult Function() notImplemented,
     required TResult Function() serviceUnavailable,
@@ -3646,7 +3617,7 @@ class _$UnexpectedError
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3670,7 +3641,7 @@ class _$UnexpectedError
     TResult Function()? notAcceptable,
     TResult Function()? requestTimeout,
     TResult Function()? sendTimeout,
-    TResult Function(String reason)? conflict,
+    TResult Function()? exceededLimits,
     TResult Function(String message)? internalServerError,
     TResult Function()? notImplemented,
     TResult Function()? serviceUnavailable,
@@ -3698,7 +3669,7 @@ class _$UnexpectedError
     required TResult Function(NotAcceptable value) notAcceptable,
     required TResult Function(RequestTimeout value) requestTimeout,
     required TResult Function(SendTimeout value) sendTimeout,
-    required TResult Function(Conflict value) conflict,
+    required TResult Function(ExceededLimits value) exceededLimits,
     required TResult Function(InternalServerError value) internalServerError,
     required TResult Function(NotImplemented value) notImplemented,
     required TResult Function(ServiceUnavailable value) serviceUnavailable,
@@ -3722,7 +3693,7 @@ class _$UnexpectedError
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,
@@ -3746,7 +3717,7 @@ class _$UnexpectedError
     TResult Function(NotAcceptable value)? notAcceptable,
     TResult Function(RequestTimeout value)? requestTimeout,
     TResult Function(SendTimeout value)? sendTimeout,
-    TResult Function(Conflict value)? conflict,
+    TResult Function(ExceededLimits value)? exceededLimits,
     TResult Function(InternalServerError value)? internalServerError,
     TResult Function(NotImplemented value)? notImplemented,
     TResult Function(ServiceUnavailable value)? serviceUnavailable,

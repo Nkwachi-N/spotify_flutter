@@ -17,7 +17,7 @@ class UserService {
     response.when(
       success: (success) {
         result = ApiResult.success(
-          data: GetCurrentUserProfileResponse.fromJson(success),
+          data: GetCurrentUserProfileResponse.fromJson(success.data),
         );
       },
       failure: (failure) {
@@ -39,7 +39,7 @@ class UserService {
     response.when(
       success: (success) {
         result = ApiResult.success(
-          data: PaginatedResponseArtist.fromJson(success),
+          data: PaginatedResponseArtist.fromJson(success.data),
         );
       },
       failure: (failure) {

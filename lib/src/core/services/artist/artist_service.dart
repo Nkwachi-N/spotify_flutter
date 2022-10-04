@@ -18,7 +18,7 @@ class ArtistService {
     response.when(
       success: (success) {
         result = ApiResult.success(
-          data: Artist.fromJson(success),
+          data: Artist.fromJson(success.data),
         );
       },
       failure: (failure) {
@@ -38,9 +38,9 @@ class ArtistService {
     late ApiResult<List<Artist>> result;
 
     response.when(
-      success: (json) {
+      success: (success) {
         result = ApiResult.success(
-          data: (json['artists'] as List<dynamic>)
+          data: (success.data['artists'] as List<dynamic>)
               .map((json) => Artist.fromJson(json))
               .toList(),
         );
@@ -76,9 +76,9 @@ class ArtistService {
     late ApiResult<PaginatedResponseAlbums> result;
 
     response.when(
-      success: (json) {
+      success: (success) {
         result = ApiResult.success(
-          data: PaginatedResponseAlbums.fromJson(json),
+          data: PaginatedResponseAlbums.fromJson(success.data),
         );
       },
       failure: (failure) {
@@ -105,9 +105,9 @@ class ArtistService {
     late ApiResult<List<Track>> result;
 
     response.when(
-      success: (json) {
+      success: (success) {
         result = ApiResult.success(
-          data: (json['tracks'] as List<dynamic>)
+          data: (success.data['tracks'] as List<dynamic>)
               .map((json) => Track.fromJson(json))
               .toList(),
         );
@@ -132,9 +132,9 @@ class ArtistService {
     late ApiResult<List<Artist>> result;
 
     response.when(
-      success: (json) {
+      success: (success) {
         result = ApiResult.success(
-          data: (json['artists'] as List<dynamic>)
+          data: (success.data['artists'] as List<dynamic>)
               .map((json) => Artist.fromJson(json))
               .toList(),
         );

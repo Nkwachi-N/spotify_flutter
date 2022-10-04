@@ -12,34 +12,34 @@ class PaginatedResponse with _$PaginatedResponse{
 
   const factory PaginatedResponse.artists({
     String? hRef,
-    required int limit,
-    required int offset,
+    int? limit,
+    int? offset,
     String? next,
     String? previous,
     int? total,
-    required List<Artist> items,
+    List<Artist>? items,
   }) =
   PaginatedResponseArtist;
 
   const factory PaginatedResponse.albums({
     String? hRef,
-    required int limit,
-    required int offset,
+    int? limit,
+    int? offset,
     String? next,
     String? previous,
     int? total,
-    required List<Artist> items,
+    List<Album>? items,
   }) =
   PaginatedResponseAlbums;
 
   const factory PaginatedResponse.tracks({
     String? hRef,
-    required int limit,
-    required int offset,
+    int? limit,
+    int? offset,
     String? next,
     String? previous,
     int? total,
-    required List<Artist> items,
+    required List<Track> items,
   }) =
   PaginatedResponseTracks;
 

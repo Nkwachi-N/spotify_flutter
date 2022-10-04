@@ -20,7 +20,7 @@ _$_Track _$$_TrackFromJson(Map<String, dynamic> json) => _$_Track(
       linkedFrom: json['linked_from'] == null
           ? null
           : Track.fromJson(json['linked_from'] as Map<String, dynamic>),
-      isPlayable: json['is_playable'] as bool,
+      isPlayable: json['is_playable'] as bool?,
       id: json['id'] as String,
       hRef: json['hRef'] as String?,
       externalUrls: json['external_urls'] == null

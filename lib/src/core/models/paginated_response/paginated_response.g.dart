@@ -10,13 +10,13 @@ _$PaginatedResponseArtist _$$PaginatedResponseArtistFromJson(
         Map<String, dynamic> json) =>
     _$PaginatedResponseArtist(
       hRef: json['hRef'] as String?,
-      limit: json['limit'] as int,
-      offset: json['offset'] as int,
+      limit: json['limit'] as int?,
+      offset: json['offset'] as int?,
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       total: json['total'] as int?,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => Artist.fromJson(e as Map<String, dynamic>))
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => Artist.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
@@ -38,13 +38,13 @@ _$PaginatedResponseAlbums _$$PaginatedResponseAlbumsFromJson(
         Map<String, dynamic> json) =>
     _$PaginatedResponseAlbums(
       hRef: json['hRef'] as String?,
-      limit: json['limit'] as int,
-      offset: json['offset'] as int,
+      limit: json['limit'] as int?,
+      offset: json['offset'] as int?,
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       total: json['total'] as int?,
-      items: (json['items'] as List<dynamic>)
-          .map((e) => Artist.fromJson(e as Map<String, dynamic>))
+      items: (json['items'] as List<dynamic>?)
+          ?.map((e) => Album.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );
@@ -66,13 +66,13 @@ _$PaginatedResponseTracks _$$PaginatedResponseTracksFromJson(
         Map<String, dynamic> json) =>
     _$PaginatedResponseTracks(
       hRef: json['hRef'] as String?,
-      limit: json['limit'] as int,
-      offset: json['offset'] as int,
+      limit: json['limit'] as int?,
+      offset: json['offset'] as int?,
       next: json['next'] as String?,
       previous: json['previous'] as String?,
       total: json['total'] as int?,
       items: (json['items'] as List<dynamic>)
-          .map((e) => Artist.fromJson(e as Map<String, dynamic>))
+          .map((e) => Track.fromJson(e as Map<String, dynamic>))
           .toList(),
       $type: json['runtimeType'] as String?,
     );

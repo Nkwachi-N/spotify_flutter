@@ -10,8 +10,10 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
       followers: json['followers'] == null
           ? null
           : Followers.fromJson(json['followers'] as Map<String, dynamic>),
-      externalUrls:
-          ExternalUrls.fromJson(json['external_urls'] as Map<String, dynamic>),
+      externalUrls: json['external_urls'] == null
+          ? null
+          : ExternalUrls.fromJson(
+              json['external_urls'] as Map<String, dynamic>),
       albumType: json['album_type'] as String,
       totalTracks: json['total_tracks'] as int,
       availableMarkets: (json['available_markets'] as List<dynamic>?)
@@ -34,9 +36,10 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
           ?.map((e) => Artist.fromJson(e as Map<String, dynamic>))
           .toList(),
       albumGroup: json['album_group'] as String?,
-      tracks: (json['tracks'] as List<dynamic>?)
-          ?.map((e) => Track.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      tracks: json['tracks'] == null
+          ? null
+          : PaginatedResponseTracks.fromJson(
+              json['tracks'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
