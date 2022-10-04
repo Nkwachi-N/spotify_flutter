@@ -18,14 +18,16 @@ _$_GetCurrentUserProfileResponse _$$_GetCurrentUserProfileResponseFromJson(
               json['explicit_content'] as Map<String, dynamic>),
       externalUrls:
           ExternalUrls.fromJson(json['external_urls'] as Map<String, dynamic>),
-      followers: Followers.fromJson(json['followers'] as Map<String, dynamic>),
-      href: json['href'] as String,
-      id: json['id'] as String,
-      uri: json['uri'] as String,
-      product: json['product'] as String,
-      type: json['type'] as String,
-      images: (json['images'] as List<dynamic>)
-          .map((e) => Image.fromJson(e as Map<String, dynamic>))
+      followers: json['followers'] == null
+          ? null
+          : Followers.fromJson(json['followers'] as Map<String, dynamic>),
+      href: json['href'] as String?,
+      id: json['id'] as String?,
+      uri: json['uri'] as String?,
+      product: json['product'] as String?,
+      type: json['type'] as String?,
+      images: (json['images'] as List<dynamic>?)
+          ?.map((e) => Image.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 

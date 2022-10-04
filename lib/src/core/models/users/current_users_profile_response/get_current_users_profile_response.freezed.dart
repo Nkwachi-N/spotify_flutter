@@ -29,13 +29,13 @@ mixin _$GetCurrentUserProfileResponse {
   ExplicitContent? get explicitContent => throw _privateConstructorUsedError;
   @JsonKey(name: 'external_urls')
   ExternalUrls get externalUrls => throw _privateConstructorUsedError;
-  Followers get followers => throw _privateConstructorUsedError;
-  String get href => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  String get uri => throw _privateConstructorUsedError;
-  String get product => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  List<Image> get images => throw _privateConstructorUsedError;
+  Followers? get followers => throw _privateConstructorUsedError;
+  String? get href => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get uri => throw _privateConstructorUsedError;
+  String? get product => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  List<Image>? get images => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -55,17 +55,17 @@ abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
       String? email,
       @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
       @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
-      Followers followers,
-      String href,
-      String id,
-      String uri,
-      String product,
-      String type,
-      List<Image> images});
+      Followers? followers,
+      String? href,
+      String? id,
+      String? uri,
+      String? product,
+      String? type,
+      List<Image>? images});
 
   $ExplicitContentCopyWith<$Res>? get explicitContent;
   $ExternalUrlsCopyWith<$Res> get externalUrls;
-  $FollowersCopyWith<$Res> get followers;
+  $FollowersCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -116,31 +116,31 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
       followers: followers == freezed
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers,
+              as Followers?,
       href: href == freezed
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uri: uri == freezed
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       images: images == freezed
           ? _value.images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<Image>?,
     ));
   }
 
@@ -163,8 +163,12 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
   }
 
   @override
-  $FollowersCopyWith<$Res> get followers {
-    return $FollowersCopyWith<$Res>(_value.followers, (value) {
+  $FollowersCopyWith<$Res>? get followers {
+    if (_value.followers == null) {
+      return null;
+    }
+
+    return $FollowersCopyWith<$Res>(_value.followers!, (value) {
       return _then(_value.copyWith(followers: value));
     });
   }
@@ -184,20 +188,20 @@ abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
       String? email,
       @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
       @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
-      Followers followers,
-      String href,
-      String id,
-      String uri,
-      String product,
-      String type,
-      List<Image> images});
+      Followers? followers,
+      String? href,
+      String? id,
+      String? uri,
+      String? product,
+      String? type,
+      List<Image>? images});
 
   @override
   $ExplicitContentCopyWith<$Res>? get explicitContent;
   @override
   $ExternalUrlsCopyWith<$Res> get externalUrls;
   @override
-  $FollowersCopyWith<$Res> get followers;
+  $FollowersCopyWith<$Res>? get followers;
 }
 
 /// @nodoc
@@ -252,31 +256,31 @@ class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
       followers: followers == freezed
           ? _value.followers
           : followers // ignore: cast_nullable_to_non_nullable
-              as Followers,
+              as Followers?,
       href: href == freezed
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       uri: uri == freezed
           ? _value.uri
           : uri // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       product: product == freezed
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       type: type == freezed
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       images: images == freezed
           ? _value._images
           : images // ignore: cast_nullable_to_non_nullable
-              as List<Image>,
+              as List<Image>?,
     ));
   }
 }
@@ -291,13 +295,13 @@ class _$_GetCurrentUserProfileResponse
       this.email,
       @JsonKey(name: 'explicit_content') this.explicitContent,
       @JsonKey(name: 'external_urls') required this.externalUrls,
-      required this.followers,
-      required this.href,
-      required this.id,
-      required this.uri,
-      required this.product,
-      required this.type,
-      required final List<Image> images})
+      this.followers,
+      this.href,
+      this.id,
+      this.uri,
+      this.product,
+      this.type,
+      final List<Image>? images})
       : _images = images;
 
   factory _$_GetCurrentUserProfileResponse.fromJson(
@@ -318,22 +322,24 @@ class _$_GetCurrentUserProfileResponse
   @JsonKey(name: 'external_urls')
   final ExternalUrls externalUrls;
   @override
-  final Followers followers;
+  final Followers? followers;
   @override
-  final String href;
+  final String? href;
   @override
-  final String id;
+  final String? id;
   @override
-  final String uri;
+  final String? uri;
   @override
-  final String product;
+  final String? product;
   @override
-  final String type;
-  final List<Image> _images;
+  final String? type;
+  final List<Image>? _images;
   @override
-  List<Image> get images {
+  List<Image>? get images {
+    final value = _images;
+    if (value == null) return null;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_images);
+    return EqualUnmodifiableListView(value);
   }
 
   @override
@@ -402,13 +408,13 @@ abstract class _GetCurrentUserProfileResponse
       final String? email,
       @JsonKey(name: 'explicit_content') final ExplicitContent? explicitContent,
       @JsonKey(name: 'external_urls') required final ExternalUrls externalUrls,
-      required final Followers followers,
-      required final String href,
-      required final String id,
-      required final String uri,
-      required final String product,
-      required final String type,
-      required final List<Image> images}) = _$_GetCurrentUserProfileResponse;
+      final Followers? followers,
+      final String? href,
+      final String? id,
+      final String? uri,
+      final String? product,
+      final String? type,
+      final List<Image>? images}) = _$_GetCurrentUserProfileResponse;
 
   factory _GetCurrentUserProfileResponse.fromJson(Map<String, dynamic> json) =
       _$_GetCurrentUserProfileResponse.fromJson;
@@ -427,19 +433,19 @@ abstract class _GetCurrentUserProfileResponse
   @JsonKey(name: 'external_urls')
   ExternalUrls get externalUrls;
   @override
-  Followers get followers;
+  Followers? get followers;
   @override
-  String get href;
+  String? get href;
   @override
-  String get id;
+  String? get id;
   @override
-  String get uri;
+  String? get uri;
   @override
-  String get product;
+  String? get product;
   @override
-  String get type;
+  String? get type;
   @override
-  List<Image> get images;
+  List<Image>? get images;
   @override
   @JsonKey(ignore: true)
   _$$_GetCurrentUserProfileResponseCopyWith<_$_GetCurrentUserProfileResponse>
