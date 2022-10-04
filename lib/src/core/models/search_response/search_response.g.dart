@@ -22,10 +22,10 @@ _$_SearchResponse _$$_SearchResponseFromJson(Map<String, dynamic> json) =>
           ? null
           : PaginatedResponseAlbums.fromJson(
               json['albums'] as Map<String, dynamic>),
-      artist: json['artist'] == null
+      artists: json['artists'] == null
           ? null
           : PaginatedResponseArtist.fromJson(
-              json['artist'] as Map<String, dynamic>),
+              json['artists'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_SearchResponseToJson(_$_SearchResponse instance) =>
@@ -38,5 +38,5 @@ Map<String, dynamic> _$$_SearchResponseToJson(_$_SearchResponse instance) =>
       'total': instance.total,
       'tracks': instance.tracks,
       'albums': instance.albums,
-      'artist': instance.artist,
+      'artists': instance.artists,
     };

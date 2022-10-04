@@ -7,3 +7,5 @@ export 'artist/artist.dart';
 export 'available_genre/available_genre.dart';
 export 'album/album.dart';
 export 'track/track.dart';
+export 'paginated_response/paginated_response.dart';
+export 'search_response/search_response.dart';

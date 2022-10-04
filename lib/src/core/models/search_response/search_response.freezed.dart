@@ -28,7 +28,7 @@ mixin _$SearchResponse {
   int? get total => throw _privateConstructorUsedError;
   PaginatedResponseTracks? get tracks => throw _privateConstructorUsedError;
   PaginatedResponseAlbums? get albums => throw _privateConstructorUsedError;
-  PaginatedResponseArtist? get artist => throw _privateConstructorUsedError;
+  PaginatedResponseArtist? get artists => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +50,7 @@ abstract class $SearchResponseCopyWith<$Res> {
       int? total,
       PaginatedResponseTracks? tracks,
       PaginatedResponseAlbums? albums,
-      PaginatedResponseArtist? artist});
+      PaginatedResponseArtist? artists});
 }
 
 /// @nodoc
@@ -72,7 +72,7 @@ class _$SearchResponseCopyWithImpl<$Res>
     Object? total = freezed,
     Object? tracks = freezed,
     Object? albums = freezed,
-    Object? artist = freezed,
+    Object? artists = freezed,
   }) {
     return _then(_value.copyWith(
       hRef: hRef == freezed
@@ -107,9 +107,9 @@ class _$SearchResponseCopyWithImpl<$Res>
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
               as PaginatedResponseAlbums?,
-      artist: artist == freezed
-          ? _value.artist
-          : artist // ignore: cast_nullable_to_non_nullable
+      artists: artists == freezed
+          ? _value.artists
+          : artists // ignore: cast_nullable_to_non_nullable
               as PaginatedResponseArtist?,
     ));
   }
@@ -131,7 +131,7 @@ abstract class _$$_SearchResponseCopyWith<$Res>
       int? total,
       PaginatedResponseTracks? tracks,
       PaginatedResponseAlbums? albums,
-      PaginatedResponseArtist? artist});
+      PaginatedResponseArtist? artists});
 }
 
 /// @nodoc
@@ -155,7 +155,7 @@ class __$$_SearchResponseCopyWithImpl<$Res>
     Object? total = freezed,
     Object? tracks = freezed,
     Object? albums = freezed,
-    Object? artist = freezed,
+    Object? artists = freezed,
   }) {
     return _then(_$_SearchResponse(
       hRef: hRef == freezed
@@ -190,9 +190,9 @@ class __$$_SearchResponseCopyWithImpl<$Res>
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
               as PaginatedResponseAlbums?,
-      artist: artist == freezed
-          ? _value.artist
-          : artist // ignore: cast_nullable_to_non_nullable
+      artists: artists == freezed
+          ? _value.artists
+          : artists // ignore: cast_nullable_to_non_nullable
               as PaginatedResponseArtist?,
     ));
   }
@@ -210,7 +210,7 @@ class _$_SearchResponse implements _SearchResponse {
       this.total,
       this.tracks,
       this.albums,
-      this.artist});
+      this.artists});
 
   factory _$_SearchResponse.fromJson(Map<String, dynamic> json) =>
       _$$_SearchResponseFromJson(json);
@@ -232,11 +232,11 @@ class _$_SearchResponse implements _SearchResponse {
   @override
   final PaginatedResponseAlbums? albums;
   @override
-  final PaginatedResponseArtist? artist;
+  final PaginatedResponseArtist? artists;
 
   @override
   String toString() {
-    return 'SearchResponse(hRef: $hRef, limit: $limit, offset: $offset, next: $next, previous: $previous, total: $total, tracks: $tracks, albums: $albums, artist: $artist)';
+    return 'SearchResponse(hRef: $hRef, limit: $limit, offset: $offset, next: $next, previous: $previous, total: $total, tracks: $tracks, albums: $albums, artists: $artists)';
   }
 
   @override
@@ -252,7 +252,7 @@ class _$_SearchResponse implements _SearchResponse {
             const DeepCollectionEquality().equals(other.total, total) &&
             const DeepCollectionEquality().equals(other.tracks, tracks) &&
             const DeepCollectionEquality().equals(other.albums, albums) &&
-            const DeepCollectionEquality().equals(other.artist, artist));
+            const DeepCollectionEquality().equals(other.artists, artists));
   }
 
   @JsonKey(ignore: true)
@@ -267,7 +267,7 @@ class _$_SearchResponse implements _SearchResponse {
       const DeepCollectionEquality().hash(total),
       const DeepCollectionEquality().hash(tracks),
       const DeepCollectionEquality().hash(albums),
-      const DeepCollectionEquality().hash(artist));
+      const DeepCollectionEquality().hash(artists));
 
   @JsonKey(ignore: true)
   @override
@@ -292,7 +292,7 @@ abstract class _SearchResponse implements SearchResponse {
       final int? total,
       final PaginatedResponseTracks? tracks,
       final PaginatedResponseAlbums? albums,
-      final PaginatedResponseArtist? artist}) = _$_SearchResponse;
+      final PaginatedResponseArtist? artists}) = _$_SearchResponse;
 
   factory _SearchResponse.fromJson(Map<String, dynamic> json) =
       _$_SearchResponse.fromJson;
@@ -314,7 +314,7 @@ abstract class _SearchResponse implements SearchResponse {
   @override
   PaginatedResponseAlbums? get albums;
   @override
-  PaginatedResponseArtist? get artist;
+  PaginatedResponseArtist? get artists;
   @override
   @JsonKey(ignore: true)
   _$$_SearchResponseCopyWith<_$_SearchResponse> get copyWith =>

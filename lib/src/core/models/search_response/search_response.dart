@@ -18,7 +18,7 @@ class SearchResponse with _$SearchResponse{
     int? total,
     PaginatedResponseTracks? tracks,
     PaginatedResponseAlbums? albums,
-    PaginatedResponseArtist? artist,
+    PaginatedResponseArtist? artists,
   }) =
   _SearchResponse;
 
