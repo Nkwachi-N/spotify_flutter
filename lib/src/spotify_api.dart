@@ -17,6 +17,7 @@ class SpotifyApi {
   final _genreService = GenreService();
   final _artistService = ArtistService();
   final _albumsService = AlbumServiceImpl();
+  final _searchService = SearchService();
 
   // TODO: Document [authenticate].
   Future<ApiResult<bool>> authenticate({
@@ -137,5 +138,49 @@ class SpotifyApi {
         market: market,
         limit: limit,
         offset: offset,
+      );
+
+  Future<ApiResult<SearchResponse>> getTracksByGenre(
+          {required String genre,
+          int? limit,
+          int? offset,
+          String? market,
+          String? includeExternal}) =>
+      _searchService.getTracksByGenre(
+        market: market,
+        limit: limit,
+        offset: offset,
+        genre: genre,
+        includeExternal: includeExternal,
+      );
+
+  Future<ApiResult<SearchResponse>> getTracksByArtist(
+          {required String artist,
+          int? limit,
+          int? offset,
+          String? market,
+          String? includeExternal}) =>
+      _searchService.getTracksByGenre(
+        market: market,
+        limit: limit,
+        offset: offset,
+        genre: artist,
+        includeExternal: includeExternal,
+      );
+
+  Future<ApiResult<SearchResponse>> genericSearch(
+          {required String query,
+          required String type,
+          int? limit,
+          int? offset,
+          String? market,
+          String? includeExternal}) =>
+      _searchService.genericSearch(
+        market: market,
+        limit: limit,
+        offset: offset,
+        query: query,
+        type: type,
+        includeExternal: includeExternal,
       );
 }

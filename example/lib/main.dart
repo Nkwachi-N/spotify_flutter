@@ -1,5 +1,6 @@
 import 'package:example/albums_screen.dart';
 import 'package:example/artists_screen.dart';
+import 'package:example/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_flutter/generated/l10n.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
@@ -59,6 +60,10 @@ class _MyHomePageState extends State<MyHomePage> {
             onPressed: () => _toAlbumsScreen(context),
             child: const Text('Test Albums Endpoints'),
           ),
+          ElevatedButton(
+            onPressed: () => _toSearchScreen(context),
+            child: const Text('Test Search Endpoints'),
+          ),
           Center(
             child: ElevatedButton(
               onPressed: () => toArtistScreen(context),
@@ -109,6 +114,14 @@ class _MyHomePageState extends State<MyHomePage> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => const AlbumsScreen(),
+      ),
+    );
+  }
+
+  _toSearchScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const SearchScreen(),
       ),
     );
   }
