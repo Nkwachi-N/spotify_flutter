@@ -15,9 +15,9 @@ class GenreService{
     late ApiResult<AvailableGenre> result;
 
     response.when(
-      success: (json) {
+      success: (success) {
         result = ApiResult.success(
-          data: AvailableGenre.fromJson(json)
+          data: AvailableGenre.fromJson(success.data)
         );
       },
       failure: (failure) {

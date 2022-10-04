@@ -27,6 +27,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connection request timeout"),
         "errorDueToConflict":
             MessageLookupByLibrary.simpleMessage("Error due to a conflict"),
+        "exceededLimits": MessageLookupByLibrary.simpleMessage(
+            "The app has exceeded its rate limits."),
         "genericError": MessageLookupByLibrary.simpleMessage(
             "The application has encountered an unknown error.\nWe are aware and will be looking into this with the utmost urgency"),
         "important": MessageLookupByLibrary.simpleMessage("Important"),

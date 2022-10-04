@@ -34,7 +34,7 @@ mixin _$Track {
   @JsonKey(name: 'linked_from')
   Track? get linkedFrom => throw _privateConstructorUsedError;
   @JsonKey(name: 'is_playable')
-  bool get isPlayable => throw _privateConstructorUsedError;
+  bool? get isPlayable => throw _privateConstructorUsedError;
   String get id => throw _privateConstructorUsedError;
   String? get hRef => throw _privateConstructorUsedError;
   @JsonKey(name: 'external_urls')
@@ -70,7 +70,7 @@ abstract class $TrackCopyWith<$Res> {
       String name,
       Restrictions? restrictions,
       @JsonKey(name: 'linked_from') Track? linkedFrom,
-      @JsonKey(name: 'is_playable') bool isPlayable,
+      @JsonKey(name: 'is_playable') bool? isPlayable,
       String id,
       String? hRef,
       @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
@@ -160,7 +160,7 @@ class _$TrackCopyWithImpl<$Res> implements $TrackCopyWith<$Res> {
       isPlayable: isPlayable == freezed
           ? _value.isPlayable
           : isPlayable // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -275,7 +275,7 @@ abstract class _$$_TrackCopyWith<$Res> implements $TrackCopyWith<$Res> {
       String name,
       Restrictions? restrictions,
       @JsonKey(name: 'linked_from') Track? linkedFrom,
-      @JsonKey(name: 'is_playable') bool isPlayable,
+      @JsonKey(name: 'is_playable') bool? isPlayable,
       String id,
       String? hRef,
       @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
@@ -371,7 +371,7 @@ class __$$_TrackCopyWithImpl<$Res> extends _$TrackCopyWithImpl<$Res>
       isPlayable: isPlayable == freezed
           ? _value.isPlayable
           : isPlayable // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as bool?,
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -429,7 +429,7 @@ class _$_Track implements _Track {
       required this.name,
       this.restrictions,
       @JsonKey(name: 'linked_from') this.linkedFrom,
-      @JsonKey(name: 'is_playable') required this.isPlayable,
+      @JsonKey(name: 'is_playable') this.isPlayable,
       required this.id,
       this.hRef,
       @JsonKey(name: 'external_urls') this.externalUrls,
@@ -470,7 +470,7 @@ class _$_Track implements _Track {
   final Track? linkedFrom;
   @override
   @JsonKey(name: 'is_playable')
-  final bool isPlayable;
+  final bool? isPlayable;
   @override
   final String id;
   @override
@@ -604,7 +604,7 @@ abstract class _Track implements Track {
       required final String name,
       final Restrictions? restrictions,
       @JsonKey(name: 'linked_from') final Track? linkedFrom,
-      @JsonKey(name: 'is_playable') required final bool isPlayable,
+      @JsonKey(name: 'is_playable') final bool? isPlayable,
       required final String id,
       final String? hRef,
       @JsonKey(name: 'external_urls') final ExternalUrls? externalUrls,
@@ -642,7 +642,7 @@ abstract class _Track implements Track {
   Track? get linkedFrom;
   @override
   @JsonKey(name: 'is_playable')
-  bool get isPlayable;
+  bool? get isPlayable;
   @override
   String get id;
   @override

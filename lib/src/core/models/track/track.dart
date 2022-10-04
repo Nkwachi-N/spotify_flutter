@@ -19,7 +19,7 @@ class Track with _$Track {
     required String name,
     Restrictions? restrictions,
     @JsonKey(name: 'linked_from') Track? linkedFrom,
-    @JsonKey(name: 'is_playable') required bool isPlayable,
+    @JsonKey(name: 'is_playable') bool? isPlayable,
     required String id,
     String? hRef,
     @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,

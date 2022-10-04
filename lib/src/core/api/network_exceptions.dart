@@ -29,7 +29,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
 
   const factory NetworkExceptions.sendTimeout() = SendTimeout;
 
-  const factory NetworkExceptions.conflict(String reason) = Conflict;
+  const factory NetworkExceptions.exceededLimits()= ExceededLimits;
 
   const factory NetworkExceptions.internalServerError(String message) =
   InternalServerError;
@@ -75,33 +75,23 @@ abstract class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.response:
               Map<String, dynamic>? data = error.response?.data;
               String reason = S.current.genericError;
-              if (data?["message"] != null) {
-                reason = data?["message"];
-              } else if (data?["errors"]?.first?['msg'] != null) {
-                reason = data?["errors"]?.first?['msg'];
+              print('data is $data');
+              if (data?["error"]['message'] != null) {
+                reason = data?['error']["message"];
               }
 
               switch (error.response!.statusCode) {
-                case 400:
-                  networkExceptions =
-                      NetworkExceptions.unauthorisedRequest(reason);
-                  break;
                 case 401:
                   networkExceptions =
                       NetworkExceptions.unauthorisedRequest(reason);
                   break;
+                case 429:
+                  networkExceptions =
+                      NetworkExceptions.exceededLimits();
+                  break;
                 case 403:
                   networkExceptions =
                       NetworkExceptions.unauthorisedRequest(reason);
-                  break;
-                case 404:
-                  networkExceptions = NetworkExceptions.notFound(reason);
-                  break;
-                case 409:
-                  networkExceptions = NetworkExceptions.conflict(reason);
-                  break;
-                case 408:
-                  networkExceptions = const NetworkExceptions.requestTimeout();
                   break;
                 case 500:
                   networkExceptions =
@@ -112,9 +102,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
                   const NetworkExceptions.serviceUnavailable();
                   break;
                 default:
-                  var responseCode = error.response!.statusCode;
                   networkExceptions = NetworkExceptions.defaultError(
-                    "${S.current.receivedInvalidStatusCode}: $responseCode",
+                    reason,
                   );
               }
               break;
@@ -166,10 +155,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
       errorMessage = S.current.connectionRequestTimeout;
     }, noInternetConnection: () {
       errorMessage = S.current.noInternetConnection;
-    }, conflict: (String? reason) {
-      // errorMessage = S.current.errorDueToConflict;
-      errorMessage = reason ?? S.current.errorDueToConflict;
-    }, sendTimeout: () {
+    },sendTimeout: () {
       errorMessage = S.current.timeOutConnectionWithServer;
     }, unableToProcess: () {
       errorMessage = S.current.unableToProcessData;
@@ -179,6 +165,8 @@ abstract class NetworkExceptions with _$NetworkExceptions {
       errorMessage = S.current.unexpectedErrorOccurred;
     }, notAcceptable: () {
       errorMessage = S.current.notAcceptable;
+    }, exceededLimits: () {
+      errorMessage = S.current.exceededLimits;
     });
     return errorMessage;
   }

@@ -22,7 +22,7 @@ Album _$AlbumFromJson(Map<String, dynamic> json) {
 mixin _$Album {
   Followers? get followers => throw _privateConstructorUsedError;
   @JsonKey(name: 'external_urls')
-  ExternalUrls get externalUrls => throw _privateConstructorUsedError;
+  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
   @JsonKey(name: 'album_type')
   String get albumType => throw _privateConstructorUsedError;
   @JsonKey(name: 'total_tracks')
@@ -43,7 +43,7 @@ mixin _$Album {
   List<Artist>? get artists => throw _privateConstructorUsedError;
   @JsonKey(name: 'album_group')
   String? get albumGroup => throw _privateConstructorUsedError;
-  List<Track>? get tracks => throw _privateConstructorUsedError;
+  PaginatedResponseTracks? get tracks => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +56,7 @@ abstract class $AlbumCopyWith<$Res> {
       _$AlbumCopyWithImpl<$Res>;
   $Res call(
       {Followers? followers,
-      @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
+      @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
       @JsonKey(name: 'album_type') String albumType,
       @JsonKey(name: 'total_tracks') int totalTracks,
       @JsonKey(name: 'available_markets') List<String>? availableMarkets,
@@ -71,10 +71,10 @@ abstract class $AlbumCopyWith<$Res> {
       List<Image> images,
       List<Artist>? artists,
       @JsonKey(name: 'album_group') String? albumGroup,
-      List<Track>? tracks});
+      PaginatedResponseTracks? tracks});
 
   $FollowersCopyWith<$Res>? get followers;
-  $ExternalUrlsCopyWith<$Res> get externalUrls;
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
   $RestrictionsCopyWith<$Res>? get restrictions;
 }
 
@@ -114,7 +114,7 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
       externalUrls: externalUrls == freezed
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls,
+              as ExternalUrls?,
       albumType: albumType == freezed
           ? _value.albumType
           : albumType // ignore: cast_nullable_to_non_nullable
@@ -174,7 +174,7 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
       tracks: tracks == freezed
           ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as List<Track>?,
+              as PaginatedResponseTracks?,
     ));
   }
 
@@ -190,8 +190,12 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
   }
 
   @override
-  $ExternalUrlsCopyWith<$Res> get externalUrls {
-    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls, (value) {
+  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+    if (_value.externalUrls == null) {
+      return null;
+    }
+
+    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
       return _then(_value.copyWith(externalUrls: value));
     });
   }
@@ -215,7 +219,7 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
   @override
   $Res call(
       {Followers? followers,
-      @JsonKey(name: 'external_urls') ExternalUrls externalUrls,
+      @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
       @JsonKey(name: 'album_type') String albumType,
       @JsonKey(name: 'total_tracks') int totalTracks,
       @JsonKey(name: 'available_markets') List<String>? availableMarkets,
@@ -230,12 +234,12 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       List<Image> images,
       List<Artist>? artists,
       @JsonKey(name: 'album_group') String? albumGroup,
-      List<Track>? tracks});
+      PaginatedResponseTracks? tracks});
 
   @override
   $FollowersCopyWith<$Res>? get followers;
   @override
-  $ExternalUrlsCopyWith<$Res> get externalUrls;
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
   @override
   $RestrictionsCopyWith<$Res>? get restrictions;
 }
@@ -277,7 +281,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
       externalUrls: externalUrls == freezed
           ? _value.externalUrls
           : externalUrls // ignore: cast_nullable_to_non_nullable
-              as ExternalUrls,
+              as ExternalUrls?,
       albumType: albumType == freezed
           ? _value.albumType
           : albumType // ignore: cast_nullable_to_non_nullable
@@ -335,9 +339,9 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
           : albumGroup // ignore: cast_nullable_to_non_nullable
               as String?,
       tracks: tracks == freezed
-          ? _value._tracks
+          ? _value.tracks
           : tracks // ignore: cast_nullable_to_non_nullable
-              as List<Track>?,
+              as PaginatedResponseTracks?,
     ));
   }
 }
@@ -347,7 +351,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
 class _$_Album implements _Album {
   const _$_Album(
       {this.followers,
-      @JsonKey(name: 'external_urls') required this.externalUrls,
+      @JsonKey(name: 'external_urls') this.externalUrls,
       @JsonKey(name: 'album_type') required this.albumType,
       @JsonKey(name: 'total_tracks') required this.totalTracks,
       @JsonKey(name: 'available_markets') final List<String>? availableMarkets,
@@ -362,11 +366,10 @@ class _$_Album implements _Album {
       required final List<Image> images,
       final List<Artist>? artists,
       @JsonKey(name: 'album_group') this.albumGroup,
-      final List<Track>? tracks})
+      this.tracks})
       : _availableMarkets = availableMarkets,
         _images = images,
-        _artists = artists,
-        _tracks = tracks;
+        _artists = artists;
 
   factory _$_Album.fromJson(Map<String, dynamic> json) =>
       _$$_AlbumFromJson(json);
@@ -375,7 +378,7 @@ class _$_Album implements _Album {
   final Followers? followers;
   @override
   @JsonKey(name: 'external_urls')
-  final ExternalUrls externalUrls;
+  final ExternalUrls? externalUrls;
   @override
   @JsonKey(name: 'album_type')
   final String albumType;
@@ -429,14 +432,8 @@ class _$_Album implements _Album {
   @override
   @JsonKey(name: 'album_group')
   final String? albumGroup;
-  final List<Track>? _tracks;
   @override
-  List<Track>? get tracks {
-    final value = _tracks;
-    if (value == null) return null;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+  final PaginatedResponseTracks? tracks;
 
   @override
   String toString() {
@@ -471,7 +468,7 @@ class _$_Album implements _Album {
             const DeepCollectionEquality().equals(other._artists, _artists) &&
             const DeepCollectionEquality()
                 .equals(other.albumGroup, albumGroup) &&
-            const DeepCollectionEquality().equals(other._tracks, _tracks));
+            const DeepCollectionEquality().equals(other.tracks, tracks));
   }
 
   @JsonKey(ignore: true)
@@ -494,7 +491,7 @@ class _$_Album implements _Album {
       const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(_artists),
       const DeepCollectionEquality().hash(albumGroup),
-      const DeepCollectionEquality().hash(_tracks));
+      const DeepCollectionEquality().hash(tracks));
 
   @JsonKey(ignore: true)
   @override
@@ -513,7 +510,7 @@ abstract class _Album implements Album {
   const factory _Album(
       {final Followers? followers,
       @JsonKey(name: 'external_urls')
-          required final ExternalUrls externalUrls,
+          final ExternalUrls? externalUrls,
       @JsonKey(name: 'album_type')
           required final String albumType,
       @JsonKey(name: 'total_tracks')
@@ -534,7 +531,7 @@ abstract class _Album implements Album {
       final List<Artist>? artists,
       @JsonKey(name: 'album_group')
           final String? albumGroup,
-      final List<Track>? tracks}) = _$_Album;
+      final PaginatedResponseTracks? tracks}) = _$_Album;
 
   factory _Album.fromJson(Map<String, dynamic> json) = _$_Album.fromJson;
 
@@ -542,7 +539,7 @@ abstract class _Album implements Album {
   Followers? get followers;
   @override
   @JsonKey(name: 'external_urls')
-  ExternalUrls get externalUrls;
+  ExternalUrls? get externalUrls;
   @override
   @JsonKey(name: 'album_type')
   String get albumType;
@@ -578,7 +575,7 @@ abstract class _Album implements Album {
   @JsonKey(name: 'album_group')
   String? get albumGroup;
   @override
-  List<Track>? get tracks;
+  PaginatedResponseTracks? get tracks;
   @override
   @JsonKey(ignore: true)
   _$$_AlbumCopyWith<_$_Album> get copyWith =>

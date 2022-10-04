@@ -15,8 +15,20 @@ class Routes {
 
   static String getArtistsAlbums(String id) => '$_baseUrl/artists/$id/albums';
 
+  static String getAlbum(String id) => '$_baseUrl/albums/$id';
+
+  static String getAlbumTracks(String id) => '$_baseUrl/albums/$id/tracks';
+
+  static const String checkSavedAlbums = '$_baseUrl/me/albums/contains';
+
+  static const getNewReleases = '$_baseUrl/browse/new-releases';
+
+  static const userAlbums = '$_baseUrl/me/albums';
+
+  static const getSeveralAlbums = '$_baseUrl/albums';
+
   ///Valid values: artists or track
-  static const _getUserTopItems = 'https://api.spotify.com/v1/me/top';
+  static const _getUserTopItems = '$_baseUrl/me/top';
 
   static const getGenre = '$_baseUrl/recommendations/available-genre-seeds';
 

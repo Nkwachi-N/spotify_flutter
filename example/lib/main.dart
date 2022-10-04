@@ -1,3 +1,4 @@
+import 'package:example/albums_screen.dart';
 import 'package:example/artists_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_flutter/generated/l10n.dart';
@@ -5,7 +6,7 @@ import 'package:spotify_flutter/spotify_flutter.dart';
 import 'api_keys.dart';
 
 void main() {
-  runApp(HelpMe());
+  runApp(const HelpMe());
 }
 
 class HelpMe extends StatelessWidget {
@@ -13,7 +14,7 @@ class HelpMe extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
       localizationsDelegates: [
         S.delegate,
@@ -36,34 +37,32 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Example'),
+        title: const Text('Example'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-            child: ElevatedButton(
-              onPressed: () => _authenticate(context),
-              child: Text('Authorize'),
-            ),
+          ElevatedButton(
+            onPressed: () => _authenticate(context),
+            child: const Text('Authorize'),
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () => _getUserInfo(context),
-              child: Text('Get User '),
-            ),
+          ElevatedButton(
+            onPressed: () => _getUserInfo(context),
+            child: const Text('Get User '),
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () => _getUserTopArtists(context),
-              child: Text('Get user top artists'),
-            ),
+          ElevatedButton(
+            onPressed: () => _getUserTopArtists(context),
+            child: const Text('Get user top artists'),
+          ),
+          ElevatedButton(
+            onPressed: () => _toAlbumsScreen(context),
+            child: const Text('Test Albums Endpoints'),
           ),
           Center(
             child: ElevatedButton(
               onPressed: () => toArtistScreen(context),
-              child: Text('Test Artists Endpoints'),
+              child: const Text('Test Artists Endpoints'),
             ),
           ),
         ],
@@ -83,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
   _getUserTopArtists(BuildContext context) async {
     final response = await SpotifyApi.instance.getUserTopArtists();
     response.when(success: (success) {
-      _showSnackBar(context, 'Items length is ${success.items.length}');
+      _showSnackBar(context, 'Items length is ${success.items?.length}');
     }, failure: (failure) {
       _showSnackBar(context, 'Failed');
     });
@@ -105,6 +104,14 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
+  _toAlbumsScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const AlbumsScreen(),
+      ),
+    );
+  }
 }
 
 void _authenticate(BuildContext context) async {
@@ -112,6 +119,7 @@ void _authenticate(BuildContext context) async {
       redirectUri: 'clash://clash.flutter.com',
       clientId: kClientId,
       callbackUrlScheme: 'clash',
+      scope: 'user-read-private user-read-email user-library-read user-library-modify',
       secretKey: kSecretKey);
   response.when(success: (success) {
     _showSnackBar(context, 'Authenticated');

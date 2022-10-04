@@ -12,12 +12,11 @@ class SpotifyApi {
 
   static SpotifyApi get instance => _instance;
 
-  String _secretKey = '';
-
   final _authService = AuthService();
   final _userService = UserService();
   final _genreService = GenreService();
   final _artistService = ArtistService();
+  final _albumsService = AlbumServiceImpl();
 
   // TODO: Document [authenticate].
   Future<ApiResult<bool>> authenticate({
@@ -26,14 +25,16 @@ class SpotifyApi {
     String state = 'HappyBaby247',
     required String callbackUrlScheme,
     required String secretKey,
+    String? scope,
   }) async {
+    //TODO: Store user id
     ApiClient.instance.clientId = clientId;
-    _secretKey = secretKey;
     return await _authService.authorize(
       redirectUri: redirectUri,
       clientId: clientId,
       callbackUrlScheme: callbackUrlScheme,
       secretKey: secretKey,
+      scope: scope,
     );
   }
 
@@ -86,4 +87,55 @@ class SpotifyApi {
   //TODO:Document [getAvailableGenreSeeds]
   Future<ApiResult<List<Artist>>> getArtistRelatedArtists(String id) =>
       _artistService.getArtistsRelatedArtists(id);
+
+  Future<ApiResult<bool>> saveAlbum(String ids) =>
+      _albumsService.saveAlbum(ids);
+
+  Future<ApiResult<bool>> removeAlbums(String ids) =>
+      _albumsService.removeAlbums(ids);
+
+  Future<ApiResult<List<bool>>> checkSavedAlbums(String ids) =>
+      _albumsService.checkSavedAlbums(ids);
+
+  Future<ApiResult<PaginatedResponseAlbums>> getNewReleases(
+          {String? country, int? limit, int? offset}) =>
+      _albumsService.getNewReleases(
+        offset: offset,
+        country: country,
+        limit: limit,
+      );
+
+  Future<ApiResult<PaginatedResponseAlbums>> getSavedAlbums(
+          {String? market, int? limit, int? offset}) =>
+      _albumsService.getSavedAlbums(
+        market: market,
+        limit: limit,
+        offset: offset,
+      );
+
+  Future<ApiResult<Album>> getAlbum({required String id, String? market}) =>
+      _albumsService.getAlbum(
+        id: id,
+        market: market,
+      );
+
+  Future<ApiResult<List<Album>>> getSeveralAlbums(
+          {required String ids, String? market}) =>
+      _albumsService.getSeveralAlbums(
+        ids: ids,
+        market: market,
+      );
+
+  Future<ApiResult<PaginatedResponseTracks>> getAlbumTracks({
+    required String id,
+    String? market,
+    int? limit,
+    int? offset,
+  }) =>
+      _albumsService.getAlbumTracks(
+        id: id,
+        market: market,
+        limit: limit,
+        offset: offset,
+      );
 }
