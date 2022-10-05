@@ -13,13 +13,13 @@ class GetCurrentUserProfileResponse with _$GetCurrentUserProfileResponse {
     String? email,
     @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
     @JsonKey(name: 'external_urls') required ExternalUrls externalUrls,
-    required Followers followers,
-    required String href,
-    required String id,
-    required String uri,
-    required String product,
-    required String type,
-    required List<Image> images,
+    Followers? followers,
+    String? href,
+    String? id,
+    String? uri,
+    String? product,
+    String? type,
+    List<Image>? images,
   }) = _GetCurrentUserProfileResponse;
 
   factory GetCurrentUserProfileResponse.fromJson(Map<String, Object?> json) =>
