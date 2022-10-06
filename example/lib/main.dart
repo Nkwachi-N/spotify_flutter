@@ -122,7 +122,7 @@ void _authenticate(BuildContext context) async {
       redirectUri: 'clash://clash.flutter.com',
       clientId: kClientId,
       callbackUrlScheme: 'clash',
-      scope: 'user-read-private user-read-email user-library-read user-library-modify',
+      scope: 'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
       secretKey: kSecretKey);
   response.when(success: (success) {
     _showSnackBar(context, 'Authenticated');

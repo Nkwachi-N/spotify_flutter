@@ -75,7 +75,6 @@ abstract class NetworkExceptions with _$NetworkExceptions {
             case DioErrorType.response:
               Map<String, dynamic>? data = error.response?.data;
               String reason = S.current.genericError;
-              print('data is $data');
               if (data?["error"]['message'] != null) {
                 reason = data?['error']["message"];
               }

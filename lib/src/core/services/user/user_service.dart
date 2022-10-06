@@ -199,7 +199,7 @@ class UserService {
 
     response.when(
       success: (success) {
-        result = ApiResult.success(data: success.statusCode == 200);
+        result = ApiResult.success(data: success.statusCode == 204);
       },
       failure: (failure) {
         result = ApiResult.failure(error: failure);
@@ -223,7 +223,7 @@ class UserService {
 
     response.when(
       success: (success) {
-        result = ApiResult.success(data: success.statusCode == 200);
+        result = ApiResult.success(data: success.statusCode == 204);
       },
       failure: (failure) {
         result = ApiResult.failure(error: failure);
@@ -248,7 +248,7 @@ class UserService {
 
     response.when(
       success: (success) {
-        result = ApiResult.success(data: success.data as List<bool>);
+        result = ApiResult.success(data: List<bool>.from(success.data));
       },
       failure: (failure) {
         result = ApiResult.failure(error: failure);
@@ -271,7 +271,7 @@ class UserService {
 
     response.when(
       success: (success) {
-        result = ApiResult.success(data: success.data as List<bool>);
+        result = ApiResult.success(data: List<bool>.from(success.data));
       },
       failure: (failure) {
         result = ApiResult.failure(error: failure);
