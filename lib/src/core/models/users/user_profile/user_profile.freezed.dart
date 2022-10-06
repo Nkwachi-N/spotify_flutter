@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'get_current_users_profile_response.dart';
+part of 'user_profile.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,13 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GetCurrentUserProfileResponse _$GetCurrentUserProfileResponseFromJson(
-    Map<String, dynamic> json) {
-  return _GetCurrentUserProfileResponse.fromJson(json);
+UserProfile _$UserProfileFromJson(Map<String, dynamic> json) {
+  return _UserProfile.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GetCurrentUserProfileResponse {
+mixin _$UserProfile {
   String? get country => throw _privateConstructorUsedError;
   @JsonKey(name: 'display_name')
   String? get displayName => throw _privateConstructorUsedError;
@@ -39,16 +38,15 @@ mixin _$GetCurrentUserProfileResponse {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GetCurrentUserProfileResponseCopyWith<GetCurrentUserProfileResponse>
-      get copyWith => throw _privateConstructorUsedError;
+  $UserProfileCopyWith<UserProfile> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
-  factory $GetCurrentUserProfileResponseCopyWith(
-          GetCurrentUserProfileResponse value,
-          $Res Function(GetCurrentUserProfileResponse) then) =
-      _$GetCurrentUserProfileResponseCopyWithImpl<$Res>;
+abstract class $UserProfileCopyWith<$Res> {
+  factory $UserProfileCopyWith(
+          UserProfile value, $Res Function(UserProfile) then) =
+      _$UserProfileCopyWithImpl<$Res>;
   $Res call(
       {String? country,
       @JsonKey(name: 'display_name') String? displayName,
@@ -69,13 +67,12 @@ abstract class $GetCurrentUserProfileResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
-    implements $GetCurrentUserProfileResponseCopyWith<$Res> {
-  _$GetCurrentUserProfileResponseCopyWithImpl(this._value, this._then);
+class _$UserProfileCopyWithImpl<$Res> implements $UserProfileCopyWith<$Res> {
+  _$UserProfileCopyWithImpl(this._value, this._then);
 
-  final GetCurrentUserProfileResponse _value;
+  final UserProfile _value;
   // ignore: unused_field
-  final $Res Function(GetCurrentUserProfileResponse) _then;
+  final $Res Function(UserProfile) _then;
 
   @override
   $Res call({
@@ -175,12 +172,11 @@ class _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
-    implements $GetCurrentUserProfileResponseCopyWith<$Res> {
-  factory _$$_GetCurrentUserProfileResponseCopyWith(
-          _$_GetCurrentUserProfileResponse value,
-          $Res Function(_$_GetCurrentUserProfileResponse) then) =
-      __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>;
+abstract class _$$_UserProfileCopyWith<$Res>
+    implements $UserProfileCopyWith<$Res> {
+  factory _$$_UserProfileCopyWith(
+          _$_UserProfile value, $Res Function(_$_UserProfile) then) =
+      __$$_UserProfileCopyWithImpl<$Res>;
   @override
   $Res call(
       {String? country,
@@ -205,17 +201,14 @@ abstract class _$$_GetCurrentUserProfileResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
-    extends _$GetCurrentUserProfileResponseCopyWithImpl<$Res>
-    implements _$$_GetCurrentUserProfileResponseCopyWith<$Res> {
-  __$$_GetCurrentUserProfileResponseCopyWithImpl(
-      _$_GetCurrentUserProfileResponse _value,
-      $Res Function(_$_GetCurrentUserProfileResponse) _then)
-      : super(_value, (v) => _then(v as _$_GetCurrentUserProfileResponse));
+class __$$_UserProfileCopyWithImpl<$Res> extends _$UserProfileCopyWithImpl<$Res>
+    implements _$$_UserProfileCopyWith<$Res> {
+  __$$_UserProfileCopyWithImpl(
+      _$_UserProfile _value, $Res Function(_$_UserProfile) _then)
+      : super(_value, (v) => _then(v as _$_UserProfile));
 
   @override
-  _$_GetCurrentUserProfileResponse get _value =>
-      super._value as _$_GetCurrentUserProfileResponse;
+  _$_UserProfile get _value => super._value as _$_UserProfile;
 
   @override
   $Res call({
@@ -232,7 +225,7 @@ class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
     Object? type = freezed,
     Object? images = freezed,
   }) {
-    return _then(_$_GetCurrentUserProfileResponse(
+    return _then(_$_UserProfile(
       country: country == freezed
           ? _value.country
           : country // ignore: cast_nullable_to_non_nullable
@@ -287,9 +280,8 @@ class __$$_GetCurrentUserProfileResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GetCurrentUserProfileResponse
-    implements _GetCurrentUserProfileResponse {
-  const _$_GetCurrentUserProfileResponse(
+class _$_UserProfile implements _UserProfile {
+  const _$_UserProfile(
       {this.country,
       @JsonKey(name: 'display_name') this.displayName,
       this.email,
@@ -304,9 +296,8 @@ class _$_GetCurrentUserProfileResponse
       final List<Image>? images})
       : _images = images;
 
-  factory _$_GetCurrentUserProfileResponse.fromJson(
-          Map<String, dynamic> json) =>
-      _$$_GetCurrentUserProfileResponseFromJson(json);
+  factory _$_UserProfile.fromJson(Map<String, dynamic> json) =>
+      _$$_UserProfileFromJson(json);
 
   @override
   final String? country;
@@ -344,14 +335,14 @@ class _$_GetCurrentUserProfileResponse
 
   @override
   String toString() {
-    return 'GetCurrentUserProfileResponse(country: $country, displayName: $displayName, email: $email, explicitContent: $explicitContent, externalUrls: $externalUrls, followers: $followers, href: $href, id: $id, uri: $uri, product: $product, type: $type, images: $images)';
+    return 'UserProfile(country: $country, displayName: $displayName, email: $email, explicitContent: $explicitContent, externalUrls: $externalUrls, followers: $followers, href: $href, id: $id, uri: $uri, product: $product, type: $type, images: $images)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GetCurrentUserProfileResponse &&
+            other is _$_UserProfile &&
             const DeepCollectionEquality().equals(other.country, country) &&
             const DeepCollectionEquality()
                 .equals(other.displayName, displayName) &&
@@ -388,21 +379,19 @@ class _$_GetCurrentUserProfileResponse
 
   @JsonKey(ignore: true)
   @override
-  _$$_GetCurrentUserProfileResponseCopyWith<_$_GetCurrentUserProfileResponse>
-      get copyWith => __$$_GetCurrentUserProfileResponseCopyWithImpl<
-          _$_GetCurrentUserProfileResponse>(this, _$identity);
+  _$$_UserProfileCopyWith<_$_UserProfile> get copyWith =>
+      __$$_UserProfileCopyWithImpl<_$_UserProfile>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GetCurrentUserProfileResponseToJson(
+    return _$$_UserProfileToJson(
       this,
     );
   }
 }
 
-abstract class _GetCurrentUserProfileResponse
-    implements GetCurrentUserProfileResponse {
-  const factory _GetCurrentUserProfileResponse(
+abstract class _UserProfile implements UserProfile {
+  const factory _UserProfile(
       {final String? country,
       @JsonKey(name: 'display_name') final String? displayName,
       final String? email,
@@ -414,10 +403,10 @@ abstract class _GetCurrentUserProfileResponse
       final String? uri,
       final String? product,
       final String? type,
-      final List<Image>? images}) = _$_GetCurrentUserProfileResponse;
+      final List<Image>? images}) = _$_UserProfile;
 
-  factory _GetCurrentUserProfileResponse.fromJson(Map<String, dynamic> json) =
-      _$_GetCurrentUserProfileResponse.fromJson;
+  factory _UserProfile.fromJson(Map<String, dynamic> json) =
+      _$_UserProfile.fromJson;
 
   @override
   String? get country;
@@ -448,6 +437,6 @@ abstract class _GetCurrentUserProfileResponse
   List<Image>? get images;
   @override
   @JsonKey(ignore: true)
-  _$$_GetCurrentUserProfileResponseCopyWith<_$_GetCurrentUserProfileResponse>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_UserProfileCopyWith<_$_UserProfile> get copyWith =>
+      throw _privateConstructorUsedError;
 }

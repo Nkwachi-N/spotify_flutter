@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:spotify_flutter/src/core/api/api_result.dart';
 import 'package:spotify_flutter/src/core/api/network_exceptions.dart';
@@ -24,11 +22,8 @@ class ApiClient {
       AuthorizationTokenInjector(),
     ]);
 
-  String? _clientId;
 
-  set clientId(String clientId) {
-    _clientId = clientId;
-  }
+
 
   ApiClient._privateConstructor();
 
@@ -96,6 +91,7 @@ class ApiClient {
     required String url,
     bool requiresToken = true,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
     int count = 0,
   }) async {
     final Map<String, dynamic> header = {};
@@ -104,12 +100,14 @@ class ApiClient {
     }
 
     queryParameters?.removeWhere((key, value) => value == null);
+    body?.removeWhere((key, value) => value == null);
 
     if (count < 2) {
       try {
         final response = await _dio.put(
           url,
           queryParameters: queryParameters,
+          data: body,
           options: Options(
             headers: header,
           ),
@@ -159,25 +157,27 @@ class ApiClient {
     required String url,
     bool requiresToken = true,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
   }) =>
       _put(
-        url: url,
-        queryParameters: queryParameters,
-        requiresToken: requiresToken,
-      );
+          url: url,
+          queryParameters: queryParameters,
+          requiresToken: requiresToken,
+          body: body);
 
   Future<ApiResult<Response>> delete({
     required String url,
     bool requiresToken = true,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
   }) =>
       _delete(
-        url: url,
-        queryParameters: queryParameters,
-        requiresToken: requiresToken,
-      );
+          url: url,
+          queryParameters: queryParameters,
+          requiresToken: requiresToken,
+          body: body);
 
-  Future<ApiResult<Map<String, dynamic>>> post({
+  Future<ApiResult<Response>> post({
     required String url,
     required String clientId,
     bool requiresToken = true,
@@ -195,39 +195,45 @@ class ApiClient {
   Future<bool> _refreshToken() async {
     final refreshToken = await _storageService.getRefreshToken();
 
+    final clientId = await _storageService.getClientId();
+
     final data = {
       'grant_type': 'refresh_token',
       'refresh_token': refreshToken,
-      'client_id': _clientId,
+      'client_id': clientId,
     };
-    final header = {'requiresToken': false};
+    final header = {
+      'requiresToken': false,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
+    bool status = false;
 
     try {
-      final response = await _dio.post(
-        Routes.autGetTokenUrl,
-        data: data,
-        options: Options(
-            contentType: Headers.formUrlEncodedContentType, headers: header),
+      final response = await _post(
+        url: Routes.autGetTokenUrl,
+        requiresToken: false,
+        header: header,
+        body: data,
       );
-      final accessToken = response.data[_storageService.kAccessToken];
-      final refreshToken = response.data[_storageService.kRefreshToken];
+      response.when(success: (success) {
+        final accessToken = success.data[_storageService.kAccessToken];
+        final refreshToken = success.data[_storageService.kRefreshToken];
 
-      if (accessToken != null && refreshToken != null) {
-        _storageService.saveToken(
-          accessToken: accessToken,
-          refreshToken: refreshToken,
-        );
-        return true;
-      } else {
-        return false;
-      }
+        if (accessToken != null && refreshToken != null) {
+          _storageService.saveToken(
+            accessToken: accessToken,
+            refreshToken: refreshToken,
+          );
+          status = true;
+      }}, failure: (failure) {});
+
     } catch (_) {
-      //TODO: Handle exceptions
-      rethrow;
+
     }
+    return status;
   }
 
-  Future<ApiResult<Map<String, dynamic>>> _post({
+  Future<ApiResult<Response>> _post({
     required String url,
     Map<String, dynamic>? body,
     Map<String, dynamic> header = const {},
@@ -235,7 +241,6 @@ class ApiClient {
     int count = 0,
   }) async {
     if (count < 2) {
-
       if (requiresToken) {
         header['requiresToken'] = true;
       }
@@ -243,7 +248,7 @@ class ApiClient {
       try {
         final response =
             await _dio.post(url, data: body, options: Options(headers: header));
-        return ApiResult.success(data: response.data);
+        return ApiResult.success(data: response);
       } on DioError catch (e) {
         final response = e.response;
         if (response?.statusCode == 401) {
@@ -276,6 +281,7 @@ class ApiClient {
   Future<ApiResult<Response>> _delete({
     required String url,
     Map<String, dynamic>? queryParameters,
+    Map<String, dynamic>? body,
     required bool requiresToken,
     int count = 0,
   }) async {
@@ -288,7 +294,8 @@ class ApiClient {
       try {
         final response = await _dio.delete(
           url,
-         queryParameters: queryParameters,
+          queryParameters: queryParameters,
+          data: body,
           options: Options(headers: header),
         );
         return ApiResult.success(

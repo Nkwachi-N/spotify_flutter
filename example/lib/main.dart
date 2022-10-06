@@ -1,5 +1,6 @@
 import 'package:example/albums_screen.dart';
 import 'package:example/artists_screen.dart';
+import 'package:example/users_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:spotify_flutter/generated/l10n.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
@@ -48,14 +49,9 @@ class _MyHomePageState extends State<MyHomePage> {
             child: const Text('Authorize'),
           ),
           ElevatedButton(
-            onPressed: () => _getUserInfo(context),
-            child: const Text('Get User '),
-          ),
-          ElevatedButton(
-            onPressed: () => _getUserTopArtists(context),
-            child: const Text('Get user top artists'),
-          ),
-          ElevatedButton(
+            onPressed: () => _toUserScreen(context),
+            child: const Text('Test User Endpoints '),
+          ), ElevatedButton(
             onPressed: () => _toAlbumsScreen(context),
             child: const Text('Test Albums Endpoints'),
           ),
@@ -71,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _getUserInfo(BuildContext context) async {
-    final response = await SpotifyApi.instance.getCurrentUsersProfile();
+    final response = await SpotifyApi.instance.userService.getCurrentUsersProfile();
     response.when(success: (success) {
       _showSnackBar(context, 'Name is ${success.displayName}');
     }, failure: (failure) {
@@ -80,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _getUserTopArtists(BuildContext context) async {
-    final response = await SpotifyApi.instance.getUserTopArtists();
+    final response = await SpotifyApi.instance.userService.getUserTopArtists();
     response.when(success: (success) {
       _showSnackBar(context, 'Items length is ${success.items?.length}');
     }, failure: (failure) {
@@ -89,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _getAvailableGenre(BuildContext context) async {
-    final response = await SpotifyApi.instance.getAvailableGenreSeeds();
+    final response = await SpotifyApi.instance.genreService.getAvailableGenreSeeds();
     response.when(success: (success) {
       _showSnackBar(context, 'Items length is ${success.genres.length}');
     }, failure: (failure) {
@@ -112,10 +108,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+  _toUserScreen(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const UsersScreen(),
+      ),
+    );
+  }
 }
 
 void _authenticate(BuildContext context) async {
-  final response = await SpotifyApi.instance.authenticate(
+  final response = await SpotifyApi.instance.authService.authorize(
       redirectUri: 'clash://clash.flutter.com',
       clientId: kClientId,
       callbackUrlScheme: 'clash',

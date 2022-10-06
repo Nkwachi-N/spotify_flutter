@@ -2,12 +2,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:spotify_flutter/src/core/models/models.dart';
 
 
-part 'get_current_users_profile_response.freezed.dart';
-part 'get_current_users_profile_response.g.dart';
+part 'user_profile.freezed.dart';
+part 'user_profile.g.dart';
 
 @freezed
-class GetCurrentUserProfileResponse with _$GetCurrentUserProfileResponse {
-  const factory GetCurrentUserProfileResponse({
+class UserProfile with _$UserProfile {
+  const factory UserProfile({
     String? country,
     @JsonKey(name: 'display_name') String? displayName,
     String? email,
@@ -20,8 +20,8 @@ class GetCurrentUserProfileResponse with _$GetCurrentUserProfileResponse {
     String? product,
     String? type,
     List<Image>? images,
-  }) = _GetCurrentUserProfileResponse;
+  }) = _UserProfile;
 
-  factory GetCurrentUserProfileResponse.fromJson(Map<String, Object?> json) =>
-      _$GetCurrentUserProfileResponseFromJson(json);
+  factory UserProfile.fromJson(Map<String, Object?> json) =>
+      _$UserProfileFromJson(json);
 }

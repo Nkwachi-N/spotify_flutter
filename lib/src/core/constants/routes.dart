@@ -34,6 +34,18 @@ class Routes {
 
   static const getUserTopArtists = '$_getUserTopItems/artists';
 
+  static const getUserTopTracks = '$_getUserTopItems/tracks';
+
+  static const followUrl = '$_baseUrl/me/following';
+
+  static const checkFollowUrl = '$_baseUrl/me/following/contains';
+
+  static String getUserProfile (String id) => '$_baseUrl/users/$id';
+
+  static String userFollowedPlaylist (String id) => '$_baseUrl/playlists/$id/followers';
+
+  static String checkIfUserFollowsPlaylistUrl (String id) => '${userFollowedPlaylist(id)}/contains';
+
   static const search = '$_baseUrl/search';
 
   static String getArtistRelatedArtists (String id) => '$_baseUrl/artists/$id/related-artists';

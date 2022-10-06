@@ -9,6 +9,8 @@ class AlbumsScreen extends StatefulWidget {
 }
 
 class _AlbumsScreenState extends State<AlbumsScreen> {
+
+  final spotifyAlbumService = SpotifyApi.instance.albumsService;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +63,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
 
   _getAlbum() async {
     final response =
-        await SpotifyApi.instance.getAlbum(id: '4aawyAB9vmqN3uQ7FjRGTy');
+        await spotifyAlbumService.getAlbum(id: '4aawyAB9vmqN3uQ7FjRGTy');
     response.when(success: (success) {
       _showSnackBar('Album name is ${success.name}');
     }, failure: (failure) {
@@ -71,7 +73,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
 
   _getAlbumTracks() async {
     final response =
-        await SpotifyApi.instance.getAlbumTracks(id: '4aawyAB9vmqN3uQ7FjRGTy');
+        await spotifyAlbumService.getAlbumTracks(id: '4aawyAB9vmqN3uQ7FjRGTy');
     response.when(success: (success) {
       _showSnackBar('Album tracks length is ${success.items.length}');
     }, failure: (failure) {
@@ -80,7 +82,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
   }
 
   _getSeveralAlbums() async {
-    final response = await SpotifyApi.instance.getSeveralAlbums(
+    final response = await spotifyAlbumService.getSeveralAlbums(
         ids:
             '382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc');
     response.when(success: (success) {
@@ -92,7 +94,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
 
   _checkSavedAlbums() async {
     final response =
-        await SpotifyApi.instance.checkSavedAlbums('382ObEPsp2rxGrnsizN5TX');
+        await spotifyAlbumService.checkSavedAlbums('382ObEPsp2rxGrnsizN5TX');
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.length}');
     }, failure: (failure) {
@@ -102,7 +104,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
 
   _saveAlbums() async {
     final response =
-        await SpotifyApi.instance.saveAlbum('4aawyAB9vmqN3uQ7FjRGTy');
+        await spotifyAlbumService.saveAlbum('4aawyAB9vmqN3uQ7FjRGTy');
     response.when(success: (success) {
       _showSnackBar('Saved album is $success');
     }, failure: (failure) {
@@ -112,7 +114,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
 
   _removeAlbums() async {
     final response =
-        await SpotifyApi.instance.removeAlbums('4aawyAB9vmqN3uQ7FjRGTy');
+        await spotifyAlbumService.removeAlbums('4aawyAB9vmqN3uQ7FjRGTy');
     response.when(success: (success) {
       _showSnackBar('Removed album is $success');
     }, failure: (failure) {
@@ -121,7 +123,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
   }
 
   _getNewReleases() async {
-    final response = await SpotifyApi.instance.getNewReleases();
+    final response = await spotifyAlbumService.getNewReleases();
     response.when(success: (success) {
       _showSnackBar('Items length is ${success.items?.length}');
     }, failure: (failure) {
@@ -130,7 +132,7 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
   }
 
   _getSavedAlbums() async {
-    final response = await SpotifyApi.instance.getSavedAlbums();
+    final response = await spotifyAlbumService.getSavedAlbums();
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.items?.length}');
     }, failure: (failure) {

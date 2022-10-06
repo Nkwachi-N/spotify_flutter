@@ -9,6 +9,9 @@ class ArtistScreen extends StatefulWidget {
 }
 
 class _ArtistScreenState extends State<ArtistScreen> {
+
+  final spotifyArtistService = SpotifyApi.instance.artistService;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +62,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
 
   _getArtist() async {
     final response =
-        await SpotifyApi.instance.getArtist('0TnOYISbd1XYRBk9myaseg');
+        await spotifyArtistService.getArtist('0TnOYISbd1XYRBk9myaseg');
     response.when(success: (success) {
       _showSnackBar('Artist name is ${success.name}');
     }, failure: (failure) {
@@ -68,7 +71,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   }
 
   _getSeveralArtists() async {
-    final response = await SpotifyApi.instance.getSeveralArtists(
+    final response = await spotifyArtistService.getSeveralArtists(
         '2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6');
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.length}');
@@ -78,7 +81,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   }
 
   _getArtistsAlbums() async {
-    final response = await SpotifyApi.instance.getArtistAlbums(id: '0TnOYISbd1XYRBk9myaseg');
+    final response = await spotifyArtistService.getArtistAlbums(id: '0TnOYISbd1XYRBk9myaseg');
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.items?.length}');
     }, failure: (failure) {
@@ -87,7 +90,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   }
 
   _getArtistsTopTracks() async {
-    final response = await SpotifyApi.instance.getArtistTopTracks(id: '0TnOYISbd1XYRBk9myaseg',market: 'ES');
+    final response = await spotifyArtistService.getArtistTopTracks(id: '0TnOYISbd1XYRBk9myaseg',market: 'ES');
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.length}');
     }, failure: (failure) {
@@ -96,7 +99,7 @@ class _ArtistScreenState extends State<ArtistScreen> {
   }
 
   _getArtistsRelatedArtists() async {
-    final response = await SpotifyApi.instance.getArtistRelatedArtists('0TnOYISbd1XYRBk9myaseg');
+    final response = await spotifyArtistService.getArtistsRelatedArtists('0TnOYISbd1XYRBk9myaseg');
     response.when(success: (success) {
       _showSnackBar('Artists length is ${success.length}');
     }, failure: (failure) {

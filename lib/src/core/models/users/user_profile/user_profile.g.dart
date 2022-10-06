@@ -1,14 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_current_users_profile_response.dart';
+part of 'user_profile.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_GetCurrentUserProfileResponse _$$_GetCurrentUserProfileResponseFromJson(
-        Map<String, dynamic> json) =>
-    _$_GetCurrentUserProfileResponse(
+_$_UserProfile _$$_UserProfileFromJson(Map<String, dynamic> json) =>
+    _$_UserProfile(
       country: json['country'] as String?,
       displayName: json['display_name'] as String?,
       email: json['email'] as String?,
@@ -31,8 +30,7 @@ _$_GetCurrentUserProfileResponse _$$_GetCurrentUserProfileResponseFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_GetCurrentUserProfileResponseToJson(
-        _$_GetCurrentUserProfileResponse instance) =>
+Map<String, dynamic> _$$_UserProfileToJson(_$_UserProfile instance) =>
     <String, dynamic>{
       'country': instance.country,
       'display_name': instance.displayName,

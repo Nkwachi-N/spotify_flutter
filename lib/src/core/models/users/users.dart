@@ -1,2 +1,2 @@
-export 'current_users_profile_response/get_current_users_profile_response.dart';
+export 'user_profile/user_profile.dart';
 

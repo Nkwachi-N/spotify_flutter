@@ -1,7 +1,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../models.dart';
+import 'package:spotify_flutter/src/core/models/models.dart';
 
 part 'paginated_response.freezed.dart';
 part 'paginated_response.g.dart';
@@ -17,6 +17,7 @@ class PaginatedResponse with _$PaginatedResponse{
     String? next,
     String? previous,
     int? total,
+    Cursors? cursors,
     List<Artist>? items,
   }) =
   PaginatedResponseArtist;
@@ -29,6 +30,8 @@ class PaginatedResponse with _$PaginatedResponse{
     String? previous,
     int? total,
     List<Album>? items,
+    Cursors? cursors,
+
   }) =
   PaginatedResponseAlbums;
 
@@ -39,6 +42,7 @@ class PaginatedResponse with _$PaginatedResponse{
     String? next,
     String? previous,
     int? total,
+    Cursors? cursors,
     required List<Track> items,
   }) =
   PaginatedResponseTracks;

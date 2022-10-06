@@ -97,11 +97,10 @@ class AuthService {
     late ApiResult<bool> result;
 
     response.when(success: (success) {
-      _storageService.saveToken(
-        accessToken: success[_storageService.kAccessToken],
-        refreshToken: success[_storageService.kRefreshToken],
-      );
-       result = const ApiResult.success(data: true);
+
+       result =  ApiResult.success(data: success.statusCode == 200);
+       _storageService.saveToken(accessToken: success.data['access_token'], refreshToken: success.data['refresh_token']);
+       _storageService.saveClientId(clientId);
     }, failure: (failure) {
       result = ApiResult.failure(error: failure);
     });
