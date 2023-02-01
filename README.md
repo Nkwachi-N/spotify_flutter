@@ -15,12 +15,18 @@ This is a library that helps with interfacing with the Spotify Api.
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+This package can help you interact with the following sections under the [Spotify Api](https://developer.spotify.com/documentation/web-api/reference/#/)
+- Artists
+- Users
+- Albums
+- Genre
+- Playlist
+
 
 ## Getting started
 
 Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
-The project requires a minimum SDK version on Android of 18
+> The project requires a minimum SDK version on Android of 18.
 
 Add this to your Manifest File on Android.
 
@@ -43,38 +49,49 @@ android:exported="true">
 ## Usage
 
 
-Authentication:
+### Authentication:
+
+Ensure to authenticate first before using any of the methods. 
+Do not forget to add your REDIRECT URI in your spotify dashboard and ensure they are the same as the one used to authenticate.
+
+> Hint: Your redirect Uri should be [YOUR_CALL_BACK_SCHEME]://[ANYTHING_YOU_WANT].com
+
 
 ```dart
- _authenticate(BuildContext context) async {
-  final clientId = dotenv.env['CLIENT_ID'];
-  final secretKey = dotenv.env['SECRET_KEY'];
+ _authenticate() async {
   final response = await SpotifyApi.instance.authService.authorize(
-    redirectUri: 'spotify.flutter://spotify.flutter.com',
-    clientId: clientId!,
-    callbackUrlScheme: 'spotify',
-    //Optional: A space-separated list of scopes.[]
+    redirectUri: '[INSERT_YOUR_REDERICT_URI]',
+    clientId: '[INSERT_YOUR_CLIENT_ID]',
+    callbackUrlScheme: '[INSERT_YOUR_CALL_BACK_SCHEME]',
+    //Optional: A space-separated list of scopes.To see a valid list of scopes check the spotify docs. Example below:
     scope: 'user-read',
-    secretKey: secretKey!,
+    secretKey: '[INSERT_YOUR_SECRET_KEY]',
   );
   response.when(success: (success) {
-    _showSnackBar(context, 'Authenticated');
+    //TODO: HANDLE SUCCESS
   }, failure: (failure) {
-    _showSnackBar(context, 'Failed');
+    //TODO: HANDLE FAILURE.
   });
 }
 ```
 
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
-
+### Simple Example
+To get current users profile.
 ```dart
-const like = 'sample';
+  _getCurrentUserProfile() async {
+    final spotifyUserService = SpotifyApi.instance.userService;
+    final response = await spotifyUserService.getCurrentUsersProfile();
+    response.when(success: (success) {
+      print('Users name is ${success.displayName}');
+    }, failure: (failure) {
+      print('Failed ${failure.message}');
+    });
+  }
 ```
 
-## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Issues and feedback
+
+Please file issues, bugs, or feature requests in our issue tracker.
+
+Feel free contribute a change to this plugin by opening a pull request.
