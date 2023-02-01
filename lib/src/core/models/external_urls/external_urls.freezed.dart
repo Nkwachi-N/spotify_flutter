@@ -20,7 +20,7 @@ ExternalUrls _$ExternalUrlsFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ExternalUrls {
-  String get spotify => throw _privateConstructorUsedError;
+  String? get spotify => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -33,7 +33,7 @@ abstract class $ExternalUrlsCopyWith<$Res> {
   factory $ExternalUrlsCopyWith(
           ExternalUrls value, $Res Function(ExternalUrls) then) =
       _$ExternalUrlsCopyWithImpl<$Res>;
-  $Res call({String spotify});
+  $Res call({String? spotify});
 }
 
 /// @nodoc
@@ -52,7 +52,7 @@ class _$ExternalUrlsCopyWithImpl<$Res> implements $ExternalUrlsCopyWith<$Res> {
       spotify: spotify == freezed
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -64,7 +64,7 @@ abstract class _$$_ExternalUrlsCopyWith<$Res>
           _$_ExternalUrls value, $Res Function(_$_ExternalUrls) then) =
       __$$_ExternalUrlsCopyWithImpl<$Res>;
   @override
-  $Res call({String spotify});
+  $Res call({String? spotify});
 }
 
 /// @nodoc
@@ -86,7 +86,7 @@ class __$$_ExternalUrlsCopyWithImpl<$Res>
       spotify: spotify == freezed
           ? _value.spotify
           : spotify // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
@@ -94,13 +94,13 @@ class __$$_ExternalUrlsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ExternalUrls implements _ExternalUrls {
-  const _$_ExternalUrls({required this.spotify});
+  const _$_ExternalUrls({this.spotify});
 
   factory _$_ExternalUrls.fromJson(Map<String, dynamic> json) =>
       _$$_ExternalUrlsFromJson(json);
 
   @override
-  final String spotify;
+  final String? spotify;
 
   @override
   String toString() {
@@ -134,14 +134,13 @@ class _$_ExternalUrls implements _ExternalUrls {
 }
 
 abstract class _ExternalUrls implements ExternalUrls {
-  const factory _ExternalUrls({required final String spotify}) =
-      _$_ExternalUrls;
+  const factory _ExternalUrls({final String? spotify}) = _$_ExternalUrls;
 
   factory _ExternalUrls.fromJson(Map<String, dynamic> json) =
       _$_ExternalUrls.fromJson;
 
   @override
-  String get spotify;
+  String? get spotify;
   @override
   @JsonKey(ignore: true)
   _$$_ExternalUrlsCopyWith<_$_ExternalUrls> get copyWith =>

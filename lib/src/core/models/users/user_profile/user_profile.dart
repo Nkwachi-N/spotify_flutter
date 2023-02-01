@@ -12,7 +12,7 @@ class UserProfile with _$UserProfile {
     @JsonKey(name: 'display_name') String? displayName,
     String? email,
     @JsonKey(name: 'explicit_content') ExplicitContent? explicitContent,
-    @JsonKey(name: 'external_urls') required ExternalUrls externalUrls,
+    @JsonKey(name: 'external_urls')  ExternalUrls? externalUrls,
     Followers? followers,
     String? href,
     String? id,

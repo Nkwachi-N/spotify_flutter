@@ -20,9 +20,22 @@ Playlist _$PlaylistFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Playlist {
-  String? get url => throw _privateConstructorUsedError;
-  int? get width => throw _privateConstructorUsedError;
-  int? get height => throw _privateConstructorUsedError;
+  bool? get collaborative => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'external_urls')
+  ExternalUrls? get externalUrls => throw _privateConstructorUsedError;
+  Followers? get followers => throw _privateConstructorUsedError;
+  String? get hRef => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  List<Image>? get images => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  UserProfile? get owner => throw _privateConstructorUsedError;
+  bool? get public => throw _privateConstructorUsedError;
+  @JsonKey(name: 'snapshot_id')
+  String? get snapshotId => throw _privateConstructorUsedError;
+  PaginatedResponseTracks? get tracks => throw _privateConstructorUsedError;
+  String? get type => throw _privateConstructorUsedError;
+  String? get uri => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +47,25 @@ mixin _$Playlist {
 abstract class $PlaylistCopyWith<$Res> {
   factory $PlaylistCopyWith(Playlist value, $Res Function(Playlist) then) =
       _$PlaylistCopyWithImpl<$Res>;
-  $Res call({String? url, int? width, int? height});
+  $Res call(
+      {bool? collaborative,
+      String? description,
+      @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
+      Followers? followers,
+      String? hRef,
+      String? id,
+      List<Image>? images,
+      String? name,
+      UserProfile? owner,
+      bool? public,
+      @JsonKey(name: 'snapshot_id') String? snapshotId,
+      PaginatedResponseTracks? tracks,
+      String? type,
+      String? uri});
+
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  $FollowersCopyWith<$Res>? get followers;
+  $UserProfileCopyWith<$Res>? get owner;
 }
 
 /// @nodoc
@@ -47,24 +78,112 @@ class _$PlaylistCopyWithImpl<$Res> implements $PlaylistCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? url = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
+    Object? collaborative = freezed,
+    Object? description = freezed,
+    Object? externalUrls = freezed,
+    Object? followers = freezed,
+    Object? hRef = freezed,
+    Object? id = freezed,
+    Object? images = freezed,
+    Object? name = freezed,
+    Object? owner = freezed,
+    Object? public = freezed,
+    Object? snapshotId = freezed,
+    Object? tracks = freezed,
+    Object? type = freezed,
+    Object? uri = freezed,
   }) {
     return _then(_value.copyWith(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      collaborative: collaborative == freezed
+          ? _value.collaborative
+          : collaborative // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
+      externalUrls: externalUrls == freezed
+          ? _value.externalUrls
+          : externalUrls // ignore: cast_nullable_to_non_nullable
+              as ExternalUrls?,
+      followers: followers == freezed
+          ? _value.followers
+          : followers // ignore: cast_nullable_to_non_nullable
+              as Followers?,
+      hRef: hRef == freezed
+          ? _value.hRef
+          : hRef // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      images: images == freezed
+          ? _value.images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+      public: public == freezed
+          ? _value.public
+          : public // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      snapshotId: snapshotId == freezed
+          ? _value.snapshotId
+          : snapshotId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tracks: tracks == freezed
+          ? _value.tracks
+          : tracks // ignore: cast_nullable_to_non_nullable
+              as PaginatedResponseTracks?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uri: uri == freezed
+          ? _value.uri
+          : uri // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
+  }
+
+  @override
+  $ExternalUrlsCopyWith<$Res>? get externalUrls {
+    if (_value.externalUrls == null) {
+      return null;
+    }
+
+    return $ExternalUrlsCopyWith<$Res>(_value.externalUrls!, (value) {
+      return _then(_value.copyWith(externalUrls: value));
+    });
+  }
+
+  @override
+  $FollowersCopyWith<$Res>? get followers {
+    if (_value.followers == null) {
+      return null;
+    }
+
+    return $FollowersCopyWith<$Res>(_value.followers!, (value) {
+      return _then(_value.copyWith(followers: value));
+    });
+  }
+
+  @override
+  $UserProfileCopyWith<$Res>? get owner {
+    if (_value.owner == null) {
+      return null;
+    }
+
+    return $UserProfileCopyWith<$Res>(_value.owner!, (value) {
+      return _then(_value.copyWith(owner: value));
+    });
   }
 }
 
@@ -74,7 +193,28 @@ abstract class _$$_PlaylistCopyWith<$Res> implements $PlaylistCopyWith<$Res> {
           _$_Playlist value, $Res Function(_$_Playlist) then) =
       __$$_PlaylistCopyWithImpl<$Res>;
   @override
-  $Res call({String? url, int? width, int? height});
+  $Res call(
+      {bool? collaborative,
+      String? description,
+      @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,
+      Followers? followers,
+      String? hRef,
+      String? id,
+      List<Image>? images,
+      String? name,
+      UserProfile? owner,
+      bool? public,
+      @JsonKey(name: 'snapshot_id') String? snapshotId,
+      PaginatedResponseTracks? tracks,
+      String? type,
+      String? uri});
+
+  @override
+  $ExternalUrlsCopyWith<$Res>? get externalUrls;
+  @override
+  $FollowersCopyWith<$Res>? get followers;
+  @override
+  $UserProfileCopyWith<$Res>? get owner;
 }
 
 /// @nodoc
@@ -89,23 +229,78 @@ class __$$_PlaylistCopyWithImpl<$Res> extends _$PlaylistCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? url = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
+    Object? collaborative = freezed,
+    Object? description = freezed,
+    Object? externalUrls = freezed,
+    Object? followers = freezed,
+    Object? hRef = freezed,
+    Object? id = freezed,
+    Object? images = freezed,
+    Object? name = freezed,
+    Object? owner = freezed,
+    Object? public = freezed,
+    Object? snapshotId = freezed,
+    Object? tracks = freezed,
+    Object? type = freezed,
+    Object? uri = freezed,
   }) {
     return _then(_$_Playlist(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      collaborative: collaborative == freezed
+          ? _value.collaborative
+          : collaborative // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int?,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int?,
+      externalUrls: externalUrls == freezed
+          ? _value.externalUrls
+          : externalUrls // ignore: cast_nullable_to_non_nullable
+              as ExternalUrls?,
+      followers: followers == freezed
+          ? _value.followers
+          : followers // ignore: cast_nullable_to_non_nullable
+              as Followers?,
+      hRef: hRef == freezed
+          ? _value.hRef
+          : hRef // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      images: images == freezed
+          ? _value._images
+          : images // ignore: cast_nullable_to_non_nullable
+              as List<Image>?,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      owner: owner == freezed
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
+      public: public == freezed
+          ? _value.public
+          : public // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      snapshotId: snapshotId == freezed
+          ? _value.snapshotId
+          : snapshotId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      tracks: tracks == freezed
+          ? _value.tracks
+          : tracks // ignore: cast_nullable_to_non_nullable
+              as PaginatedResponseTracks?,
+      type: type == freezed
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String?,
+      uri: uri == freezed
+          ? _value.uri
+          : uri // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -113,21 +308,67 @@ class __$$_PlaylistCopyWithImpl<$Res> extends _$PlaylistCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Playlist implements _Playlist {
-  const _$_Playlist({this.url, this.width, this.height});
+  const _$_Playlist(
+      {this.collaborative,
+      this.description,
+      @JsonKey(name: 'external_urls') this.externalUrls,
+      this.followers,
+      this.hRef,
+      this.id,
+      final List<Image>? images,
+      this.name,
+      this.owner,
+      this.public,
+      @JsonKey(name: 'snapshot_id') this.snapshotId,
+      this.tracks,
+      this.type,
+      this.uri})
+      : _images = images;
 
   factory _$_Playlist.fromJson(Map<String, dynamic> json) =>
       _$$_PlaylistFromJson(json);
 
   @override
-  final String? url;
+  final bool? collaborative;
   @override
-  final int? width;
+  final String? description;
   @override
-  final int? height;
+  @JsonKey(name: 'external_urls')
+  final ExternalUrls? externalUrls;
+  @override
+  final Followers? followers;
+  @override
+  final String? hRef;
+  @override
+  final String? id;
+  final List<Image>? _images;
+  @override
+  List<Image>? get images {
+    final value = _images;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? name;
+  @override
+  final UserProfile? owner;
+  @override
+  final bool? public;
+  @override
+  @JsonKey(name: 'snapshot_id')
+  final String? snapshotId;
+  @override
+  final PaginatedResponseTracks? tracks;
+  @override
+  final String? type;
+  @override
+  final String? uri;
 
   @override
   String toString() {
-    return 'Playlist(url: $url, width: $width, height: $height)';
+    return 'Playlist(collaborative: $collaborative, description: $description, externalUrls: $externalUrls, followers: $followers, hRef: $hRef, id: $id, images: $images, name: $name, owner: $owner, public: $public, snapshotId: $snapshotId, tracks: $tracks, type: $type, uri: $uri)';
   }
 
   @override
@@ -135,18 +376,44 @@ class _$_Playlist implements _Playlist {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Playlist &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height));
+            const DeepCollectionEquality()
+                .equals(other.collaborative, collaborative) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.externalUrls, externalUrls) &&
+            const DeepCollectionEquality().equals(other.followers, followers) &&
+            const DeepCollectionEquality().equals(other.hRef, hRef) &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other._images, _images) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality().equals(other.owner, owner) &&
+            const DeepCollectionEquality().equals(other.public, public) &&
+            const DeepCollectionEquality()
+                .equals(other.snapshotId, snapshotId) &&
+            const DeepCollectionEquality().equals(other.tracks, tracks) &&
+            const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.uri, uri));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height));
+      const DeepCollectionEquality().hash(collaborative),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(externalUrls),
+      const DeepCollectionEquality().hash(followers),
+      const DeepCollectionEquality().hash(hRef),
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(_images),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(owner),
+      const DeepCollectionEquality().hash(public),
+      const DeepCollectionEquality().hash(snapshotId),
+      const DeepCollectionEquality().hash(tracks),
+      const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(uri));
 
   @JsonKey(ignore: true)
   @override
@@ -163,16 +430,53 @@ class _$_Playlist implements _Playlist {
 
 abstract class _Playlist implements Playlist {
   const factory _Playlist(
-      {final String? url, final int? width, final int? height}) = _$_Playlist;
+      {final bool? collaborative,
+      final String? description,
+      @JsonKey(name: 'external_urls') final ExternalUrls? externalUrls,
+      final Followers? followers,
+      final String? hRef,
+      final String? id,
+      final List<Image>? images,
+      final String? name,
+      final UserProfile? owner,
+      final bool? public,
+      @JsonKey(name: 'snapshot_id') final String? snapshotId,
+      final PaginatedResponseTracks? tracks,
+      final String? type,
+      final String? uri}) = _$_Playlist;
 
   factory _Playlist.fromJson(Map<String, dynamic> json) = _$_Playlist.fromJson;
 
   @override
-  String? get url;
+  bool? get collaborative;
   @override
-  int? get width;
+  String? get description;
   @override
-  int? get height;
+  @JsonKey(name: 'external_urls')
+  ExternalUrls? get externalUrls;
+  @override
+  Followers? get followers;
+  @override
+  String? get hRef;
+  @override
+  String? get id;
+  @override
+  List<Image>? get images;
+  @override
+  String? get name;
+  @override
+  UserProfile? get owner;
+  @override
+  bool? get public;
+  @override
+  @JsonKey(name: 'snapshot_id')
+  String? get snapshotId;
+  @override
+  PaginatedResponseTracks? get tracks;
+  @override
+  String? get type;
+  @override
+  String? get uri;
   @override
   @JsonKey(ignore: true)
   _$$_PlaylistCopyWith<_$_Playlist> get copyWith =>

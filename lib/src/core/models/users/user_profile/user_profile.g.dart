@@ -15,8 +15,10 @@ _$_UserProfile _$$_UserProfileFromJson(Map<String, dynamic> json) =>
           ? null
           : ExplicitContent.fromJson(
               json['explicit_content'] as Map<String, dynamic>),
-      externalUrls:
-          ExternalUrls.fromJson(json['external_urls'] as Map<String, dynamic>),
+      externalUrls: json['external_urls'] == null
+          ? null
+          : ExternalUrls.fromJson(
+              json['external_urls'] as Map<String, dynamic>),
       followers: json['followers'] == null
           ? null
           : Followers.fromJson(json['followers'] as Map<String, dynamic>),
