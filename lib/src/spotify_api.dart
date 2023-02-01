@@ -1,8 +1,4 @@
-import 'package:spotify_flutter/spotify_flutter.dart';
-import 'package:spotify_flutter/src/core/api/api_client.dart';
-import 'package:spotify_flutter/src/core/api/api_result.dart';
-import 'package:spotify_flutter/src/core/models/models.dart';
-import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
+
 import 'package:spotify_flutter/src/core/services/services.dart';
 
 class SpotifyApi {
@@ -17,5 +13,6 @@ class SpotifyApi {
   final genreService = GenreService();
   final artistService = ArtistService();
   final albumsService = AlbumServiceImpl();
+
 
 }

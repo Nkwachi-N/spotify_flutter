@@ -8,7 +8,7 @@ part of 'external_urls.dart';
 
 _$_ExternalUrls _$$_ExternalUrlsFromJson(Map<String, dynamic> json) =>
     _$_ExternalUrls(
-      spotify: json['spotify'] as String,
+      spotify: json['spotify'] as String?,
     );
 
 Map<String, dynamic> _$$_ExternalUrlsToJson(_$_ExternalUrls instance) =>

@@ -11,8 +11,7 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+This is a library that helps with interfacing with the Spotify Api.
 
 ## Features
 
@@ -20,10 +19,52 @@ TODO: List what your package can do. Maybe include images, gifs, or videos.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
+The project requires a minimum SDK version on Android of 18
 
+Add this to your Manifest File on Android.
+
+<activity
+android:name="com.linusu.flutter_web_auth.CallbackActivity"
+android:exported="true">
+
+            <intent-filter android:label="flutter_web_auth">
+
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="[INSERT_YOUR_CALLBACK_SCHEME]" />
+
+
+            </intent-filter>
+        </activity>
 ## Usage
+
+
+Authentication:
+
+```dart
+ _authenticate(BuildContext context) async {
+  final clientId = dotenv.env['CLIENT_ID'];
+  final secretKey = dotenv.env['SECRET_KEY'];
+  final response = await SpotifyApi.instance.authService.authorize(
+    redirectUri: 'spotify.flutter://spotify.flutter.com',
+    clientId: clientId!,
+    callbackUrlScheme: 'spotify',
+    //Optional: A space-separated list of scopes.[]
+    scope: 'user-read',
+    secretKey: secretKey!,
+  );
+  response.when(success: (success) {
+    _showSnackBar(context, 'Authenticated');
+  }, failure: (failure) {
+    _showSnackBar(context, 'Failed');
+  });
+}
+```
+
 
 TODO: Include short and useful examples for package users. Add longer examples
 to `/example` folder. 

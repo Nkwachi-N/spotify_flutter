@@ -2,16 +2,17 @@ import 'package:example/albums_screen.dart';
 import 'package:example/artists_screen.dart';
 import 'package:example/users_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:spotify_flutter/generated/l10n.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
-import 'api_keys.dart';
 
-void main() {
-  runApp(const HelpMe());
+Future<void> main() async {
+  await dotenv.load(fileName: ".env");
+  runApp(const MyApp());
 }
 
-class HelpMe extends StatelessWidget {
-  const HelpMe({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +32,6 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class Pacman {}
-
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ElevatedButton(
             onPressed: () => _toUserScreen(context),
             child: const Text('Test User Endpoints '),
-          ), ElevatedButton(
+          ),
+          ElevatedButton(
             onPressed: () => _toAlbumsScreen(context),
             child: const Text('Test Albums Endpoints'),
           ),
@@ -64,33 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
       ),
     );
-  }
-
-  _getUserInfo(BuildContext context) async {
-    final response = await SpotifyApi.instance.userService.getCurrentUsersProfile();
-    response.when(success: (success) {
-      _showSnackBar(context, 'Name is ${success.displayName}');
-    }, failure: (failure) {
-      _showSnackBar(context, 'Failed');
-    });
-  }
-
-  _getUserTopArtists(BuildContext context) async {
-    final response = await SpotifyApi.instance.userService.getUserTopArtists();
-    response.when(success: (success) {
-      _showSnackBar(context, 'Items length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar(context, 'Failed');
-    });
-  }
-
-  _getAvailableGenre(BuildContext context) async {
-    final response = await SpotifyApi.instance.genreService.getAvailableGenreSeeds();
-    response.when(success: (success) {
-      _showSnackBar(context, 'Items length is ${success.genres.length}');
-    }, failure: (failure) {
-      _showSnackBar(context, 'Failed');
-    });
   }
 
   toArtistScreen(BuildContext context) {
@@ -108,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+
   _toUserScreen(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -118,12 +92,16 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 void _authenticate(BuildContext context) async {
+  final clientId = dotenv.env['CLIENT_ID'];
+  final secretKey = dotenv.env['SECRET_KEY'];
   final response = await SpotifyApi.instance.authService.authorize(
-      redirectUri: 'clash://clash.flutter.com',
-      clientId: kClientId,
-      callbackUrlScheme: 'clash',
-      scope: 'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
-      secretKey: kSecretKey);
+    redirectUri: 'spotify://spotify.flutter.com',
+    clientId: clientId!,
+    callbackUrlScheme: 'spotify',
+    scope:
+        'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
+    secretKey: secretKey!,
+  );
   response.when(success: (success) {
     _showSnackBar(context, 'Authenticated');
   }, failure: (failure) {
