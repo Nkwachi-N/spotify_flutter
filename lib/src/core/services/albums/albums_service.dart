@@ -1,6 +1,3 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
 import 'package:spotify_flutter/src/core/api/api_client.dart';
 import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
