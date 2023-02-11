@@ -1,0 +1,40 @@
+name: spotify_flutter
+description: A new Flutter project.
+version: 0.0.1
+homepage: https://github.com/Nkwachi-N/spotify_flutter
+
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_auth: ^0.4.0
+  dio: ^4.0.4
+  pkce: ^1.0.0+1
+  shared_preferences: ^2.0.11
+  freezed_annotation: ^2.1.0
+  intl: ^0.17.0
+  flutter_secure_storage: ^4.2.1
+  json_annotation: ^4.6.0
+  flutter_dotenv: ^5.0.2
+
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  build_runner: ^2.2.0
+  freezed: ^2.1.0+1
+  json_serializable: ^6.3.1
+
+
+flutter:
+flutter_intl:
+  enabled: true
+
+

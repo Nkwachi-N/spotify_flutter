@@ -1,0 +1,18 @@
+{
+  "genericError": "The application has encountered an unknown error.\nWe are aware and will be looking into this with the utmost urgency",
+  "notImplemented": "Not Implemented",
+  "important": "Important",
+  "requestCancelled": "Request Cancelled",
+  "serviceUnavailable": "Service unavailable",
+  "methodNotAllowed": "Method Allowed",
+  "badRequest": "Bad request",
+  "unexpectedErrorOccurred": "Unexpected error occurred",
+  "connectionRequestTimeout": "Connection request timeout",
+  "noInternetConnection": "No internet connection",
+  "errorDueToConflict": "Error due to a conflict",
+  "timeOutConnectionWithServer": "Send timeout in connection with API server",
+  "unableToProcessData": "Unable to process the data",
+  "notAcceptable": "Not acceptable",
+  "receivedInvalidStatusCode": "Received invalid status code",
+  "exceededLimits": "The app has exceeded its rate limits."
+}
