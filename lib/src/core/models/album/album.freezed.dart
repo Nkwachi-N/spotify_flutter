@@ -41,6 +41,7 @@ mixin _$Album {
   String get uri => throw _privateConstructorUsedError;
   List<Image> get images => throw _privateConstructorUsedError;
   List<Artist>? get artists => throw _privateConstructorUsedError;
+  List<String>? get genres => throw _privateConstructorUsedError;
   @JsonKey(name: 'album_group')
   String? get albumGroup => throw _privateConstructorUsedError;
   PaginatedResponseTracks? get tracks => throw _privateConstructorUsedError;
@@ -70,6 +71,7 @@ abstract class $AlbumCopyWith<$Res> {
       String uri,
       List<Image> images,
       List<Artist>? artists,
+      List<String>? genres,
       @JsonKey(name: 'album_group') String? albumGroup,
       PaginatedResponseTracks? tracks});
 
@@ -103,6 +105,7 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
     Object? uri = freezed,
     Object? images = freezed,
     Object? artists = freezed,
+    Object? genres = freezed,
     Object? albumGroup = freezed,
     Object? tracks = freezed,
   }) {
@@ -167,6 +170,10 @@ class _$AlbumCopyWithImpl<$Res> implements $AlbumCopyWith<$Res> {
           ? _value.artists
           : artists // ignore: cast_nullable_to_non_nullable
               as List<Artist>?,
+      genres: genres == freezed
+          ? _value.genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       albumGroup: albumGroup == freezed
           ? _value.albumGroup
           : albumGroup // ignore: cast_nullable_to_non_nullable
@@ -233,6 +240,7 @@ abstract class _$$_AlbumCopyWith<$Res> implements $AlbumCopyWith<$Res> {
       String uri,
       List<Image> images,
       List<Artist>? artists,
+      List<String>? genres,
       @JsonKey(name: 'album_group') String? albumGroup,
       PaginatedResponseTracks? tracks});
 
@@ -270,6 +278,7 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
     Object? uri = freezed,
     Object? images = freezed,
     Object? artists = freezed,
+    Object? genres = freezed,
     Object? albumGroup = freezed,
     Object? tracks = freezed,
   }) {
@@ -334,6 +343,10 @@ class __$$_AlbumCopyWithImpl<$Res> extends _$AlbumCopyWithImpl<$Res>
           ? _value._artists
           : artists // ignore: cast_nullable_to_non_nullable
               as List<Artist>?,
+      genres: genres == freezed
+          ? _value._genres
+          : genres // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       albumGroup: albumGroup == freezed
           ? _value.albumGroup
           : albumGroup // ignore: cast_nullable_to_non_nullable
@@ -365,11 +378,13 @@ class _$_Album implements _Album {
       required this.uri,
       required final List<Image> images,
       final List<Artist>? artists,
+      final List<String>? genres,
       @JsonKey(name: 'album_group') this.albumGroup,
       this.tracks})
       : _availableMarkets = availableMarkets,
         _images = images,
-        _artists = artists;
+        _artists = artists,
+        _genres = genres;
 
   factory _$_Album.fromJson(Map<String, dynamic> json) =>
       _$$_AlbumFromJson(json);
@@ -429,6 +444,15 @@ class _$_Album implements _Album {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<String>? _genres;
+  @override
+  List<String>? get genres {
+    final value = _genres;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'album_group')
   final String? albumGroup;
@@ -437,7 +461,7 @@ class _$_Album implements _Album {
 
   @override
   String toString() {
-    return 'Album(followers: $followers, externalUrls: $externalUrls, albumType: $albumType, totalTracks: $totalTracks, availableMarkets: $availableMarkets, hRef: $hRef, id: $id, name: $name, releaseDate: $releaseDate, releaseDatePrecision: $releaseDatePrecision, restrictions: $restrictions, type: $type, uri: $uri, images: $images, artists: $artists, albumGroup: $albumGroup, tracks: $tracks)';
+    return 'Album(followers: $followers, externalUrls: $externalUrls, albumType: $albumType, totalTracks: $totalTracks, availableMarkets: $availableMarkets, hRef: $hRef, id: $id, name: $name, releaseDate: $releaseDate, releaseDatePrecision: $releaseDatePrecision, restrictions: $restrictions, type: $type, uri: $uri, images: $images, artists: $artists, genres: $genres, albumGroup: $albumGroup, tracks: $tracks)';
   }
 
   @override
@@ -466,6 +490,7 @@ class _$_Album implements _Album {
             const DeepCollectionEquality().equals(other.uri, uri) &&
             const DeepCollectionEquality().equals(other._images, _images) &&
             const DeepCollectionEquality().equals(other._artists, _artists) &&
+            const DeepCollectionEquality().equals(other._genres, _genres) &&
             const DeepCollectionEquality()
                 .equals(other.albumGroup, albumGroup) &&
             const DeepCollectionEquality().equals(other.tracks, tracks));
@@ -490,6 +515,7 @@ class _$_Album implements _Album {
       const DeepCollectionEquality().hash(uri),
       const DeepCollectionEquality().hash(_images),
       const DeepCollectionEquality().hash(_artists),
+      const DeepCollectionEquality().hash(_genres),
       const DeepCollectionEquality().hash(albumGroup),
       const DeepCollectionEquality().hash(tracks));
 
@@ -529,6 +555,7 @@ abstract class _Album implements Album {
       required final String uri,
       required final List<Image> images,
       final List<Artist>? artists,
+      final List<String>? genres,
       @JsonKey(name: 'album_group')
           final String? albumGroup,
       final PaginatedResponseTracks? tracks}) = _$_Album;
@@ -571,6 +598,8 @@ abstract class _Album implements Album {
   List<Image> get images;
   @override
   List<Artist>? get artists;
+  @override
+  List<String>? get genres;
   @override
   @JsonKey(name: 'album_group')
   String? get albumGroup;

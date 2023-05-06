@@ -184,21 +184,12 @@ class __$$RequestCancelledCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestCancelled
-    with DiagnosticableTreeMixin
-    implements RequestCancelled {
+class _$RequestCancelled implements RequestCancelled {
   const _$RequestCancelled();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.requestCancelled()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.requestCancelled'));
   }
 
   @override
@@ -401,26 +392,15 @@ class __$$UnauthorisedRequestCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnauthorisedRequest
-    with DiagnosticableTreeMixin
-    implements UnauthorisedRequest {
+class _$UnauthorisedRequest implements UnauthorisedRequest {
   const _$UnauthorisedRequest(this.reason);
 
   @override
   final String reason;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.unauthorisedRequest(reason: $reason)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(
-          DiagnosticsProperty('type', 'NetworkExceptions.unauthorisedRequest'))
-      ..add(DiagnosticsProperty('reason', reason));
   }
 
   @override
@@ -625,18 +605,12 @@ class __$$BadRequestCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BadRequest with DiagnosticableTreeMixin implements BadRequest {
+class _$BadRequest implements BadRequest {
   const _$BadRequest();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.badRequest()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'NetworkExceptions.badRequest'));
   }
 
   @override
@@ -838,23 +812,15 @@ class __$$NotFoundCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NotFound with DiagnosticableTreeMixin implements NotFound {
+class _$NotFound implements NotFound {
   const _$NotFound(this.reason);
 
   @override
   final String reason;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.notFound(reason: $reason)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'NetworkExceptions.notFound'))
-      ..add(DiagnosticsProperty('reason', reason));
   }
 
   @override
@@ -1057,21 +1023,12 @@ class __$$MethodNotAllowedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$MethodNotAllowed
-    with DiagnosticableTreeMixin
-    implements MethodNotAllowed {
+class _$MethodNotAllowed implements MethodNotAllowed {
   const _$MethodNotAllowed();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.methodNotAllowed()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.methodNotAllowed'));
   }
 
   @override
@@ -1261,19 +1218,12 @@ class __$$NotAcceptableCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NotAcceptable with DiagnosticableTreeMixin implements NotAcceptable {
+class _$NotAcceptable implements NotAcceptable {
   const _$NotAcceptable();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.notAcceptable()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.notAcceptable'));
   }
 
   @override
@@ -1463,19 +1413,12 @@ class __$$RequestTimeoutCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RequestTimeout with DiagnosticableTreeMixin implements RequestTimeout {
+class _$RequestTimeout implements RequestTimeout {
   const _$RequestTimeout();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.requestTimeout()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.requestTimeout'));
   }
 
   @override
@@ -1665,19 +1608,12 @@ class __$$SendTimeoutCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SendTimeout with DiagnosticableTreeMixin implements SendTimeout {
+class _$SendTimeout implements SendTimeout {
   const _$SendTimeout();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.sendTimeout()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.sendTimeout'));
   }
 
   @override
@@ -1867,19 +1803,12 @@ class __$$ExceededLimitsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ExceededLimits with DiagnosticableTreeMixin implements ExceededLimits {
+class _$ExceededLimits implements ExceededLimits {
   const _$ExceededLimits();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.exceededLimits()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.exceededLimits'));
   }
 
   @override
@@ -2082,26 +2011,15 @@ class __$$InternalServerErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InternalServerError
-    with DiagnosticableTreeMixin
-    implements InternalServerError {
+class _$InternalServerError implements InternalServerError {
   const _$InternalServerError(this.message);
 
   @override
   final String message;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.internalServerError(message: $message)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(
-          DiagnosticsProperty('type', 'NetworkExceptions.internalServerError'))
-      ..add(DiagnosticsProperty('message', message));
   }
 
   @override
@@ -2306,19 +2224,12 @@ class __$$NotImplementedCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NotImplemented with DiagnosticableTreeMixin implements NotImplemented {
+class _$NotImplemented implements NotImplemented {
   const _$NotImplemented();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.notImplemented()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.notImplemented'));
   }
 
   @override
@@ -2508,21 +2419,12 @@ class __$$ServiceUnavailableCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ServiceUnavailable
-    with DiagnosticableTreeMixin
-    implements ServiceUnavailable {
+class _$ServiceUnavailable implements ServiceUnavailable {
   const _$ServiceUnavailable();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.serviceUnavailable()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(
-        DiagnosticsProperty('type', 'NetworkExceptions.serviceUnavailable'));
   }
 
   @override
@@ -2712,21 +2614,12 @@ class __$$NoInternetConnectionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NoInternetConnection
-    with DiagnosticableTreeMixin
-    implements NoInternetConnection {
+class _$NoInternetConnection implements NoInternetConnection {
   const _$NoInternetConnection();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.noInternetConnection()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(
-        DiagnosticsProperty('type', 'NetworkExceptions.noInternetConnection'));
   }
 
   @override
@@ -2916,21 +2809,12 @@ class __$$FormatExceptionCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FormatException
-    with DiagnosticableTreeMixin
-    implements FormatException {
+class _$FormatException implements FormatException {
   const _$FormatException();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.formatException()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.formatException'));
   }
 
   @override
@@ -3120,21 +3004,12 @@ class __$$UnableToProcessCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnableToProcess
-    with DiagnosticableTreeMixin
-    implements UnableToProcess {
+class _$UnableToProcess implements UnableToProcess {
   const _$UnableToProcess();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.unableToProcess()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.unableToProcess'));
   }
 
   @override
@@ -3337,23 +3212,15 @@ class __$$DefaultErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DefaultError with DiagnosticableTreeMixin implements DefaultError {
+class _$DefaultError implements DefaultError {
   const _$DefaultError(this.error);
 
   @override
   final String error;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.defaultError(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'NetworkExceptions.defaultError'))
-      ..add(DiagnosticsProperty('error', error));
   }
 
   @override
@@ -3556,21 +3423,12 @@ class __$$UnexpectedErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UnexpectedError
-    with DiagnosticableTreeMixin
-    implements UnexpectedError {
+class _$UnexpectedError implements UnexpectedError {
   const _$UnexpectedError();
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+  String toString() {
     return 'NetworkExceptions.unexpectedError()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'NetworkExceptions.unexpectedError'));
   }
 
   @override

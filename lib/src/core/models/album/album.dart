@@ -26,6 +26,7 @@ class Album with _$Album {
     required String uri,
     required List<Image> images,
     List<Artist>? artists,
+    List<String>? genres,
     @JsonKey(name: 'album_group') String? albumGroup,
     PaginatedResponseTracks? tracks
 
