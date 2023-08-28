@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify_flutter/spotify_flutter.dart';
+
+import 'api_client.dart';
 
 class AlbumsScreen extends StatefulWidget {
   const AlbumsScreen({Key? key}) : super(key: key);
@@ -9,8 +11,8 @@ class AlbumsScreen extends StatefulWidget {
 }
 
 class _AlbumsScreenState extends State<AlbumsScreen> {
+  final spotifyAlbumService = spotifyApiGateway.albumClient;
 
-  final spotifyAlbumService = SpotifyApi.instance.albumsService;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,82 +64,82 @@ class _AlbumsScreenState extends State<AlbumsScreen> {
   }
 
   _getAlbum() async {
-    final response =
-        await spotifyAlbumService.getAlbum(id: '4aawyAB9vmqN3uQ7FjRGTy');
-    response.when(success: (success) {
-      _showSnackBar('Album name is ${success.name}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response =
+          await spotifyAlbumService.getAlbum(id: '4aawyAB9vmqN3uQ7FjRGTy');
+      _showSnackBar('Album name is ${response.name}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getAlbumTracks() async {
-    final response =
-        await spotifyAlbumService.getAlbumTracks(id: '4aawyAB9vmqN3uQ7FjRGTy');
-    response.when(success: (success) {
-      _showSnackBar('Album tracks length is ${success.items.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyAlbumService.getAlbumTracks(
+          id: '4aawyAB9vmqN3uQ7FjRGTy');
+      _showSnackBar('Album tracks length is ${response.items.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getSeveralAlbums() async {
-    final response = await spotifyAlbumService.getSeveralAlbums(
-        ids:
-            '382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc');
-    response.when(success: (success) {
-      _showSnackBar('Albums length is ${success.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyAlbumService.getSeveralAlbums(
+          ids:
+              '382ObEPsp2rxGrnsizN5TX,1A2GTWGtFfWp7KSQTwWOyo,2noRn2Aes5aoNVsU6iWThc');
+      _showSnackBar('Albums length is ${response.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _checkSavedAlbums() async {
-    final response =
-        await spotifyAlbumService.checkSavedAlbums('382ObEPsp2rxGrnsizN5TX');
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response =
+          await spotifyAlbumService.checkSavedAlbums('382ObEPsp2rxGrnsizN5TX');
+      _showSnackBar('albums length is ${response.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _saveAlbums() async {
-    final response =
-        await spotifyAlbumService.saveAlbum('4aawyAB9vmqN3uQ7FjRGTy');
-    response.when(success: (success) {
-      _showSnackBar('Saved album is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed ${NetworkExceptions.getErrorMessage(failure)}');
-    });
+    try {
+      final response =
+          await spotifyAlbumService.saveAlbum('4aawyAB9vmqN3uQ7FjRGTy');
+      _showSnackBar('Saved album is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _removeAlbums() async {
-    final response =
-        await spotifyAlbumService.removeAlbums('4aawyAB9vmqN3uQ7FjRGTy');
-    response.when(success: (success) {
-      _showSnackBar('Removed album is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed ${NetworkExceptions.getErrorMessage(failure)}');
-    });
+    try {
+      final response =
+          await spotifyAlbumService.removeAlbums('4aawyAB9vmqN3uQ7FjRGTy');
+      _showSnackBar('Removed album is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getNewReleases() async {
-    final response = await spotifyAlbumService.getNewReleases();
-    response.when(success: (success) {
-      _showSnackBar('Items length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyAlbumService.getNewReleases();
+      _showSnackBar('Items length is ${response.items?.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getSavedAlbums() async {
-    final response = await spotifyAlbumService.getSavedAlbums();
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyAlbumService.getSavedAlbums();
+      _showSnackBar('albums length is ${response.items?.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   //

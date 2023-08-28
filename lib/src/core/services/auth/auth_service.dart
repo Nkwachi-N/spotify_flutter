@@ -2,29 +2,32 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:pkce/pkce.dart';
-import 'package:spotify_flutter/src/core/api/api_client.dart';
-import 'package:spotify_flutter/src/core/api/api_result.dart';
-import 'package:spotify_flutter/src/core/api/network_exceptions.dart';
 import 'package:spotify_flutter/src/core/constants/routes.dart';
-import 'package:spotify_flutter/src/core/services/storage/storage_service.dart';
 
 class AuthService {
-  final _apiClient = ApiClient.instance;
-  final _storageService = StorageService();
+  final Dio _dio;
 
-  Future<ApiResult<bool>> authorize({
-    required String redirectUri,
-    required String clientId,
-    String state = 'HappyBaby247',
-    required String callbackUrlScheme,
-    required String secretKey,
-    String? scope
-  }) async {
+  AuthService(this._dio);
+
+  KeyPair getKeyPair() {
     final pkcePair = PkcePair.generate();
 
     final codeChallenge = pkcePair.codeChallenge.replaceAll('=', '');
     final codeVerifier = pkcePair.codeVerifier;
+    return KeyPair(
+      codeChallenge: codeChallenge,
+      codeVerifier: codeVerifier,
+    );
+  }
 
+  Future<String?> authorize(
+      {required String redirectUri,
+      required String clientId,
+      String state = 'HappyBaby247',
+      required String callbackUrlScheme,
+      required String secretKey,
+      codeChallenge,
+      required String? scope}) async {
     final url = Uri.https('accounts.spotify.com', '/authorize', {
       'response_type': 'code',
       'client_id': clientId,
@@ -32,38 +35,23 @@ class AuthService {
       'state': state,
       'code_challenge_method': 'S256',
       'code_challenge': codeChallenge,
-      if(scope != null) 'scope': scope
+      if (scope != null) 'scope': scope
     });
 
-    try {
-      final result = await FlutterWebAuth.authenticate(
-        url: url.toString(),
-        callbackUrlScheme: callbackUrlScheme,
-      );
+    final result = await FlutterWebAuth.authenticate(
+      url: url.toString(),
+      callbackUrlScheme: callbackUrlScheme,
+    );
 
-      final returnedState = Uri.parse(result).queryParameters['state'];
+    final returnedState = Uri.parse(result).queryParameters['state'];
 
-      if (state == returnedState) {
-        final code = Uri.parse(result).queryParameters['code'];
-
-        if (code != null) {
-          return await _getToken(
-            code: code,
-            codeVerifier: codeVerifier,
-            redirectUri: redirectUri,
-            clientId: clientId,
-            secretKey: secretKey,
-          );
-        }
-      }
-    } on Exception {
-      return const ApiResult.failure(error: NetworkExceptions.unexpectedError());
+    if (state == returnedState) {
+      final code = Uri.parse(result).queryParameters['code'];
+      return code;
     }
-    return ApiResult.failure(error: NetworkExceptions.unexpectedError());
-
   }
 
-  Future<ApiResult<bool>> _getToken({
+  Future<GetTokenResponse> getToken({
     required String code,
     required String codeVerifier,
     required String redirectUri,
@@ -86,24 +74,49 @@ class AuthService {
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
-    final response = await _apiClient.post(
-      url: Routes.autGetTokenUrl,
-      clientId: clientId,
-      body: data,
-      header: header,
-      requiresToken: false,
+    final response = await _dio.post(
+      Routes.autGetTokenUrl,
+      options: Options(
+        headers: header,
+      ),
+      data: data,
     );
 
-    late ApiResult<bool> result;
-
-    response.when(success: (success) {
-
-       result =  ApiResult.success(data: success.statusCode == 200);
-       _storageService.saveToken(accessToken: success.data['access_token'], refreshToken: success.data['refresh_token']);
-       _storageService.saveClientId(clientId);
-    }, failure: (failure) {
-      result = ApiResult.failure(error: failure);
-    });
-    return result;
+    try {
+      return GetTokenResponse.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
+}
+
+class GetTokenResponse {
+  String? accessToken;
+  String? refreshToken;
+
+  GetTokenResponse({this.accessToken, this.refreshToken});
+
+  factory GetTokenResponse.fromJson(Map<String, dynamic> json) {
+    return GetTokenResponse(
+      accessToken: json['access_token'],
+      refreshToken: json['refresh_token'],
+    );
+  }
+}
+
+class AuthResponse {}
+
+class KeyPair {
+  String codeChallenge;
+  String codeVerifier;
+
+  KeyPair({
+    required this.codeChallenge,
+    required this.codeVerifier,
+  });
 }
