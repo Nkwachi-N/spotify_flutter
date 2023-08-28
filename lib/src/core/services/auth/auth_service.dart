@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:pkce/pkce.dart';
+import 'package:spotify_flutter/spotify_flutter.dart';
 import 'package:spotify_flutter/src/core/constants/routes.dart';
 
 class AuthService {
@@ -49,6 +50,7 @@ class AuthService {
       final code = Uri.parse(result).queryParameters['code'];
       return code;
     }
+    return null;
   }
 
   Future<GetTokenResponse> getToken({
@@ -95,21 +97,8 @@ class AuthService {
   }
 }
 
-class GetTokenResponse {
-  String? accessToken;
-  String? refreshToken;
 
-  GetTokenResponse({this.accessToken, this.refreshToken});
 
-  factory GetTokenResponse.fromJson(Map<String, dynamic> json) {
-    return GetTokenResponse(
-      accessToken: json['access_token'],
-      refreshToken: json['refresh_token'],
-    );
-  }
-}
-
-class AuthResponse {}
 
 class KeyPair {
   String codeChallenge;
