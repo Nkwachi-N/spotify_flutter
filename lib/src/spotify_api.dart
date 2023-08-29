@@ -1,13 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:spotify_flutter/src/core/services/search/search_service.dart';
 import 'package:spotify_flutter/src/core/services/services.dart';
 
 class SpotifyApi {
   final Dio _dio;
 
-  // final Serializers serializers;
-
   SpotifyApi({
-    // Serializers? serializers,
     String? basePathOverride,
     List<Interceptor>? interceptors,
   }) : _dio = Dio(
@@ -37,5 +35,9 @@ class SpotifyApi {
 
   UserService get userClient {
     return UserService(_dio);
+  }
+
+  SearchService get searchClient {
+    return SearchService(_dio);
   }
 }
