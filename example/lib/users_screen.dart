@@ -1,5 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:example/api_client.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify_flutter/spotify_flutter.dart';
 
 class UsersScreen extends StatefulWidget {
   const UsersScreen({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class UsersScreen extends StatefulWidget {
 }
 
 class _UsersScreenState extends State<UsersScreen> {
-  final spotifyUserService = SpotifyApi.instance.userService;
+  final spotifyUserService = spotifyApiGateway.userClient;
 
   final playlistIds = '3cEYpjA9oz9GiPac4AsH4n';
   final userId = 'smedjan';
@@ -20,7 +21,7 @@ class _UsersScreenState extends State<UsersScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Endpoints'),
+        title: const Text('User Endpoints'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -31,42 +32,47 @@ class _UsersScreenState extends State<UsersScreen> {
               children: [
                 ElevatedButton(
                     onPressed: _getCurrentUserProfile,
-                    child: Text('Get Current Users Profile')),
+                    child: const Text('Get Current Users Profile')),
                 ElevatedButton(
                     onPressed: _getUserTopArtists,
-                    child: Text('Get Users Top Artists')),
+                    child: const Text('Get Users Top Artists')),
                 ElevatedButton(
                     onPressed: _getUserTopTracks,
-                    child: Text('Get Users Top Tracks')),
+                    child: const Text('Get Users Top Tracks')),
                 ElevatedButton(
                     onPressed: _getUserProfile,
-                    child: Text('Get Users Profile')),
+                    child: const Text('Get Users Profile')),
                 ElevatedButton(
-                    onPressed: _followPlaylist, child: Text('Follow Playlist')),
+                    onPressed: _followPlaylist,
+                    child: const Text('Follow Playlist')),
                 ElevatedButton(
                     onPressed: _unFollowPlaylist,
-                    child: Text('UnFollow Playlist')),
+                    child: const Text('UnFollow Playlist')),
                 ElevatedButton(
-                    onPressed: _getFollowedArtists, child: Text('Get Followed Artists')),
+                    onPressed: _getFollowedArtists,
+                    child: const Text('Get Followed Artists')),
                 ElevatedButton(
-                    onPressed: _followArtist, child: Text('Follow Artist')),
+                    onPressed: _followArtist,
+                    child: const Text('Follow Artist')),
                 ElevatedButton(
-                    onPressed: _followUser, child: Text('Follow User')),
+                    onPressed: _followUser, child: const Text('Follow User')),
                 ElevatedButton(
-                    onPressed: _unFollowArtist, child: Text('UnFollow Artist')),
+                    onPressed: _unFollowArtist,
+                    child: const Text('UnFollow Artist')),
                 ElevatedButton(
-                    onPressed: _unFollowUser, child: Text('UnFollow User')),
+                    onPressed: _unFollowUser,
+                    child: const Text('UnFollow User')),
                 ElevatedButton(
                   onPressed: _checkIfUserFollowsArtists,
-                  child: Text('Check if User Follows Artist'),
+                  child: const Text('Check if User Follows Artist'),
                 ),
                 ElevatedButton(
                   onPressed: _checkIfUserFollowsUser,
-                  child: Text('Check if User Follows User'),
+                  child: const Text('Check if User Follows User'),
                 ),
                 ElevatedButton(
                   onPressed: _checkIfUserFollowsPlaylist,
-                  child: Text('Check if User Follows Playlist'),
+                  child: const Text('Check if User Follows Playlist'),
                 ),
               ],
             ),
@@ -77,142 +83,143 @@ class _UsersScreenState extends State<UsersScreen> {
   }
 
   _checkIfUserFollowsUser() async {
-    final response =
-        await spotifyUserService.checkIfUserFollowsUsers(ids: 'smedjan');
-    response.when(success: (success) {
-      _showSnackBar('User follows users is ${success.toString()}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response =
+          await spotifyUserService.checkIfUserFollowsUsers(ids: 'smedjan');
+      _showSnackBar('User follows users is ${response.toString()}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getFollowedArtists() async {
-    final response =
-        await spotifyUserService.getFollowedArtists();
-    response.when(success: (success) {
-      _showSnackBar('User follows artists length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.getFollowedArtists();
+      _showSnackBar('User follows artists length is ${response.items?.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _checkIfUserFollowsPlaylist() async {
-    final response = await spotifyUserService.checkIfUserFollowsPlaylist(
-        playlistId: playlistIds, userIds: userId);
-    response.when(success: (success) {
-      _showSnackBar('User follows playlist is ${success.toString()}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.checkIfUserFollowsPlaylist(
+        playlistId: playlistIds,
+        userIds: userId,
+      );
+      _showSnackBar('User follows playlist is ${response.toString()}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _checkIfUserFollowsArtists() async {
-    final response =
-        await spotifyUserService.checkIfUserFollowsArtists(ids: artistIds);
-    response.when(success: (success) {
-      _showSnackBar('User follows artist is ${success.toString()}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response =
+          await spotifyUserService.checkIfUserFollowsArtists(ids: artistIds);
+      _showSnackBar('User follows artist is ${response.toString()}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getCurrentUserProfile() async {
-    final response = await spotifyUserService.getCurrentUsersProfile();
-    response.when(success: (success) {
-      _showSnackBar('Users name is ${success.displayName}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.getCurrentUsersProfile();
+      _showSnackBar('Users name is ${response.displayName}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getUserTopArtists() async {
-    final response = await spotifyUserService.getUserTopArtists();
-    response.when(success: (success) {
-      _showSnackBar('Users Top Artists length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.getUserTopArtists();
+      _showSnackBar('Users Top Artists length is ${response.items?.length}');
+    } on DioError catch (e) {
+      print(e.response?.data);
+      _showSnackBar(e.message);
+    }
   }
 
   _getUserProfile() async {
-    final response = await spotifyUserService.getUserProfile(userId);
-    response.when(success: (success) {
-      _showSnackBar('User Profile name is ${success.displayName}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.getUserProfile(userId);
+      _showSnackBar('User Profile name is ${response.displayName}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getUserTopTracks() async {
-    final response = await spotifyUserService.getUserTopTracks();
-    response.when(success: (success) {
-      _showSnackBar('Users Top Tracks length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.getUserTopTracks();
+      _showSnackBar('Users Top Tracks length is ${response.items.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _followArtist() async {
-    final response = await spotifyUserService.followArtists(
-      ids: artistIds,
-    );
-    response.when(success: (success) {
-      _showSnackBar('Followed artists result  is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.followArtists(
+        ids: artistIds,
+      );
+      _showSnackBar('Followed artists result  is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _followUser() async {
-    final response = await spotifyUserService.followUsers(
-      ids: userId,
-    );
-    response.when(success: (success) {
-      _showSnackBar('Followed Users result  is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.followUsers(
+        ids: userId,
+      );
+      _showSnackBar('Followed Users result  is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _followPlaylist() async {
-    final response = await spotifyUserService.followPlaylist(
-      id: playlistIds,
-    );
-    response.when(success: (success) {
-      _showSnackBar('Followed Playlist  is $success');
-    }, failure: (failure) {
-      print(NetworkExceptions.getErrorMessage(failure));
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.followPlaylist(
+        id: playlistIds,
+      );
+      _showSnackBar('Followed Playlist  is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _unFollowArtist() async {
-    final response = await spotifyUserService.unfollowArtists(
-        ids:
-            '2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6');
-    response.when(success: (success) {
-      _showSnackBar('UnFollowed artists result  is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.unfollowArtists(
+          ids:
+              '2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6');
+      _showSnackBar('UnFollowed artists result  is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _unFollowPlaylist() async {
-    final response = await spotifyUserService.unFollowPlaylist(playlistIds);
-    response.when(success: (success) {
-      _showSnackBar('UnFollowed playlist is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.unFollowPlaylist(playlistIds);
+      _showSnackBar('UnFollowed playlist is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _unFollowUser() async {
-    final response = await spotifyUserService.unfollowUsers(ids: userId);
-    response.when(success: (success) {
-      _showSnackBar('UnFollowed users result  is $success');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyUserService.unfollowUsers(ids: userId);
+      _showSnackBar('UnFollowed users result  is $response');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   //

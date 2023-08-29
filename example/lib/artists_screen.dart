@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify_flutter/spotify_flutter.dart';
+
+import 'api_client.dart';
 
 class ArtistScreen extends StatefulWidget {
   const ArtistScreen({Key? key}) : super(key: key);
@@ -9,8 +11,7 @@ class ArtistScreen extends StatefulWidget {
 }
 
 class _ArtistScreenState extends State<ArtistScreen> {
-
-  final spotifyArtistService = SpotifyApi.instance.artistService;
+  final spotifyArtistService = spotifyApiGateway.artistClient;
 
   @override
   Widget build(BuildContext context) {
@@ -61,50 +62,57 @@ class _ArtistScreenState extends State<ArtistScreen> {
   }
 
   _getArtist() async {
-    final response =
-        await spotifyArtistService.getArtist('0TnOYISbd1XYRBk9myaseg');
-    response.when(success: (success) {
-      _showSnackBar('Artist name is ${success.name}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response =
+          await spotifyArtistService.getArtist(id: '0TnOYISbd1XYRBk9myaseg');
+      _showSnackBar('Artist name is ${response.name}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getSeveralArtists() async {
-    final response = await spotifyArtistService.getSeveralArtists(
-        '2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6');
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyArtistService.getSeveralArtists(
+        ids:
+            '2CIMQHirSU0MQqyYHq0eOx,57dN52uHvrHOxijzpIgu3E,1vCWHaC5f2uS3yhpwWbIA6',
+      );
+      _showSnackBar('Artists length is ${response.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getArtistsAlbums() async {
-    final response = await spotifyArtistService.getArtistAlbums(id: '0TnOYISbd1XYRBk9myaseg');
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.items?.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyArtistService.getArtistAlbums(
+          id: '0TnOYISbd1XYRBk9myaseg');
+      _showSnackBar('Artists length is ${response.items?.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getArtistsTopTracks() async {
-    final response = await spotifyArtistService.getArtistTopTracks(id: '0TnOYISbd1XYRBk9myaseg',market: 'ES');
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyArtistService.getArtistTopTracks(
+        id: '0TnOYISbd1XYRBk9myaseg',
+        market: 'ES',
+      );
+      _showSnackBar('Artist top tracks length is ${response.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   _getArtistsRelatedArtists() async {
-    final response = await spotifyArtistService.getArtistsRelatedArtists('0TnOYISbd1XYRBk9myaseg');
-    response.when(success: (success) {
-      _showSnackBar('Artists length is ${success.length}');
-    }, failure: (failure) {
-      _showSnackBar('Failed');
-    });
+    try {
+      final response = await spotifyArtistService
+          .getArtistsRelatedArtists('0TnOYISbd1XYRBk9myaseg');
+      _showSnackBar('Artist length is ${response.length}');
+    } on DioError catch (e) {
+      _showSnackBar(e.message);
+    }
   }
 
   //
