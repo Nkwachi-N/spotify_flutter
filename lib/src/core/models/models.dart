@@ -10,3 +10,4 @@ export 'track/track.dart';
 export 'cursors/cursors.dart';
 export 'playlist/playlist.dart';
 export 'get_tokens_response.dart';
+export 'paginated_response/paginated_response.dart';
