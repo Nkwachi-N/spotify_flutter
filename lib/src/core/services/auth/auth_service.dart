@@ -26,7 +26,6 @@ class AuthService {
       required String clientId,
       String state = 'HappyBaby247',
       required String callbackUrlScheme,
-      required String secretKey,
       codeChallenge,
       required String? scope}) async {
     final url = Uri.https('accounts.spotify.com', '/authorize', {
@@ -58,7 +57,7 @@ class AuthService {
     required String codeVerifier,
     required String redirectUri,
     required String clientId,
-    required String secretKey,
+    Map<String, dynamic>? header,
   }) async {
     final data = {
       'grant_type': 'authorization_code',
@@ -68,18 +67,17 @@ class AuthService {
       'code_verifier': codeVerifier
     };
 
-    Codec<String, String> stringToBase64 = utf8.fuse(base64);
-
-    final encodedString = stringToBase64.encode('$clientId:$secretKey');
-    final header = {
-      'Authorization': 'Basic $encodedString',
+    final Map<String, dynamic> defaultHeader = {
       'Content-Type': 'application/x-www-form-urlencoded',
     };
+    if (header != null) {
+      defaultHeader.addAll(header);
+    }
 
     final response = await _dio.post(
       Routes.autGetTokenUrl,
       options: Options(
-        headers: header,
+        headers: defaultHeader,
       ),
       data: data,
     );
@@ -96,9 +94,6 @@ class AuthService {
     }
   }
 }
-
-
-
 
 class KeyPair {
   String codeChallenge;

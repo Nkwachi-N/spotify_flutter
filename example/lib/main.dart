@@ -110,17 +110,17 @@ class _MyHomePageState extends State<MyHomePage> {
         callbackUrlScheme: 'spotify',
         scope:
             'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
-        secretKey: secretKey,
         codeChallenge: keyPair.codeChallenge,
       );
       if (code == null) return;
       final tokenResponse = await authClient.getToken(
-        code: code,
-        codeVerifier: keyPair.codeVerifier,
-        redirectUri: redirectUri,
-        clientId: clientId,
-        secretKey: secretKey,
-      );
+          code: code,
+          codeVerifier: keyPair.codeVerifier,
+          redirectUri: redirectUri,
+          clientId: clientId,
+          header: {
+            'requiresToken': false,
+          });
 
       final storageService = StorageService();
       if (tokenResponse.refreshToken != null &&
@@ -133,7 +133,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _showSnackBar(context, 'Authenticated');
       }
     } on DioError catch (e) {
-      _showSnackBar(context, 'Failed');
+      _showSnackBar(context, e.response?.data?.toString() ?? '');
     }
   }
 }
