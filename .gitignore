@@ -32,3 +32,6 @@ build/
 .flutter-plugins
 .flutter-plugins-dependencies
 .metadata
+
+# Asdf flutter/dart version manager
+.tool-versions

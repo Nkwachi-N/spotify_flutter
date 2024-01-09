@@ -22,16 +22,13 @@ class ApiClient {
       AuthorizationTokenInjector(),
     ]);
 
-
-
-
   ApiClient._privateConstructor();
 
   static final ApiClient _instance = ApiClient._privateConstructor();
 
   static ApiClient get instance => _instance;
 
-  final _storageService = StorageService();
+  final _storageService = const StorageService();
 
   //TODO: Store client id
   Future<ApiResult<Response>> _get(
@@ -215,21 +212,21 @@ class ApiClient {
         header: header,
         body: data,
       );
-      response.when(success: (success) {
-        final accessToken = success.data[_storageService.kAccessToken];
-        final refreshToken = success.data[_storageService.kRefreshToken];
+      response.when(
+          success: (success) {
+            final accessToken = success.data[_storageService.kAccessToken];
+            final refreshToken = success.data[_storageService.kRefreshToken];
 
-        if (accessToken != null && refreshToken != null) {
-          _storageService.saveToken(
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-          );
-          status = true;
-      }}, failure: (failure) {});
-
-    } catch (_) {
-
-    }
+            if (accessToken != null && refreshToken != null) {
+              _storageService.saveToken(
+                accessToken: accessToken,
+                refreshToken: refreshToken,
+              );
+              status = true;
+            }
+          },
+          failure: (failure) {});
+    } catch (_) {}
     return status;
   }
 

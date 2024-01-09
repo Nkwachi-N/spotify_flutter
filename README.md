@@ -25,27 +25,25 @@ This package can help you interact with the following sections under the [Spotif
 
 ## Getting started
 
-Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
+1. Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
 > The project requires a minimum SDK version on Android of 18.
 
-Add this to your Manifest File on Android.
+2. Add this to your Manifest File on Android.
 
-<activity
-android:name="com.linusu.flutter_web_auth.CallbackActivity"
-android:exported="true">
+>    <activity
+        android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
+        android:exported="true">
+        <intent-filter android:label="flutter_web_auth_2">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="YOUR_CALLBACK_URL_SCHEME_HERE" />
+        </intent-filter>
+    </activity>
 
-            <intent-filter android:label="flutter_web_auth">
+3. For android: set you're compileSdkVersion constraints to 34.
+> FLUTTER_PROJECT/android/app/build.gradle -> compileSdkVersion 34
 
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="[INSERT_YOUR_CALLBACK_SCHEME]" />
-
-
-            </intent-filter>
-        </activity>
 ## Usage
 
 

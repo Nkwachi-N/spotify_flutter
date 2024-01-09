@@ -10,10 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_auth: ^0.4.0
+  flutter_web_auth_2: ^3.1.1
   dio: ^4.0.4
-  pkce: ^1.0.0+1
-  shared_preferences: ^2.0.11
+  pkce: ^1.1.0+1
+  shared_preferences: ^2.2.2
   freezed_annotation: ^2.1.0
   intl: ^0.17.0
   flutter_secure_storage: ^4.2.1
