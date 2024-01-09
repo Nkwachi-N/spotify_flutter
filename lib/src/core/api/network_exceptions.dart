@@ -15,7 +15,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
   const factory NetworkExceptions.requestCancelled() = RequestCancelled;
 
   const factory NetworkExceptions.unauthorisedRequest(String reason) =
-  UnauthorisedRequest;
+      UnauthorisedRequest;
 
   const factory NetworkExceptions.badRequest() = BadRequest;
 
@@ -29,10 +29,10 @@ abstract class NetworkExceptions with _$NetworkExceptions {
 
   const factory NetworkExceptions.sendTimeout() = SendTimeout;
 
-  const factory NetworkExceptions.exceededLimits()= ExceededLimits;
+  const factory NetworkExceptions.exceededLimits() = ExceededLimits;
 
   const factory NetworkExceptions.internalServerError(String message) =
-  InternalServerError;
+      InternalServerError;
 
   const factory NetworkExceptions.notImplemented() = NotImplemented;
 
@@ -67,7 +67,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
                 }
               }
               networkExceptions =
-              const NetworkExceptions.noInternetConnection();
+                  const NetworkExceptions.noInternetConnection();
               break;
             case DioErrorType.receiveTimeout:
               networkExceptions = const NetworkExceptions.sendTimeout();
@@ -85,8 +85,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
                       NetworkExceptions.unauthorisedRequest(reason);
                   break;
                 case 429:
-                  networkExceptions =
-                      NetworkExceptions.exceededLimits();
+                  networkExceptions = const NetworkExceptions.exceededLimits();
                   break;
                 case 403:
                   networkExceptions =
@@ -98,7 +97,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
                   break;
                 case 503:
                   networkExceptions =
-                  const NetworkExceptions.serviceUnavailable();
+                      const NetworkExceptions.serviceUnavailable();
                   break;
                 default:
                   networkExceptions = NetworkExceptions.defaultError(
@@ -154,7 +153,7 @@ abstract class NetworkExceptions with _$NetworkExceptions {
       errorMessage = S.current.connectionRequestTimeout;
     }, noInternetConnection: () {
       errorMessage = S.current.noInternetConnection;
-    },sendTimeout: () {
+    }, sendTimeout: () {
       errorMessage = S.current.timeOutConnectionWithServer;
     }, unableToProcess: () {
       errorMessage = S.current.unableToProcessData;

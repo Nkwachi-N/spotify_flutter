@@ -5,6 +5,7 @@ import 'package:spotify_flutter/src/core/models/paginated_response/paginated_res
 import '../../constants/constants.dart';
 
 class UserService {
+  UserService();
   final apiClient = ApiClient.instance;
 
   Future<ApiResult<UserProfile>> getCurrentUsersProfile() async {
@@ -147,23 +148,19 @@ class UserService {
     return result;
   }
 
-
-  Future<ApiResult<PaginatedResponseArtist>> getFollowedArtists({String? after, int? limit}) async {
+  Future<ApiResult<PaginatedResponseArtist>> getFollowedArtists(
+      {String? after, int? limit}) async {
     final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.followUrl,
-      queryParameters: {
-        'type': 'artist',
-        'after': after,
-        'limit': limit
-      }
-    );
+        requiresToken: true,
+        url: Routes.followUrl,
+        queryParameters: {'type': 'artist', 'after': after, 'limit': limit});
 
     late ApiResult<PaginatedResponseArtist> result;
 
     response.when(
       success: (success) {
-        result = ApiResult.success(data: PaginatedResponseArtist.fromJson(success.data['artists']));
+        result = ApiResult.success(
+            data: PaginatedResponseArtist.fromJson(success.data['artists']));
       },
       failure: (failure) {
         result = ApiResult.failure(error: failure);
@@ -173,27 +170,33 @@ class UserService {
     return result;
   }
 
-  Future<ApiResult<bool>> unfollowArtists({required String ids}) => unfollow(ids: ids, type: 'artist');
+  Future<ApiResult<bool>> unfollowArtists({required String ids}) =>
+      unfollow(ids: ids, type: 'artist');
 
-  Future<ApiResult<bool>> unfollowUsers({required String ids}) => unfollow(ids: ids, type: 'user');
+  Future<ApiResult<bool>> unfollowUsers({required String ids}) =>
+      unfollow(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> followUsers({required String ids}) => follow(ids: ids, type: 'user');
+  Future<ApiResult<bool>> followUsers({required String ids}) =>
+      follow(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> followArtists({required String ids}) => follow(ids: ids, type: 'artist');
+  Future<ApiResult<bool>> followArtists({required String ids}) =>
+      follow(ids: ids, type: 'artist');
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsArtists({required String ids}) => checkIfUserFollows(ids: ids, type: 'artist');
+  Future<ApiResult<List<bool>>> checkIfUserFollowsArtists(
+          {required String ids}) =>
+      checkIfUserFollows(ids: ids, type: 'artist');
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsUsers({required String ids}) => checkIfUserFollows(ids: ids, type: 'user');
+  Future<ApiResult<List<bool>>> checkIfUserFollowsUsers(
+          {required String ids}) =>
+      checkIfUserFollows(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> unfollow({required String ids, required String type}) async {
-    final response = await apiClient.delete(
-      requiresToken: true,
-      url: Routes.followUrl,
-      queryParameters: {
-        'type': type,
-        'ids': ids,
-      }
-    );
+  Future<ApiResult<bool>> unfollow(
+      {required String ids, required String type}) async {
+    final response = await apiClient
+        .delete(requiresToken: true, url: Routes.followUrl, queryParameters: {
+      'type': type,
+      'ids': ids,
+    });
 
     late ApiResult<bool> result;
 
@@ -209,15 +212,13 @@ class UserService {
     return result;
   }
 
-  Future<ApiResult<bool>> follow({required String ids, required String type}) async {
-    final response = await apiClient.put(
-      requiresToken: true,
-      url: Routes.followUrl,
-      queryParameters: {
-        'type': type,
-        'ids': ids,
-      }
-    );
+  Future<ApiResult<bool>> follow(
+      {required String ids, required String type}) async {
+    final response = await apiClient
+        .put(requiresToken: true, url: Routes.followUrl, queryParameters: {
+      'type': type,
+      'ids': ids,
+    });
 
     late ApiResult<bool> result;
 
@@ -233,16 +234,13 @@ class UserService {
     return result;
   }
 
-
-  Future<ApiResult<List<bool>>> checkIfUserFollows({required String ids, required String type}) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.checkFollowUrl,
-        queryParameters: {
-          'type': type,
-          'ids': ids,
-        }
-    );
+  Future<ApiResult<List<bool>>> checkIfUserFollows(
+      {required String ids, required String type}) async {
+    final response = await apiClient
+        .get(requiresToken: true, url: Routes.checkFollowUrl, queryParameters: {
+      'type': type,
+      'ids': ids,
+    });
 
     late ApiResult<List<bool>> result;
 
@@ -258,14 +256,14 @@ class UserService {
     return result;
   }
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsPlaylist({required String playlistId, required String userIds}) async {
+  Future<ApiResult<List<bool>>> checkIfUserFollowsPlaylist(
+      {required String playlistId, required String userIds}) async {
     final response = await apiClient.get(
         requiresToken: true,
         url: Routes.checkIfUserFollowsPlaylistUrl(playlistId),
         queryParameters: {
           'ids': userIds,
-        }
-    );
+        });
 
     late ApiResult<List<bool>> result;
 

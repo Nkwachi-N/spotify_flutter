@@ -1,6 +1,7 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class StorageService {
+  const StorageService();
   ///Shared Preference Keys
   final kAccessToken = 'access_token';
 
