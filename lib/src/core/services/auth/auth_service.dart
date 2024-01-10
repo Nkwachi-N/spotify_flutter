@@ -1,6 +1,5 @@
-import 'dart:convert';
 import 'package:dio/dio.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
+import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:pkce/pkce.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
 import 'package:spotify_flutter/src/core/constants/routes.dart';
@@ -38,7 +37,7 @@ class AuthService {
       if (scope != null) 'scope': scope
     });
 
-    final result = await FlutterWebAuth.authenticate(
+    final result = await FlutterWebAuth2.authenticate(
       url: url.toString(),
       callbackUrlScheme: callbackUrlScheme,
     );

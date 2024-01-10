@@ -140,5 +140,3 @@ void _showSnackBar(BuildContext context, String message) {
     ),
   );
 }
-
-//TODO: add to docs that Minimum android version is 18 to correlate with flutter_secure_storage
