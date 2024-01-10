@@ -1,6 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:spotify_flutter/src/core/models/models.dart';
-import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
 import 'package:spotify_flutter/src/core/models/restrictions/restrictions.dart';
 
 
@@ -10,6 +9,7 @@ part 'album.g.dart';
 
 @freezed
 class Album with _$Album {
+
   const factory Album({
     Followers? followers,
     @JsonKey(name: 'external_urls') ExternalUrls? externalUrls,

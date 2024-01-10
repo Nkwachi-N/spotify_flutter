@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:example/storage/storage_service.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
 

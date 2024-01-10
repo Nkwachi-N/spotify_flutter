@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
-import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
 import '../../constants/constants.dart';
 
 class ArtistService {

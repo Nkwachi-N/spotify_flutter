@@ -137,7 +137,6 @@ class _UsersScreenState extends State<UsersScreen> {
       final response = await spotifyUserService.getUserTopArtists();
       _showSnackBar('Users Top Artists length is ${response.items?.length}');
     } on DioError catch (e) {
-      print(e.response?.data);
       _showSnackBar(e.message);
     }
   }
