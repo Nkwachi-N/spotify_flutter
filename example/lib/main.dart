@@ -6,7 +6,6 @@ import 'package:example/storage/storage_service.dart';
 import 'package:example/users_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:spotify_flutter/generated/l10n.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -20,9 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: MyHomePage(),
-      localizationsDelegates: [
-        S.delegate,
-      ],
     );
   }
 }
@@ -96,12 +92,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _authenticate(BuildContext context) async {
     final clientId = dotenv.env['CLIENT_ID'];
-    final secretKey = dotenv.env['SECRET_KEY'];
 
-    if (clientId == null || secretKey == null) return;
-
+    if (clientId == null) return;
     final keyPair = authClient.getKeyPair();
-
     try {
       String redirectUri = 'spotify://spotify.flutter.com';
       final code = await authClient.authorize(

@@ -130,7 +130,7 @@ class UserService {
       Routes.followUrl,
       queryParameters: {
         'type': 'artist',
-        if(after != null) 'after': after,
+        if (after != null) 'after': after,
         'limit': limit,
       },
     );

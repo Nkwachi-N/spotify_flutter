@@ -51,27 +51,49 @@ android:exported="true">
 
 ### Authentication:
 
-Ensure to authenticate first before using any of the methods. 
+Ensure to authenticate first before using any of the methods.
 Do not forget to add your REDIRECT URI in your spotify dashboard and ensure they are the same as the one used to authenticate.
 
 > Hint: Your redirect Uri should be [YOUR_CALL_BACK_SCHEME]://[ANYTHING_YOU_WANT].com
 
 
 ```dart
- _authenticate() async {
-  final response = await SpotifyApi.instance.authService.authorize(
-    redirectUri: '[INSERT_YOUR_REDERICT_URI]',
-    clientId: '[INSERT_YOUR_CLIENT_ID]',
-    callbackUrlScheme: '[INSERT_YOUR_CALL_BACK_SCHEME]',
-    //Optional: A space-separated list of scopes.To see a valid list of scopes check the spotify docs. Example below:
-    scope: 'user-read',
-    secretKey: '[INSERT_YOUR_SECRET_KEY]',
-  );
-  response.when(success: (success) {
-    //TODO: HANDLE SUCCESS
-  }, failure: (failure) {
-    //TODO: HANDLE FAILURE.
-  });
+Future authenticate() async {
+  final authClient = spotifyApiGateway.authClient;
+  final keyPair = authClient.getKeyPair();
+  try {
+    String redirectUri = 'spotify://spotify.flutter.com';
+
+    final code = await authClient.authorize(
+      redirectUri: '[INSERT_YOUR_REDIRECT_URI]',
+      clientId: '[INSERT_YOUR_CLIENT_ID]',
+      callbackUrlScheme: '[INSERT_YOUR_CALL_BACK_SCHEME]',
+      scope: '[INSERT_YOUR_SCOPE_HERE]',
+      codeChallenge: keyPair.codeChallenge,
+    );
+
+    if (code == null) {
+      //Handle failure
+      return;
+    }
+
+    //retrieve auth and refresh tokens.
+    final tokenResponse = await authClient.getToken(
+      code: code,
+      codeVerifier: keyPair.codeVerifier,
+      redirectUri: '[INSERT_YOUR_REDIRECT_URI]',
+      clientId: '[INSERT_YOUR_CLIENT_ID]',
+      //add any header, you deem required.
+      header: {},
+    );
+
+    if (tokenResponse.refreshToken != null &&
+        tokenResponse.accessToken != null) {
+      //TODO:save access and refresh token
+    }
+  } on DioError catch (e) {
+    //TODO:handle dio error
+  }
 }
 ```
 
@@ -79,14 +101,14 @@ Do not forget to add your REDIRECT URI in your spotify dashboard and ensure they
 To get current users profile.
 ```dart
   _getCurrentUserProfile() async {
-    final spotifyUserService = SpotifyApi.instance.userService;
+  final spotifyUserService = spotifyApiGateway.userClient;
+  try{
     final response = await spotifyUserService.getCurrentUsersProfile();
-    response.when(success: (success) {
-      print('Users name is ${success.displayName}');
-    }, failure: (failure) {
-      print('Failed ${failure.message}');
-    });
+    print('Users name is ${success.displayName}');
+  } on DioError catch(e) {
+    print('Failed ${failure.message}');
   }
+}
 ```
 
 

@@ -1,13 +1,5 @@
 import 'package:dio/dio.dart';
 
-class UnAuthorizedErrorHandler extends Interceptor {
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) async {
-    //TODO: immplement
-    super.onError(err, handler);
-  }
-}
-
 abstract class AuthorizationTokenInjector extends Interceptor {
   @override
   void onRequest(
