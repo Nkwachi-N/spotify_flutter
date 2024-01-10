@@ -25,25 +25,27 @@ This package can help you interact with the following sections under the [Spotif
 
 ## Getting started
 
-1. Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
+Get your api keys from [Spotify](https://developer.spotify.com/dashboard/).
 > The project requires a minimum SDK version on Android of 18.
 
-2. Add this to your Manifest File on Android.
+Add this to your Manifest File on Android.
 
->    <activity
-        android:name="com.linusu.flutter_web_auth_2.CallbackActivity"
-        android:exported="true">
-        <intent-filter android:label="flutter_web_auth_2">
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="YOUR_CALLBACK_URL_SCHEME_HERE" />
-        </intent-filter>
-    </activity>
+<activity
+android:name="com.linusu.flutter_web_auth.CallbackActivity"
+android:exported="true">
 
-3. For android: set you're compileSdkVersion constraints to 34.
-> FLUTTER_PROJECT/android/app/build.gradle -> compileSdkVersion 34
+            <intent-filter android:label="flutter_web_auth">
 
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="[INSERT_YOUR_CALLBACK_SCHEME]" />
+
+
+            </intent-filter>
+        </activity>
 ## Usage
 
 
@@ -56,20 +58,42 @@ Do not forget to add your REDIRECT URI in your spotify dashboard and ensure they
 
 
 ```dart
- _authenticate() async {
-  final response = await SpotifyApi.instance.authService.authorize(
-    redirectUri: '[INSERT_YOUR_REDERICT_URI]',
-    clientId: '[INSERT_YOUR_CLIENT_ID]',
-    callbackUrlScheme: '[INSERT_YOUR_CALL_BACK_SCHEME]',
-    //Optional: A space-separated list of scopes.To see a valid list of scopes check the spotify docs. Example below:
-    scope: 'user-read',
-    secretKey: '[INSERT_YOUR_SECRET_KEY]',
-  );
-  response.when(success: (success) {
-    //TODO: HANDLE SUCCESS
-  }, failure: (failure) {
-    //TODO: HANDLE FAILURE.
-  });
+Future authenticate() async {
+  final authClient = spotifyApiGateway.authClient;
+  final keyPair = authClient.getKeyPair();
+  try {
+    String redirectUri = 'spotify://spotify.flutter.com';
+
+    final code = await authClient.authorize(
+      redirectUri: '[INSERT_YOUR_REDIRECT_URI]',
+      clientId: '[INSERT_YOUR_CLIENT_ID]',
+      callbackUrlScheme: '[INSERT_YOUR_CALL_BACK_SCHEME]',
+      scope: '[INSERT_YOUR_SCOPE_HERE]',
+      codeChallenge: keyPair.codeChallenge,
+    );
+
+    if (code == null) {
+      //Handle failure
+      return;
+    }
+
+    //retrieve auth and refresh tokens.
+    final tokenResponse = await authClient.getToken(
+      code: code,
+      codeVerifier: keyPair.codeVerifier,
+      redirectUri: '[INSERT_YOUR_REDIRECT_URI]',
+      clientId: '[INSERT_YOUR_CLIENT_ID]',
+      //add any header, you deem required.
+      header: {},
+    );
+
+    if (tokenResponse.refreshToken != null &&
+        tokenResponse.accessToken != null) {
+      //TODO:save access and refresh token
+    }
+  } on DioError catch (e) {
+    //TODO:handle dio error
+  }
 }
 ```
 
@@ -77,14 +101,14 @@ Do not forget to add your REDIRECT URI in your spotify dashboard and ensure they
 To get current users profile.
 ```dart
   _getCurrentUserProfile() async {
-    final spotifyUserService = SpotifyApi.instance.userService;
+  final spotifyUserService = spotifyApiGateway.userClient;
+  try{
     final response = await spotifyUserService.getCurrentUsersProfile();
-    response.when(success: (success) {
-      print('Users name is ${success.displayName}');
-    }, failure: (failure) {
-      print('Failed ${failure.message}');
-    });
+    print('Users name is ${success.displayName}');
+  } on DioError catch(e) {
+    print('Failed ${failure.message}');
   }
+}
 ```
 
 

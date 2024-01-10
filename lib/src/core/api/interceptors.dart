@@ -1,23 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:spotify_flutter/src/core/services/storage/storage_service.dart';
 
-class UnAuthorizedErrorHandler extends Interceptor {
-  @override
-  void onError(DioError err, ErrorInterceptorHandler handler) async {
-    //TODO: immplement
-    super.onError(err, handler);
-  }
-}
-
-class AuthorizationTokenInjector extends Interceptor {
+abstract class AuthorizationTokenInjector extends Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    const storageService = StorageService();
-
     bool requiresToken = options.headers['requiresToken'] ?? false;
     if (requiresToken) {
-      String? token = await storageService.getAccessToken();
+      String? token = await getToken();
       if (token != null) {
         options.headers['Authorization'] = 'Bearer $token';
       }
@@ -25,4 +14,6 @@ class AuthorizationTokenInjector extends Interceptor {
 
     super.onRequest(options, handler);
   }
+
+  Future<String?> getToken();
 }

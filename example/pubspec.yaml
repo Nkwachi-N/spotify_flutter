@@ -33,6 +33,10 @@ dependencies:
     path: ../
   cupertino_icons: ^1.0.2
   flutter_dotenv: ^5.0.2
+  dio:
+  flutter_secure_storage: 4.2.1
+
+
 
 
 

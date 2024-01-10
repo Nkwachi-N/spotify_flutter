@@ -1,10 +1,11 @@
+import 'package:dio/dio.dart';
 import 'package:example/albums_screen.dart';
+import 'package:example/api_client.dart';
 import 'package:example/artists_screen.dart';
+import 'package:example/storage/storage_service.dart';
 import 'package:example/users_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:spotify_flutter/generated/l10n.dart';
-import 'package:spotify_flutter/spotify_flutter.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
@@ -18,9 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: MyHomePage(),
-      localizationsDelegates: [
-        S.delegate,
-      ],
     );
   }
 }
@@ -33,6 +31,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final authClient = spotifyApiGateway.authClient;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,24 +89,46 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-}
 
-void _authenticate(BuildContext context) async {
-  final clientId = dotenv.env['CLIENT_ID'];
-  final secretKey = dotenv.env['SECRET_KEY'];
-  final response = await SpotifyApi.instance.authService.authorize(
-    redirectUri: 'spotify://spotify.flutter.com',
-    clientId: clientId!,
-    callbackUrlScheme: 'spotify',
-    scope:
-    'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
-    secretKey: secretKey!,
-  );
-  response.when(success: (success) {
-    _showSnackBar(context, 'Authenticated');
-  }, failure: (failure) {
-    _showSnackBar(context, 'Failed');
-  });
+  void _authenticate(BuildContext context) async {
+    final clientId = dotenv.env['CLIENT_ID'];
+
+    if (clientId == null) return;
+    final keyPair = authClient.getKeyPair();
+    try {
+      String redirectUri = 'spotify://spotify.flutter.com';
+      final code = await authClient.authorize(
+        redirectUri: redirectUri,
+        clientId: clientId,
+        callbackUrlScheme: 'spotify',
+        scope:
+            'user-read-private user-read-email user-library-read user-library-modify user-top-read user-follow-modify playlist-modify-public playlist-modify-private user-follow-read',
+        codeChallenge: keyPair.codeChallenge,
+      );
+      if (code == null) return;
+      final tokenResponse = await authClient.getToken(
+          code: code,
+          codeVerifier: keyPair.codeVerifier,
+          redirectUri: redirectUri,
+          clientId: clientId,
+          header: {
+            'requiresToken': false,
+          });
+
+      final storageService = StorageService();
+      if (tokenResponse.refreshToken != null &&
+          tokenResponse.accessToken != null) {
+        storageService.saveToken(
+          accessToken: tokenResponse.accessToken!,
+          refreshToken: tokenResponse.refreshToken!,
+        );
+        if (context.mounted == false) return;
+        _showSnackBar(context, 'Authenticated');
+      }
+    } on DioError catch (e) {
+      _showSnackBar(context, e.response?.data?.toString() ?? '');
+    }
+  }
 }
 
 void _showSnackBar(BuildContext context, String message) {

@@ -1,31 +1,24 @@
+import 'package:dio/dio.dart';
 import 'package:spotify_flutter/src/core/models/available_genre/available_genre.dart';
-
-import '../../api/api_client.dart';
-import '../../api/api_result.dart';
 import '../../constants/constants.dart';
 
-class GenreService{
+class GenreService {
+  final Dio _dio;
 
-  final apiClient = ApiClient.instance;
+  GenreService(this._dio);
 
-  Future<ApiResult<AvailableGenre>> getAvailableGenreSeeds() async {
+  Future<AvailableGenre> getAvailableGenreSeeds() async {
+    final response = await _dio.get(Routes.getGenre);
 
-    final response = await apiClient.get(requiresToken: true, url: Routes.getGenre);
-
-    late ApiResult<AvailableGenre> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: AvailableGenre.fromJson(success.data)
-        );
-      },
-      failure: (failure) {
-        result =  ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return AvailableGenre.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
-
 }

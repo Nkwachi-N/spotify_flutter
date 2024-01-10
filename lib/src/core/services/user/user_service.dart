@@ -1,281 +1,242 @@
-import 'package:spotify_flutter/src/core/api/api_client.dart';
-import 'package:spotify_flutter/src/core/api/api_result.dart';
+import 'package:dio/dio.dart';
 import 'package:spotify_flutter/src/core/models/models.dart';
 import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
 import '../../constants/constants.dart';
 
 class UserService {
-  UserService();
-  final apiClient = ApiClient.instance;
+  final Dio _dio;
 
-  Future<ApiResult<UserProfile>> getCurrentUsersProfile() async {
-    final response =
-        await apiClient.get(requiresToken: true, url: Routes.getUserInfo);
+  UserService(this._dio);
 
-    late ApiResult<UserProfile> result;
+  Future<UserProfile> getCurrentUsersProfile() async {
+    final response = await _dio.get(Routes.getUserInfo);
 
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: UserProfile.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return UserProfile.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<PaginatedResponseArtist>> getUserTopArtists(
-      {int? limit, int? offset, String? timeRange}) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.getUserTopArtists,
-        queryParameters: {
-          'limit': limit,
-          'offset': offset,
-          'time_range': timeRange
-        });
-
-    late ApiResult<PaginatedResponseArtist> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: PaginatedResponseArtist.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
-  }
-
-  Future<ApiResult<PaginatedResponseTracks>> getUserTopTracks(
-      {int? limit, int? offset, String? timeRange}) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.getUserTopTracks,
-        queryParameters: {
-          'limit': limit,
-          'offset': offset,
-          'time_range': timeRange
-        });
-
-    late ApiResult<PaginatedResponseTracks> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: PaginatedResponseTracks.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
-  }
-
-  Future<ApiResult<UserProfile>> getUserProfile(String userId) async {
-    final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.getUserProfile(userId),
-    );
-
-    late ApiResult<UserProfile> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: UserProfile.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
-  }
-
-  Future<ApiResult<bool>> followPlaylist({
-    required String id,
-    bool? public,
+  Future<PaginatedResponseArtist> getUserTopArtists({
+    int limit = 20,
+    int offset = 0,
+    String timeRange = 'medium_term',
   }) async {
-    final response = await apiClient.put(
-      requiresToken: true,
-      url: Routes.userFollowedPlaylist(id),
-      body: {'public': public},
-    );
+    final response = await _dio.get(Routes.getUserTopArtists, queryParameters: {
+      'limit': limit,
+      'offset': offset,
+      'time_range': timeRange,
+    });
 
-    late ApiResult<bool> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: success.statusCode == 200);
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return PaginatedResponseArtist.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<bool>> unFollowPlaylist(String id) async {
-    final response = await apiClient.delete(
-      requiresToken: true,
-      url: Routes.userFollowedPlaylist(id),
-    );
+  Future<PaginatedResponseTracks> getUserTopTracks({
+    int limit = 20,
+    int offset = 0,
+    String timeRange = 'medium_term',
+  }) async {
+    final response = await _dio.get(Routes.getUserTopTracks, queryParameters: {
+      'limit': limit,
+      'offset': offset,
+      'time_range': timeRange
+    });
 
-    late ApiResult<bool> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: success.statusCode == 200);
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return PaginatedResponseTracks.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<PaginatedResponseArtist>> getFollowedArtists(
-      {String? after, int? limit}) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.followUrl,
-        queryParameters: {'type': 'artist', 'after': after, 'limit': limit});
+  Future<UserProfile> getUserProfile(String userId) async {
+    final response = await _dio.get(
+      Routes.getUserProfile(userId),
+    );
 
-    late ApiResult<PaginatedResponseArtist> result;
+    try {
+      return UserProfile.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+  }
 
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-            data: PaginatedResponseArtist.fromJson(success.data['artists']));
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
+  Future<bool> followPlaylist({
+    required String id,
+    bool public = true,
+  }) async {
+    final response = await _dio.put(
+      Routes.userFollowedPlaylist(id),
+      data: {'public': public},
+    );
+
+    try {
+      return response.statusCode == 200;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+  }
+
+  Future<bool> unFollowPlaylist(String id) async {
+    final response = await _dio.delete(
+      Routes.userFollowedPlaylist(id),
+    );
+
+    try {
+      return response.statusCode == 200;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
+  }
+
+  Future<PaginatedResponseArtist> getFollowedArtists(
+      {String? after, int limit = 20}) async {
+    final response = await _dio.get(
+      Routes.followUrl,
+      queryParameters: {
+        'type': 'artist',
+        if (after != null) 'after': after,
+        'limit': limit,
       },
     );
 
-    return result;
+    try {
+      return PaginatedResponseArtist.fromJson(response.data['artists']);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<bool>> unfollowArtists({required String ids}) =>
+  Future<bool> unfollowArtists({required String ids}) =>
       unfollow(ids: ids, type: 'artist');
 
-  Future<ApiResult<bool>> unfollowUsers({required String ids}) =>
+  Future<bool> unfollowUsers({required String ids}) =>
       unfollow(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> followUsers({required String ids}) =>
+  Future<bool> followUsers({required String ids}) =>
       follow(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> followArtists({required String ids}) =>
+  Future<bool> followArtists({required String ids}) =>
       follow(ids: ids, type: 'artist');
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsArtists(
-          {required String ids}) =>
+  Future<List<bool>> checkIfUserFollowsArtists({required String ids}) =>
       checkIfUserFollows(ids: ids, type: 'artist');
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsUsers(
-          {required String ids}) =>
+  Future<List<bool>> checkIfUserFollowsUsers({required String ids}) =>
       checkIfUserFollows(ids: ids, type: 'user');
 
-  Future<ApiResult<bool>> unfollow(
-      {required String ids, required String type}) async {
-    final response = await apiClient
-        .delete(requiresToken: true, url: Routes.followUrl, queryParameters: {
+  Future<bool> unfollow({required String ids, required String type}) async {
+    final response = await _dio.delete(Routes.followUrl, queryParameters: {
       'type': type,
       'ids': ids,
     });
 
-    late ApiResult<bool> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: success.statusCode == 204);
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return response.statusCode == 204;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<bool>> follow(
-      {required String ids, required String type}) async {
-    final response = await apiClient
-        .put(requiresToken: true, url: Routes.followUrl, queryParameters: {
+  Future<bool> follow({required String ids, required String type}) async {
+    final response = await _dio.put(Routes.followUrl, queryParameters: {
       'type': type,
       'ids': ids,
     });
 
-    late ApiResult<bool> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: success.statusCode == 204);
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return response.statusCode == 204;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<List<bool>>> checkIfUserFollows(
+  Future<List<bool>> checkIfUserFollows(
       {required String ids, required String type}) async {
-    final response = await apiClient
-        .get(requiresToken: true, url: Routes.checkFollowUrl, queryParameters: {
+    final response = await _dio.get(Routes.checkFollowUrl, queryParameters: {
       'type': type,
       'ids': ids,
     });
 
-    late ApiResult<List<bool>> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: List<bool>.from(success.data));
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return List<bool>.from(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<List<bool>>> checkIfUserFollowsPlaylist(
+  Future<List<bool>> checkIfUserFollowsPlaylist(
       {required String playlistId, required String userIds}) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.checkIfUserFollowsPlaylistUrl(playlistId),
+    final response = await _dio.get(
+        Routes.checkIfUserFollowsPlaylistUrl(playlistId),
         queryParameters: {
           'ids': userIds,
         });
 
-    late ApiResult<List<bool>> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(data: List<bool>.from(success.data));
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return List<bool>.from(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 }

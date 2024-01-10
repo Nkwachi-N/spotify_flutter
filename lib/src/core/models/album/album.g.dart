@@ -35,6 +35,8 @@ _$_Album _$$_AlbumFromJson(Map<String, dynamic> json) => _$_Album(
       artists: (json['artists'] as List<dynamic>?)
           ?.map((e) => Artist.fromJson(e as Map<String, dynamic>))
           .toList(),
+      genres:
+          (json['genres'] as List<dynamic>?)?.map((e) => e as String).toList(),
       albumGroup: json['album_group'] as String?,
       tracks: json['tracks'] == null
           ? null
@@ -58,6 +60,7 @@ Map<String, dynamic> _$$_AlbumToJson(_$_Album instance) => <String, dynamic>{
       'uri': instance.uri,
       'images': instance.images,
       'artists': instance.artists,
+      'genres': instance.genres,
       'album_group': instance.albumGroup,
       'tracks': instance.tracks,
     };

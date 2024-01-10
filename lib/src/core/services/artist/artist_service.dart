@@ -1,59 +1,70 @@
+import 'package:dio/dio.dart';
 import 'package:spotify_flutter/spotify_flutter.dart';
-import 'package:spotify_flutter/src/core/api/api_client.dart';
 import 'package:spotify_flutter/src/core/models/paginated_response/paginated_response.dart';
-import '../../api/api_result.dart';
 import '../../constants/constants.dart';
 
 class ArtistService {
-  ApiClient apiClient = ApiClient.instance;
+  final Dio _dio;
 
-  Future<ApiResult<Artist>> getArtist(String id) async {
-    final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.getArtist(id),
+  ArtistService(this._dio);
+
+  Future<Artist> getArtist({
+    required String id,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    final response = await _dio.get(
+      Routes.getArtist(id),
+      queryParameters: queryParameters,
+      options: options,
     );
 
-    late ApiResult<Artist> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: Artist.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      final artist = Artist.fromJson(response.data);
+      return artist;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<List<Artist>>> getSeveralArtists(String ids) async {
-    final response = await apiClient.get(
-        requiresToken: true,
-        url: Routes.getSeveralArtists,
-        queryParameters: {'ids': ids});
+  Future<List<Artist>> getSeveralArtists({
+    required String ids,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+  }) async {
+    final Map<String, dynamic> idsMap = {'ids': ids};
+    if (queryParameters != null) {
+      idsMap.addAll(queryParameters);
+    }
 
-    late ApiResult<List<Artist>> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: (success.data['artists'] as List<dynamic>)
-              .map((json) => Artist.fromJson(json))
-              .toList(),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
+    final response = await _dio.get(
+      Routes.getSeveralArtists,
+      queryParameters: idsMap,
+      options: options,
     );
 
-    return result;
+    try {
+      final artists = (response.data['artists'] as List<dynamic>)
+          .map((json) => Artist.fromJson(json))
+          .toList();
+
+      return artists;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<PaginatedResponseAlbums>> getArtistAlbums({
+  Future<PaginatedResponseAlbums> getArtistAlbums({
     required String id,
     String? includeGroups,
     int? limits,
@@ -61,89 +72,75 @@ class ArtistService {
     int? offset,
   }) async {
     Map<String, dynamic> queryParameters = {
-      'include_groups': includeGroups,
-      'limit': limits,
-      'market': market,
-      'offset': offset
+      if(includeGroups != null) 'include_groups': includeGroups,
+      if (market != null) 'market': market,
+      if (limits != null) 'limit': limits,
+      if (offset != null) 'offset': offset,
     };
 
-    final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.getArtistsAlbums(id),
+    final response = await _dio.get(
+      Routes.getArtistsAlbums(id),
       queryParameters: queryParameters,
     );
 
-    late ApiResult<PaginatedResponseAlbums> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: PaginatedResponseAlbums.fromJson(success.data),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      return PaginatedResponseAlbums.fromJson(response.data);
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<List<Track>>> getArtistTopTracks({
+  Future<List<Track>> getArtistTopTracks({
     required String id,
     required String market,
   }) async {
     Map<String, dynamic> queryParameters = {
       'market': market,
     };
-    final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.getArtistTopTracks(id),
+    final response = await _dio.get(
+      Routes.getArtistTopTracks(id),
       queryParameters: queryParameters,
     );
 
-    late ApiResult<List<Track>> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: (success.data['tracks'] as List<dynamic>)
-              .map((json) => Track.fromJson(json))
-              .toList(),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      final tracks = (response.data['tracks'] as List<dynamic>)
+          .map((json) => Track.fromJson(json))
+          .toList();
+      return tracks;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 
-  Future<ApiResult<List<Artist>>> getArtistsRelatedArtists(
-     String id,
+  Future<List<Artist>> getArtistsRelatedArtists(
+    String id,
   ) async {
-
-    final response = await apiClient.get(
-      requiresToken: true,
-      url: Routes.getArtistRelatedArtists(id),
+    final response = await _dio.get(
+      Routes.getArtistRelatedArtists(id),
     );
 
-    late ApiResult<List<Artist>> result;
-
-    response.when(
-      success: (success) {
-        result = ApiResult.success(
-          data: (success.data['artists'] as List<dynamic>)
-              .map((json) => Artist.fromJson(json))
-              .toList(),
-        );
-      },
-      failure: (failure) {
-        result = ApiResult.failure(error: failure);
-      },
-    );
-
-    return result;
+    try {
+      final artists = (response.data['artists'] as List<dynamic>)
+          .map((json) => Artist.fromJson(json))
+          .toList();
+      return artists;
+    } catch (error, stackTrace) {
+      throw DioError(
+        requestOptions: response.requestOptions,
+        response: response,
+        type: DioErrorType.other,
+        error: error,
+      )..stackTrace = stackTrace;
+    }
   }
 }
